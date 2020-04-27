@@ -1,0 +1,214 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using ProjectLibrary.Config
+@using TeamplateHotel.Models
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    var detailHotel = CommentController.DetailHotel(lan);
+    ShowObject Wellcome = CommentController.WellcomeArticle(lan);
+    List<Language> languages = CommentController.GetLanguages();
+    Plugin plugin = CommentController.GetPluigPlugin();
+    List<Menu> menus = CommentController.GetMainMenus(lan);
+    List<Menu> menufooter = CommentController.GetSecondMenus(lan).OrderBy(a => a.Index).ToList();
+    var language = languages.FirstOrDefault(a => a.ID == lan) ?? new Language();
+    List<Menu> menuDes = CommentController.GetMenusDes(lan);
+       List<ShowObject> tours = CommentController.Tourhots(lan);
+
+    string homepage = "";
+    if (ViewBag.HomePage == true)
+    {
+        homepage = "home";
+    }
+}
+
+<!DOCTYPE html>
+<html class="no-js" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>	Elite Tour </title>
+    <link rel="stylesheet" type="text/css" href="~/Content/js/owl-carousel/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/js/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/font-awesome/font-awesome/all.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/daterangepicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/style.css">
+  
+    <link rel="stylesheet" type="text/css" href="~/Content/css/responsive/style_res.css">
+
+    @RenderSection("css", required: false)
+
+</head>
+<body>
+
+    <header id="header" class="">
+        <div class="wrap_header_top">
+            <div class="container">
+                <div class="wrap_top">
+                    <div class="logo">
+                        <span class="humberger">
+                            <span class="sanwich"></span>
+                        </span>
+                        <a href="/" title="Elite Tour">
+                            <img src="~/Content/img/logo/logo.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="top_header">
+                        <div class="currency account">
+                            <span class="show_wrap_show_"><i class="fas fa-phone-alt"></i> <span class="hidden-mobile">Hotline:024 3564 3888 <i class="fal fa-angle-down"></i></span></span>
+                            <div class="wrap_show_">
+                                <span class="arrow"></span>
+                                <div class="title_account">
+                                    <p>Hotline</p>
+                                </div>
+                                <ul>
+                                    <li><a href="" title=""><span class="green">Hotline:</span> <span class="phone_hot">024 3564 3888</span></a></li>
+                                    <li><a href="" title=""><span class="green">Hotline Combo:</span> <span class="phone_hot">0911766338</span></a></li>
+                                    <li><a href="" title=""><span class="green">Hotline Khách Sạn:</span> <span class="phone_hot">0961766338</span></a></li>
+                                    <li><a href="" title=""><span class="green">Hotline Tour:</span> <span class="phone_hot">0905766338</span></a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @Html.Partial("Menu/MainMenus")
+    </header>
+    @RenderBody()
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="company_info">
+                        <div class="logo_footer">
+                            <a href="index.html" title="">
+                                <img src="~/Content/img/logo/logo.jpg" alt="">
+                            </a>
+                            <p>We make your holidays memorable</p>
+                        </div>
+                        <p>Head Office:Tòa nhà Vân Nam, 26 Đường Láng, Đống Đa, Hà Nội</p>
+                        <p class="">
+                            <a href="" title="">Hotline: 024 3564 3888</a>
+                        </p>
+                        <p class="">
+                            <a href="" title="">Hotline Combo: 0911766338</a>
+                        </p>
+                        <p class="">
+                            <a href="" title="">Hotline Khách Sạn: 0961766338</a>
+                        </p>
+                        <p class="">
+                            <a href="" title="">Hotline Tour:  0905766338</a>
+                        </p>
+
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <ul>
+                                <li><h3>SUPPORT</h3></li>
+                                <li><a href="" title="">About us</a></li>
+                                <li><a href="" title="">Terms & Conditions</a></li>
+                                <li><a href="" title="">Privacy Policy</a></li>
+                                <li><a href="" title="">FAQ'S</a></li>
+                                <li><a href="" title="">Contact us</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3">
+                            <ul>
+                                <li><h3>DESTINATIONS</h3></li>
+                                @foreach (var item in menuDes.Take(4))
+                                {
+                                    <li><a href="/@item.Alias" title="@item.Alias">@item.Title</a></li>
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="col-lg-3">
+                            <ul>
+                                <li><h3>VIETNAM TOUR</h3></li>
+                                @foreach (var item in tours.Take(3))
+                                {
+                                    <li><a href="/@item.MenuAlias/@item.ID/@item.Alias" title="@item.Title">@item.Title</a></li>
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="col-lg-3">
+                            <ul>
+                                <li><h3>MULTI-COUNTRY TOURS</h3></li>
+                                <li><a href="" title="">Vietnam - Cambodia</a></li>
+                                <li><a href="" title="">Vietnam - Laos</a></li>
+                                <li><a href="" title="">Vietnam - Myanmar</a></li>
+                                <li><a href="" title="">Vietnam - Cambodia - Laos</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-12 ">
+                    <div class="menu_footer">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="like_page_fb">
+                                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Felitetour365%2F&tabs=timeline&width=280&height=70&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId" width="280" height="70" style="border:none;overflow:hidden" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list_paypal">
+                                    <li>
+                                        <a href="" title=""><img src="~/Content/img/index/s1.png" alt=""></a>
+                                    </li>
+                                    <li>
+                                        <a href="" title=""><img src="~/Content/img/index/s2.png" alt=""></a>
+                                    </li>
+                                    <li>
+                                        <a href="" title=""><img src="~/Content/img/index/s3.png" alt=""></a>
+                                    </li>
+                                    <li>
+                                        <a href="" title=""><img src="~/Content/img/index/s4.png" alt=""></a>
+                                    </li>
+                                    <li>
+                                        <a href="" title=""><img src="~/Content/img/index/s5.png" alt=""></a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center text_info"> &copy Elite Tour 2019</p>
+                </div>
+                <div class="col-lg-12">
+                    <ul class="list_paypal link_infoPage">
+                        <li><a href="" title=""><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="" title=""><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="" title=""><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="" title=""><i class="fab fa-tripadvisor"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="~/Content/js/owl-carousel/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/effect.js"></script>
+    <script type="text/javascript" src="~/Content/js/slide.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

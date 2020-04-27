@@ -1,0 +1,49 @@
+﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Handler
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Models
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<TeamplateHotel.Models.ShowObject>
+@{
+    Menu menu = ViewBag.Menu ?? new Menu();
+}
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-6">
+            <div class="item_our">
+                <div class="img">
+                    <a href="/@item.MenuAlias/@item.ID/@item.Alias" title="@item.Title">
+                        <img src="@item.Image" alt="@item.Title">
+                        <span>@item.Themes</span>
+                    </a>
+                </div>
+                <div class="content_our">
+                    <p><span>@item.Time days</span></p>
+                    <h3><a href="/@item.MenuAlias/@item.ID/@item.Alias" title="@item.Title">@item.Title</a></h3>
+                    <div class="shop_cart">
+                        <div class="price">
+                            <span>$@item.Price</span>
+                        </div>
+                        <a href="/@item.MenuAlias/@item.ID/@item.Alias" title="@item.Title">view details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="">
+        <div class="pagination_1 text-center">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { aliasMenuSub = menu.Alias, page }))
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function OrderBy(id) {
+        var slug = $("#slugguugug").val();
+        $("#showdatahotelt").load("/demo", { slug: slug, item: id });
+    }
+</script>

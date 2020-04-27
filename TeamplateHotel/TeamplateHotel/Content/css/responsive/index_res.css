@@ -1,0 +1,204 @@
+@media (max-width: 1366px){
+	.home_page .form_search input {
+    	padding: 8px 8px 8px 45px;
+    	line-height: 30px;
+	}
+	.wrap_book_numbr button {
+		font-size: 14px;
+    	padding: 3px 5px 5px 50px;
+	}
+	.booking_hotel .dates.t-datepicker {
+    	padding: 6px 0;
+	}
+	.wrap_daterangepicker input {
+	    font-size: 14px;
+	    padding-left: 10px
+	}
+	.home_page .form_search .icon_loca {
+	    top: 14px;
+	}
+	.banner_main h1.color_white {
+    	font-size: 35px;
+    	margin-bottom: 10px
+	}
+	.banner_main h2 {
+	    font-size: 16px;
+	}
+	.wrap_100px {
+    	height: 75px;
+	}
+}
+@media (max-width: 1279px){
+	.wrapdiv .wrapItem .info {
+	    padding: 0 11px;
+	}
+	.wrapdiv .wrapItem .info h3 {
+		font-size: 25px
+	}
+}
+@media (max-width: 991px){
+	.banner_main{
+		padding-bottom: 15px
+	}
+	.title_page h1 {
+    	font-size: 30px;
+    	margin-bottom: 0px
+	}
+	.anchor {
+    	font-size: 14px;
+    	color: #545454;
+	}
+	.title_page .price_tour span:nth-child(3) {
+    	font-size: 29px;
+    	color: #b20000;
+	}
+	.title_page {
+    	display: block;
+		justify-content: normal;
+	}
+	.title_page .price_tour {
+    	text-align: left;
+    	margin-top: 5px
+	}
+	.wrap_100px{
+		height: 50px
+	}
+}
+@media (max-width: 767px){
+	.home_page .form_search input {
+    	padding: 0px 10px 0px 50px;
+	}
+	.home_page .form_search .icon_loca {
+		top: 10px
+	}
+	.wrap_book_numbr button {
+		font-size:14px;
+	}
+	.booking_hotel .dates.t-datepicker {
+    	padding: 8px 0;
+	}
+	.wrap_daterangepicker {
+	    padding: 5px 4px;
+	}
+	.wrap_daterangepicker input {
+		font-size:14px
+	}
+	.wrapdiv .wrapItem .info h3 {
+		font-size: 23px
+	}
+	.wrapdiv .grid {
+		grid-template-columns: none;
+    	grid-template-rows: none;
+	}
+	.wrapdiv .grid .grid_item {
+		grid-column: auto!important;
+		grid-row: auto!important;
+	}
+	.wrapdiv .title_section h2 {
+		font-size: 31px
+	}
+	.wrapdiv .title_section p {
+    	font-size: 15px;
+	}
+	.banner_main h1 {
+    	font-size: 30px;
+	}
+	.banner_main h2 {
+	    font-size: 16px;
+	}
+	footer .foot-col-1 {
+    	max-width: 100%;
+	}
+	footer .foot-col-3 {
+    	max-width: 100%;
+	    flex: 1;
+	}
+	footer .foot-col-5 {
+    	max-width: 100%;
+	    flex: auto;
+	}
+	footer .adress {
+    	margin-top: 5px;
+	}
+	/*tour*/
+	.wrap_img .col_img_1 {
+    	width: 100%;
+    	float: none;
+    	height: auto
+    }
+    .wrap_img .col_img img {
+	    -webkit-transform: none;
+	    transform: none;
+	    -ms-transform: none;
+	    position: relative;
+	    top: auto;
+	    left: auto;
+	    width: 100%;
+	    height: auto;
+	    object-fit: cover;
+	}
+	.wrap_img .col_img_2,
+	.wrap_img .col_img_3,
+	.wrap_img .col_img_4{
+		display: none
+	}
+	.earlyBird {
+	    display: block;
+	    border-top: 1px dashed #999;
+	    padding: 15px 20px 10px;
+	    margin: 10px 0 0;
+	}
+	.topDetail .TourInfo img{
+		width: 100%;
+		object-fit: cover
+	}
+	.link_title_page ul {
+		display: block;
+	}
+	.link_title_page ul li {
+    	display: inline-block;
+	}
+	.recoment .item_coment {
+		margin-bottom: 20px
+	}
+	.temnote .booking_ite .img_left img {
+    	width: 35px;
+	}
+	.temnote .booking_ite {
+		display: block;
+	}
+	.booking_ite .wrap_itembook {
+    	width: 100%;
+    	display: flex;
+	}
+	.list_form_search .media {
+	    padding: 5px 15px;	}
+}
+@media (max-width: 574px){
+	.book_number_view{
+		padding:0;
+		margin: 15px 0
+	}
+	.wrap_daterangepicker {
+		padding-left: 20px
+	}
+}
+@media (max-width: 414px){
+	.wrapdiv .title_section h2 {
+    	font-size: 20px;
+	}
+	.wrapdiv .wrapItem .info h3 {
+    	 font-size: 18px;
+	}
+	.wrapdiv .wrapItem .info p {
+		font-size: 13px
+	}
+	.title_page h1,
+	.title_page .price_tour span:nth-child(3) {
+    	font-size: 25px;
+	}
+	.title_page .price_tour span:nth-child(2) {
+   		font-size: 20px;
+	}
+}
+

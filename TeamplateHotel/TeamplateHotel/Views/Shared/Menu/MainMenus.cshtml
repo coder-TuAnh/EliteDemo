@@ -1,0 +1,113 @@
+﻿@using ProjectLibrary.Config
+@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@{
+    string lan = Request.Cookies["LanguageID"].Value;
+    List<Menu> menus = CommentController.GetMainMenus(lan);
+    string alias = "";
+    List<Language> languages = CommentController.GetLanguages();
+    var language = languages.FirstOrDefault(a => a.ID == lan) ?? new Language();
+}
+<!-- Collect the nav links, forms, and other content for toggling -->
+
+    <div class="menu_header">
+        <div class="container">
+            <div class="wrapMobile menu_part_mobile">
+                <div class="menu-top">
+                    <div class="bar_user">
+                        <span class="show_header_menu"><i class="fal fa-angle-left"></i></span>
+                        <div class="interfaceUser">
+                            <img src="~/Content/img/logo/avartar.png" alt="">
+                        </div>
+                    </div>
+                    <div class="login_right">
+                        <ul>
+                            <li><a href="" title="">Đăng nhập</a></li>
+                            <li><a href="" title="">Đăng ký</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile_show ">
+                <span>Tích lũy hạng phòng<span class="text-bold-2">Bạn cần ở thêm <b>2 đêm</b> để có thể nhận <b>1 đêm miễn phí</b></span></span>
+            </div>
+            <ul class="menu_main_mo wrapMobile padding_10p">
+
+                <li>
+                    <a href="/" title="" class="">
+                        <i class="fal fa-home-lg-alt"></i>
+                        <span>HOME</span>
+                    </a>
+                </li>
+
+                @foreach (var item in menus.Where(a => a.ParentID == 0).ToList())
+                {
+                    if (item.Type == SystemMenuType.Home)
+                    {
+                        <li><a href="/" title="@item.Title">@item.Title</a></li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="/@item.Alias" title="" class="">
+                                @*@Html.Raw(item.Image_icon)*@
+                                <i class="@item.Image_icon"></i>
+                                <span>@item.Title</span>
+                            </a>
+                        </li>
+                    }
+
+                }
+            </ul>
+            <div class="wrapMobile language_mobile">
+                <ul>
+                    <li>
+                        <a class="open-settings-box" data-type="language">
+                            Language <span class="language-menu-xs">
+                                <img src="~/Content/img/logo/vi.png" alt="">
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="wrapMobile language_mobile">
+                <div>
+                    <input type="checkbox" name="">
+                    <span>Xem giá cuối <small><em>(bao gồm phí dịch vụ khách sạn)</em></small></span>
+                </div>
+            </div>
+
+            <div class="wrapMobile contact_mobile">
+                <ul>
+                    <li>
+                        <a href="" title="">
+                            <i class="fas fa-globe"></i>
+                            <span>Về Vntrip</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" title="">
+                            <i class="fad fa-home"></i>
+                            <span>Liên hệ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" title="">
+                            <i class="fad fa-envelope"></i>
+                            <span>cs@vntrip.vn</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" title="">
+                            <i class="fad fa-phone-alt"></i>
+                            <span>0963 266 688</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="wrapMobile gooplay">
+                <a href="" title=""><img src="~/Content/img/logo/play.png" alt=""></a>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,229 @@
+﻿@using ProjectLibrary.Database
+@using PagedList.Mvc
+@using TeamplateHotel.Controllers
+@model PagedList.IPagedList<ListHotel>
+@{
+    ViewBag.Title = "ListCombo";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    string lan = Request.Cookies["LanguageID"].Value;
+    List<Menu> menuDes = CommentController.GetMenusDes(lan);
+}
+@section css{
+    <link rel="stylesheet" type="text/css" href="~/Content/css/daterangepicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/list_tour.css">
+}
+<style>
+    .checked {
+        color: orange;
+        background: transparent;
+    }
+</style>
+<main>
+    <div class="banner_main">
+        <div class="img_banner">
+            <img src="~/Content/img/banner_main.png" alt="">
+        </div>
+        <div class="content_banner">
+            <!-- <div class="container"> -->
+            <div class="wrap_formmm">
+                <form action="list-tour_submit" method="get" accept-charset="utf-8">
+                    <div class="title_form">
+                        <h1>Find best Hotels</h1>
+                    </div>
+                    <div class="form">
+                        <div class="form_conttt">
+                            <span class="icon_form"><i class="fad fa-map-marker-alt"></i></span>
+                            <span class="input_main"><input type="" name="" placeholder="Hotel, Destination..."></span>
+                            <span class="icon_form form_right"><i class="fas fa-times-octagon"></i></span>
+                        </div>
+                        <div class="form_conttt">
+                            <span></span>
+                            <span class="input_main input_star"><input type="" placeholder="Star"></span>
+                            <div class="drop_dow">
+                                <label>
+                                    <input type="checkbox" name="star5">
+                                    <span class="img_star"><img src="~/Content/img/tour/star5.png" alt=""></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="star4">
+                                    <span class="img_star"><img src="~/Content/img/tour/star4.png" alt=""></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="star3">
+                                    <span class="img_star"><img src="~/Content/img/tour/star3.png" alt=""></span>
+                                </label>
+
+                            </div>
+                        </div>
+                        <div class="form_conttt">
+                            <span class="icon_form"><i class="fal fa-calendar-day"></i></span>
+                            <span class="input_main"><input type="text" id="datepicker" value="04/20/2020" name="" placeholder=""></span>
+                        </div>
+                        <div class="form_conttt">
+                            <span class="icon_form"><i class="fal fa-clock"></i></span>
+                            <span class="input_main">
+                                <select name="">
+                                    <option value="">Nights</option>
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
+                                    <option value="">5</option>
+                                </select>
+                            </span>
+                            <span class="icon_form form_right"><i class="fal fa-angle-down"></i></span>
+                        </div>
+                        <div class="form_conttt">
+                            <button type="submit">Search Now</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- </div> -->
+        </div>
+    </div>
+    <div class="page_header">
+        <div class="container">
+            <ul>
+                <li><a href="index.html" title="">Home</a></li>
+                <li><span><i class="fal fa-angle-right"></i></span></li>
+                <li><span>Hotels</span></li>
+            </ul>
+            <section class="top_list_desti">
+                <div id="today-hot-deal">
+                    <h2 class="text-center">Top hotels in Hotels</h2>
+                    <div class="row top-deals">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-xs-12 margin-bottom-10 col-md-4">
+                                <div class="today-hot-deal cruise-hot-deal">
+                                    <div class="item-img">
+                                        <img src="@item.ImageHotel" alt="@item.Alias" style="height: 210px;" class="">
+                                    </div>
+                                    <div class="item-content">
+                                        <div class="row">
+                                            <div class="col-xs-8 col-md-8 padding-right-0">
+                                                <div class="item-name margin-top-0">
+                                                    <a href="/@menu.Alias/@item.ID/@item.Alias" style="">@item.HotelName</a>
+                                                </div>
+                                                <div class="star_icon">
+                                                    @for (int i = 0; i < 5; i++)
+                                                    {
+                                                        if (i < item.Star)
+                                                        {
+                                                            <span class="fa fa-star checked"></span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="fa fa-star none"></span>
+                                                        }
+
+                                                    }
+                                                </div>
+                                                <div class="hotel-room">@item.Address</div>
+                                                @*<div class="hotel-room">Hotel rooms: <b>0</b> rooms</div>*@
+                                            </div>
+                                            <div class="col-xs-4 col-md-4 text-right padding-left-0">
+                                                <div class="margin-bottom-5">from</div>
+                                                <div>
+                                                    <span class="text-price"><span class="font-size-13">US</span></span>
+                                                    <span class="price-from">$@item.PriceFrom</span>
+                                                    <span class="text-unhighlight">pp</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </section>
+            <div class="paginations text-center">
+                <ul>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </ul>
+            </div>
+            <section class="travel-styles">
+                <h2 class="title_destina text-center">Top destinations in Vietnam</h2>
+                <div class="row margin-top-20 oldCategory">
+                    @foreach (var item in menuDes.Where(x => x.Level == 1).Take(1))
+                    {
+                        <div class="col-md-3ths col-md-3ths-right">
+                            <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width: 458px;height:458px">
+                            <a class="style-name" href="/@item.Alias">
+                                @item.Title
+                            </a>
+                        </div>
+                    }
+
+                    <div class="col-md-5ths-d">
+                        @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(1).Take(2))
+                        {
+                            <div class="col-md-5ths-m margin-bottom-10 col-md-5ths-1">
+                                <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width: 224px;height:224px">
+                                <a class="style-name" href="/@item.Alias">
+                                    @item.Title
+                                </a>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-3ths">
+                        @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(3).Take(1))
+                        {
+                            <div class="col-md-3ths-2 margin-bottom-10">
+                                <a href="/ho-chi-minh-citys">
+                                    <!-- square crop -->
+                                    <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width:458px; height:223px">
+                                    <div class="col-overlay"></div>
+                                </a>
+                                <a class="style-name" href="/@item.Alias">
+                                    @item.Title
+                                </a>
+                            </div>
+                        }
+                        <div class="wwww">
+                            @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(4).Take(1))
+                            {
+                                <div class="col-md-5ths_ col-md-3ths-right">
+                                    <a href="">
+                                        <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width: 224px;height:224px">
+                                        <div class="col-overlay"></div>
+                                    </a>
+                                    <a class="style-name" href="/@item.Alias">
+                                        @item.Title
+                                    </a>
+                                </div>
+                            }
+                            <div class="col-md-5ths_ more">
+                                <div class="dropdown" id="mnuTravelStyles" data-toggle="dropdown" style="cursor: pointer;">
+                                    <img class="img-responsive" alt="Adventure Tours" src="~/Content/img/list/a6.png">
+                                    <div class="text"><span class="more-text">+1</span> <br> Travel Styles</div>
+                                </div>
+                                @*<ul class="dropdown-menu menu_more" aria-labelledby="mnuTravelStyles" style="width: 100%">
+                                        <li><a href="tour.html">Phu Quoc</a></li>
+                                    </ul>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+@section scripts{
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/getDate.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                numberOfMonths: 2,
+                showButtonPanel: true
+            });
+        });
+    </script>
+}

@@ -1,0 +1,76 @@
+.hotel_price .price_old{
+	color: #868686;
+	line-height: 1
+}
+.hotel_price .price_new{
+	color: #b20000;
+	font-size: 26px;
+	line-height: 1
+}
+.hotel_price .poster{
+	color: #438DC4;
+	font-size:13px
+}
+.hotel_price .poster img{
+	width: 13px;
+    transform: rotate(-18deg);
+    object-fit: cover
+}
+.hotel_price.title_page h1 {
+	margin-bottom: 0
+}
+.hotel_price_to.anchor{
+	font-size:14px;
+	margin-bottom: 10px
+}
+.review_hotel{
+	margin:5px 0;
+}
+.review_hotel span{
+	color: #333;
+	font-size:13px
+}
+.review_hotel .number{
+	text-align: center;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 3px;
+    padding: 4px 6px 4px;
+    position: relative;
+    font-weight: bold;
+    background:#693;
+    display: inline-block;
+    line-height: 1
+}
+.review_hotel .number::before{
+	content: "";
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-left: 5px solid transparent;
+    position: absolute;
+    right: 5px;
+    top: 100%;
+    border-top-color: #693;
+}
+.review_hotel .color_green{
+	text-transform: uppercase;
+    margin: 0 5px 0 3px;
+    color: #693;
+}
+form{
+	display: flex;
+	width: 100%
+}
+
+
+
+
+
+
+
+
+
+
+
+

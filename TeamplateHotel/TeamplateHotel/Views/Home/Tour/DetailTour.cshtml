@@ -1,0 +1,441 @@
+﻿@using ProjectLibrary.Database
+@using ProjectLibrary.Utility
+@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using TeamplateHotel.Models
+@model TeamplateHotel.Models.DetailTour
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Menu menu = ViewBag.Menu ?? new Menu();
+    Hotel company = CommentController.DetailHotel(Request.Cookies["LanguageID"].Value);
+    List<ShowObject> tourRelates = ViewBag.ListTour ?? new List<ShowObject>();
+    string lan = Request.Cookies["LanguageID"].Value;
+    List<ShowObject> _tourLike = CommentController.TourLike(lan);
+    List<ShowObject> tourhot = CommentController.Tourhots(lan);
+    List<Menu> menuActi = CommentController.GetMenusActivities(lan);
+    List<Menu> menuDes = CommentController.GetMenusDes(lan);
+    int i = 0;
+    int index = 1;
+}
+@section css{
+    <link rel="stylesheet" type="text/css" href="~/Content/css/tour.css">
+}
+<div class="col-xs-12 header-search-form__outer" style="display:none;">
+    <div class="container">
+        <div class="searchbox-wrap clearfix">
+            <form id="header-search-form" action="" method="GET">
+                <div class="col-xs-12 header-search-form">
+                    <div class="col-xs-12 col-sm-5 col-md-5 no-padding search-quantity">
+                        <div class="col-xs-5 date-div check-in ">
+                            <div class="form-group has-feedback date-menu-checkin">
+                                <label class="control-label">Nhận phòng</label>
+                                <input readonly type="text" class="form-control input-white" maxlength="12" id="datepicker-menu-chkin" name="di" class="datepicker-chkin" value="08-04-2020">
+                                <span class="fa fa-calendar-o form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-5 date-div check-out ">
+                            <div class="form-group has-feedback">
+                                <label class="control-label">Trả phòng </label>
+                                <input readonly type="text" class="form-control input-white" maxlength="12" id="datepicker-menu-chkout" name="do" class="datepicker-chkout" value="09-04-2020">
+                                <span class="fa fa-calendar-o form-control-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<main>
+    <div class="container">
+        @*<div class="link_title_page">
+                <ul>
+                    <li><a href="index.html" title="">Home</a></li>
+                    <li><span><i class="fal fa-angle-right"></i></span></li>
+                    <li><a href="" title="">VietNam Tours</a></li>
+                    <li><span><i class="fal fa-angle-right"></i></span></li>
+                    <li><span>Remarkable Vietnam 12 Day Tour</span></li>
+                </ul>
+            </div>*@
+        <div class="title_page">
+            <h1>@Model.Tour.Title </h1>
+            <div class="price_tour">
+                from <span>$0</span> <span>US</span> <span>$@Model.Tour.Price</span> pp
+            </div>
+        </div>
+        <p class="anchor"><i class="fal fa-anchor"></i>@Model.Tour.Alias</p>
+        <div class="wrap_img">
+            @foreach (var item in Model.TourGalleries.Take(4))
+            {
+
+                <div class="col_img col_img_@index"><img src="@item.LargeImage" alt="" type="button" data-toggle="modal" data-target="#modalImg" id=""></div>
+                index++;
+            }
+
+
+        </div>
+        <div class="modal fade imgModal" id="modalImg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <div id="slideImg" class="slide_show1 carousel fadeIn" data-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach (var item in Model.TourGalleries.Take(4))
+                                {
+                                    var active = i == 0 ? "active" : string.Empty;
+
+                                    <div class="carousel-item @active">
+                                        <img src="@item.LargeImage" alt="">
+                                    </div>
+                                    i++;
+                                }
+
+
+                            </div>
+                            <a class="carousel-control-prev" href="#slideImg" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon"><i class="fas fa-arrow-alt-circle-left"></i></span>
+                            </a>
+                            <a class="carousel-control-next" href="#slideImg" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"><i class="fas fa-arrow-alt-circle-right"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="earlyBird"></div>
+    </div>
+    <section class="topDetail">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 top_title">
+                    <h2>Overview</h2>
+                    @Html.Raw(Model.Tour.Description)
+                </div>
+                <div class="col-lg-9">
+                    <span class="expandAllText" data-status="true">Open All</span>
+                    <h2 class="title_TourList">Itinerary</h2>
+                    @foreach (var item in Model.TabTours)
+                    {
+                        <div class="TourList">
+                            <div class="TourDates" collapse-title="" collapse-status="hide" style="margin:0;">
+                                <span style="color : #003580">@item.TitleTab</span>
+                                <span class="collapseIcon CloseButton toggleArrow">
+                                    <i class="fal fa-angle-down"></i>
+                                </span>
+                            </div>
+                            <div class="TourInfo" collapse-content="" style="display: block;">
+                                @Html.Raw(item.Content)
+                            </div>
+                        </div>
+                    }
+
+                    <section class="priceIncotion">
+                        <h2>Price & Inclusion</h2>
+                        <div class="table_price">
+                            <table class="table table-bordered table-price-inclusion">
+                                <thead>
+                                    <tr>
+                                        <th width="40%" style="background-color: #e8e8e8">Type Room</th>
+                                        <th class="text-center" style="background-color: #e8e8e8">Small Group</th>
+                                        <th class="text-center" style="background-color: #e8e8e8">Private Tour</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th style="font-weight: normal;">
+                                            <a class="show-acc" data-target="#price_info_0" data-toogle="toogle">
+                                                Economy (2*) <i class="fas fa-sort-down"></i>
+                                            </a>
+                                            <div class="acc-detail" id="price_info_0">
+                                                <ul>
+                                                    <li>Hanoi:&nbsp;La Suite Hotel &amp; Spa</li>
+                                                    <li>Halong Bay:&nbsp;Oriental Sails</li>
+                                                    <li>Hoi An: Hoi An Venus Hotel</li>
+                                                    <li>Hue: Than Thien Hotel</li>
+                                                    <li>Ho Chi Minh City: Thien Hai Hotel</li>
+                                                </ul>
+                                            </div>
+                                        </th>
+                                        <th class="text-center" style="font-weight: normal;">
+                                            <span class="price-origin">$0</span>
+                                            <span class="text-price margin-left-5">US $789</span>
+                                        </th>
+                                        <th class="text-center" style="font-weight: normal;">
+                                            <span class="price-origin">$1096</span>
+                                            <span class="text-price margin-left-5">US $932</span>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-weight: normal;">
+                                            <a class="show-acc" data-target="#price_info_1" data-toogle="toogle">
+                                                Superior (3*) <i class="fas fa-sort-down"></i>
+                                            </a>
+                                            <div class="acc-detail" id="price_info_1">
+                                                <ul>
+                                                    <li>Ha Noi:&nbsp;Angle Palace hotel</li>
+                                                    <li>Halong Bay:&nbsp;Swan Cruise</li>
+                                                    <li>Hoi An: Kim An Hotel</li>
+                                                    <li>Hue:&nbsp;Palace Serene Hotel Hue</li>
+                                                    <li>Ho Chi Minh City:&nbsp;Park View Hotel Ho Chi Minh</li>
+                                                </ul>
+                                            </div>
+                                        </th>
+                                        <th class="text-center" style="font-weight: normal;">
+                                            <span class="price-origin">$1012</span>
+                                            <span class="text-price margin-left-5">US $860</span>
+                                        </th>
+                                        <th class="text-center" style="font-weight: normal;">
+                                            <span class="price-origin">$1190</span>
+                                            <span class="text-price margin-left-5">US $1011</span>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-weight: normal;">
+                                            <a class="show-acc" data-target="#price_info_2" data-toogle="toogle">
+                                                First Class (4*) <i class="fas fa-sort-down"></i>
+                                            </a>
+                                            <div class="acc-detail" id="price_info_2">
+                                                <ul>
+                                                    <li>Ha Noi:&nbsp;Hanoi Pearl Hotel</li>
+                                                    <li>Halong Bay:&nbsp;Peony Cruise</li>
+                                                    <li>Hoi An: Hoi An Silk Luxury Hotel &amp; Spa</li>
+                                                    <li>Hue:&nbsp;Eldora Hotel</li>
+                                                    <li>Ho Chi Minh City:&nbsp;Eden Star Hotel</li>
+                                                </ul>
+                                            </div>
+                                        </th>
+                                        <th class="text-center" style="font-weight: normal;">
+                                            <span class="price-origin">$1264</span>
+                                            <span class="text-price margin-left-5">US $1076</span>
+                                        </th>
+                                        <th class="text-center" style="font-weight: normal;">
+                                            <span class="price-origin">$1432</span>
+                                            <span class="text-price margin-left-5">US $1217</span>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th style="font-weight: normal;">
+                                            <a class="show-acc" data-target="#price_info_3" data-toogle="toogle">
+                                                Luxury (5*) <i class="fas fa-sort-down"></i>
+                                            </a>
+                                            <div class="acc-detail" id="price_info_3">
+                                                <ul>
+                                                    <li>Hotel in Hanoi:&nbsp;Pan Pacific Hotel Hanoi</li>
+                                                    <li>Cruise in Halong: Mon Cheri cruise</li>
+                                                    <li>Hotel in Hoi An:&nbsp;Palm Garden Beach Resort &amp; Spa</li>
+                                                    <li>Hotel in Hue: Indochine Place</li>
+                                                    <li>Hotel in Ho Chi Minh:&nbsp;Majestic Hotel Saigon</li>
+                                                </ul>
+                                            </div>
+                                        </th>
+                                        <th class="text-center" style="font-weight: normal;">
+                                            <span class="price-origin">$1708</span>
+                                            <span class="text-price margin-left-5">US $1452</span>
+                                        </th>
+                                        <th class="text-center" style="font-weight: normal;">
+                                            <span class="price-origin">$1895</span>
+                                            <span class="text-price margin-left-5">US $1611</span>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="note">
+                            <p style="margin-bottom: 0"><strong>Notes:</strong></p>
+                            <p style="max-width: 500px">
+                                *All prices are based on per adult, in Double/Twin sharing
+                                Small group tour available (max 10 guests): HIGHLY RECOMMENDED
+                                Surcharge will be applied for single traveler or single room request
+                            </p>
+                            <p class="inquire_a text-center">
+                                <a href="/BookTour" title="">Inquire Now</a>
+                            </p>
+                        </div>
+                        <div class="temnote">
+                            <div class="booking_ite">
+                                <span class="img_left">
+                                    <img src="~/Content/img/tour/s1.png" alt="">
+                                </span>
+                                <div>
+                                    <h3>Meals</h3>
+                                    <span>11 Breakfast, 3 Lunch, 1 Brunch, 1 Dinner</span>
+                                </div>
+                            </div>
+                            <div class="booking_ite">
+                                <span class="img_left">
+                                    <img src="~/Content/img/tour/s2.png" alt="">
+                                </span>
+                                <div>
+                                    <h3>Transportation</h3>
+                                    <span>Airplane, Car, Cruise, Trekking</span>
+                                </div>
+                            </div>
+                            <div class="booking_ite">
+                                <span class="img_left">
+                                    <img src="~/Content/img/tour/s3.png" alt="">
+                                </span>
+                                <div>
+                                    <h3>Accommodation</h3>
+                                    <span>Hotel (10 nights), On-board an overnight cruise in Halong Bay (1 night), N/A (1 night)</span>
+                                </div>
+                            </div>
+                            <div class="booking_ite">
+                                <div class="wrap_itembook">
+                                    <span class="img_left">
+                                        <img src="~/Content/img/tour/s6.png" alt="">
+                                    </span>
+                                    <div>
+                                        <h3>Price Includes</h3>
+                                        <span>Overnight in shared Twin/ Double room with </span>
+                                        <span>Air-condition (AC) at hotel.</span>
+                                        <span>All transport during tour on air - conditioned vehicle as per itinerary (including airport pick up & see off)</span>
+                                        <span>All in-tour stationed local English speaking guide.</span>
+                                        <span>Meals as indicated in the program</span>
+                                        <span>Entrance fees as per itinerary</span>
+                                        <span>2 domestic flights Hanoi – Hue and Da Nang – Ho Chi Minh City</span>
+                                    </div>
+                                </div>
+                                <div class="wrap_itembook">
+                                    <span class="img_left">
+                                        <img src="~/Content/img/tour/s7.png" alt="">
+                                    </span>
+                                    <div>
+                                        <h3>Price Excludes</h3>
+                                        <span>Hotel EARLY check in & LATE check out</span>
+                                        <span>Peak season surcharge & compulsory dinner at the hotel (if any)</span>
+                                        <span>International flight to or from Vietnam with taxes</span>
+                                        <span>Visa or Passport Fees</span>
+                                        <span>Travel Insurance</span>
+                                        <span>Tips, laundry and gratuities</span>
+                                        <span>Meals not marked on itinerary, and water during meals</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="booking_ite">
+                                <span class="img_left">
+                                    <img src="~/Content/img/tour/s4.png" alt="">
+                                </span>
+                                <div>
+                                    <h3>Cancellation by Customer</h3>
+                                    <span>Cancellation received before 60 days: FREE of cha</span>
+                                    <span>Cancellation received from 30 days to 59 days prior arrival date: 10% of total rate</span>
+                                    <span>Cancellation received from 15 days to 29 days prior arrival date: 30% of total rate</span>
+                                    <span>Cancellation received from 7 days to 14 days prior arrival date: 50% of total rate</span>
+                                    <span>Cancellation received less than 7 days prior arrival date or No show: 100% of total rate</span>
+                                </div>
+                            </div>
+                            <div class="booking_ite">
+                                <span class="img_left">
+                                    <img src="~/Content/img/tour/s5.png" alt="">
+                                </span>
+                                <div>
+                                    <h3>Children Policy</h3>
+                                    <span>The rate for children applicable for one child sharing a twin or double cabin with two adults</span>
+                                    <span>For infant (<04 years old): FOC except domestic ticket cost</span>
+                                    <span>04 - 11 years old without bed: 50% adult rate</span>
+                                    <span>04 - 11 years old with extra bed: 75% adult rate</span>
+                                    <span>04 - 11 years old in twin share: 90% adult rate</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-3">
+                    <form data-action="" id="booking_form_inquiry" name="booking_form_inquiry" method="post" class="toggleFix">
+                        <div class="InquiryFormBox">
+                            <div class="InquiryInfo">
+                                <span class="TourTitle">CUSTOMIZE THIS TRIP</span>
+                            </div>
+                            <div class="FieldSet">
+                                <p>
+                                    <input name="FullName" type="text" id="FullName" value="" placeholder="Full name" class="FullName">
+                                    <span id="realname_errmsg" class="hidden"></span>
+                                </p>
+                                <p>
+                                    <input name="Email" type="text" id="email" value="" placeholder="Email" class="EmailAddress">
+                                    <span id="email_errmsg" class="hidden"></span>
+                                </p>
+                                <p>
+                                </p><div class="form-group datepicker">
+                                    <span class="icon-before">
+                                        <span class="icon-before">
+                                            <input type="text" id="datepicker" placeholder="Starting Date" class="InquiryCalendar">
+                                        </span>
+                                    </span>
+                                </div>
+
+                                <span id="starting_date_errmsg" class="hidden"></span>
+                                <p></p>
+                                <p>
+                                    <textarea id="form_additionalrequirements" style="height:100px;" name="Request" placeholder="How many people, hotel style and changes to make... "></textarea>
+                                </p>
+
+                                <button type="submit" id="submit_booking_form_inquiry" name="booking_form_inquiry_list" class="sendButton">
+                                    Send My Inquiry
+                                    <i class="fal fa-angle-right"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <input type="hidden" name="__ftoken__" value="">
+
+                        <div class="mbottom30 last-minute hidden-xs">
+                            <p class="minute-title"><img src="~/Content/img/tour/clock.png" width="45" height="35">Last Minute Booking?</p>
+
+                            <p class="cell-list">
+                                <i class="fab fa-whatsapp"></i> (+84 24) 3999 5668<br>
+                                <span class="font14">info@asiacharmtours.com</span>
+                            </p>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="recoment">
+        <div class="container">
+            <div class="wraper_recom">
+                <h2 class="text-center">Tour Related</h2>
+                <div class="row">
+                    @foreach (var item in tourhot.Take(3))
+                    {
+                        <div class="col-md-4">
+                            <div class="item_coment">
+                                <div class="img">
+                                    <img src="@item.Image" alt="">
+                                </div>
+                                <div class="content_recom">
+                                    <h3><a href="" title="">@item.Title</a></h3>
+                                    <div class="offer_price">
+                                        <span>from</span>
+                                        <span class="us">us</span>
+                                        <span class="price_form">$@item.Price</span>
+                                        <span>pp</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="col-md-12 text-center">
+                        <a class="button_show" href="/@menu.Alias">Show more <i class="fal fa-angle-down"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

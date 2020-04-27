@@ -1,0 +1,526 @@
+.link_title_page{}
+.link_title_page ul{
+	display: flex;
+	font-size: 14px;
+	margin:8px 0;
+}
+.link_title_page ul li a{
+	color: #3385d6;
+	text-decoration: none
+}
+.link_title_page ul li{
+	margin-right: 3px
+}
+.title_page{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+.title_page h1{
+	font-size: 38px;
+	color: #545454
+}
+.title_page .price_tour{
+	color: #868686;
+	text-align: right
+}
+.title_page .price_tour span:nth-child(1){
+	text-decoration: line-through;
+	color: #444
+}
+.title_page .price_tour span:nth-child(2){
+	color: #b20000;
+	font-size: 24px
+}
+.title_page .price_tour span:nth-child(3){
+	font-size: 34px;
+    color: #b20000;
+}
+.anchor{
+	font-size: 16px;
+	color: #545454
+}
+.anchor i{
+	margin-right: 5px
+}
+.wrap_img{
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+.wrap_img .col_img{
+	float: left;
+    background-color: #f6f6f6;
+    position: relative;
+    overflow: hidden;
+vertical-align: middle;
+    cursor: pointer;
+}
+.wrap_img .col_img img{
+	    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+	object-fit: cover
+}
+.wrap_img .col_img_1{
+	width: 62.7%;
+	position: relative;
+	height: 390px;
+}
+.wrap_img .col_img_2{
+	width: 36.5%;
+    height: 190px;
+    margin-left: .8%;
+}
+.wrap_img .col_img_3,
+.wrap_img .col_img_4{
+	width: 17.85%;
+    height: 190px;
+    margin-left: .8%;
+    margin-top: .81%;
+}
+.wrap_img .col_img_4 .see_modalImg{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .5); 
+}
+.wrap_img .see_modalImg span{
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	transform:translateY(-50%);
+	font-size: 14px;
+	font-weight: 800;
+	color: #fff
+}
+.earlyBird{
+	display: block;
+    border-top: 1px dashed #999;
+    padding: 15px 20px 25px;
+    margin: 30px 0;
+}
+.imgModal.modal{
+	    background: rgba(0, 0, 0, 0.82);
+}
+.imgModal .modal-dialog {
+    max-width: 70%;
+    height: 100vh;
+    margin: 0px auto;
+    padding:100px 0 20px;
+}
+.imgModal .modal-content {
+	height: 100%
+}
+.imgModal .modal-body {
+	padding:0;
+}
+.modal-body .slide_show1 img{
+	width: 100%;
+	object-fit: cover
+}
+.imgModal .modal-content {
+	border:none;
+	background:none;
+}
+.slide_show1 .carousel-control-prev-icon,
+.slide_show1 .carousel-control-next-icon{
+	background:none;
+}
+.slide_show1 .carousel-control-next, 
+.slide_show1 .carousel-control-prev {
+	opacity: 1;
+	position: absolute;
+	width: auto;
+	display: inline-block;
+	top: 50%;
+}
+.slide_show1 .carousel-control-next{
+	right: -100px
+}
+.slide_show1 .carousel-control-prev{
+	left: -100px
+}
+.imgModal .close {
+	color: #fff
+}
+/**/
+
+@font-face {
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-display: fallback;
+    font-weight: 400;
+    src: local('Proxima Nova'), 
+    local('Proxima Nova-Regular'), 
+    url(fontproxima/proximanova-regular-webfont.woff2) format('woff2')
+}
+.topDetail {
+    background: #e9e9e9;
+    padding: 15px 0 60px 0;
+    color: #545454;
+    font-family: 'Proxima Nova';
+}
+.topDetail h2{
+	font-size: 30px !important;
+    color: #000 !important;
+    margin: 35px 0 30px !important;
+    font-weight: 300 !important;
+}
+.topDetail .top_title p{
+	font-size: 18px;
+    line-height: 1.7;
+}
+.topDetail .TourList{
+	font-size:18px;
+	line-height: 1.7;
+	background: #fff;
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+    margin-bottom: 10px;
+
+}
+.topDetail .TourDates {
+    background: #f7f7f7;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    margin: 0 !important;
+    color: #003580;
+    justify-content: space-between;
+}
+.topDetail .TourDates span{
+	display: inline-block;
+}
+.topDetail .TourDates i{
+	font-size:21px;
+	transition: .4s
+}
+.topDetail .TourDates .toggleArrow i{
+	transform: rotate(180deg);
+}
+.topDetail .TourInfo{
+	padding:20px;
+	display: none
+}
+.topDetail .expandAllText{
+	line-height: 27px;
+    float: right;
+    cursor: pointer;
+    font-size: 18px !important;
+    font-style: italic;
+    color: #003580;
+    margin-bottom: 10px;
+}
+.topDetail .title_TourList{}
+.InquiryFormBox {
+    background: #fff;
+    border: 1px solid #d6d6d6;
+    width: 100%;
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+.InquiryFormBox .InquiryInfo {
+    background: #f7f7f7;
+    padding: 10px 15px;
+    margin-bottom: 25px;
+}
+.InquiryFormBox .TourTitle {
+    color: #003580;
+    font-size: 22px;
+    text-align: center;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 300;
+}
+.InquiryFormBox .FieldSet {
+    padding: 0 20px 10px 20px;
+}
+.InquiryFormBox p {
+    margin-bottom: 20px !important;
+}
+.InquiryFormBox input[type="text"], textarea {
+    width: 100%;
+}
+.InquiryFormBox input.FullName {
+    background: url(https://data.chinahighlights.com/pic/input-name.png) no-repeat 15px;
+    padding-left: 50px;
+}
+.InquiryFormBox input.EmailAddress {
+    background: url(https://data.chinahighlights.com/pic/input-email.png) no-repeat 15px;
+    padding-left: 50px;
+}
+.InquiryFormBox input, textarea {
+    background-color: #fff;
+    border: medium none;
+    border-radius: 4px;
+    box-shadow: 0 0 2px #999;
+    color: #333;
+    font-size: 14px;
+    padding: 10px;
+    line-height: 24px;
+}
+.InquiryFormBox .sendButton {
+    background: #003580 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 18px;
+    margin: -10px 10px 15px 0;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+.last-minute {
+    border: solid 3px #a31022;
+    border-radius: 12px;
+    padding: 23px 20px 0;
+    position: relative;
+    margin-top: 20px;
+}
+.minute-title {
+    color: #a31022;
+    font-size: 17px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background: #e9e9e9;
+    text-align: center;
+    top: -20px;
+    padding: 0 10px;
+    margin: 0 10px;
+}
+.cell-list {
+    position: relative;
+    padding-left: 40px;
+    font-size: 20px;
+    color: #a31022;
+    margin-bottom: 20px;
+    line-height: 0.9em;
+}
+.cell-list .fab {
+    color: #a31022;
+    position: absolute;
+    left: 0;
+    font-size: 30px;
+}
+.minute-title img {
+    margin-right: 5px;
+}
+.font14 {
+    font-size: 14px;
+    color: #666;
+}
+.InquiryFormBox input.InquiryCalendar {
+    background: url(https://data.chinahighlights.com/pic/top10/tour-calendar.png) no-repeat 15px !important;
+    padding-left: 50px;
+    color: #555;
+}
+.toggleFix{
+	position: sticky;
+	padding-top: 40px;
+	top: 0
+}
+
+/**/
+
+.priceIncotion{
+	background:#fff;
+	margin:40px 0 30px;
+	padding:20px 10px;
+	font-size:17px;
+}
+.priceIncotion .show-acc{
+	color: #3385d6!important;
+	text-decoration: none;
+	cursor: pointer
+}
+.priceIncotion .show-acc:hover{
+	color: #eb8f00!important;
+}
+.priceIncotion .acc-detail{
+	display: none
+}
+.priceIncotion .price-origin{
+	text-decoration: line-through;
+    color: #444;
+}
+.priceIncotion .text-price{
+	color: #b30000;
+	margin-left: 5px;
+	font-size:17px
+
+}
+
+.inquire_a a{
+	display: inline-block;
+	background-color: #003580;
+    color: #fff;
+    border-color: #067107;
+    padding: 10px 16px;
+    font-size: 18px;
+    text-decoration: none
+}
+
+.inquire_a a:hover{
+	background-color: #0d53b5;
+    color: #fff;
+}
+
+.temnote{}
+.booking_ite .wrap_itembook{
+	width: 50%;
+	display: flex;
+}
+.booking_ite .wrap_itembook div{
+	padding:0 10px;
+}
+.temnote .booking_ite{
+	margin:20px 0;
+	padding-bottom: 10px;
+	border-bottom: 1px dotted #ccc;
+	display: flex;
+}
+.temnote .booking_ite .img_left{
+	width: 55px;
+
+}
+.temnote .booking_ite .img_left img{
+	width: auto
+}
+.temnote .booking_ite p{
+	color: #545454;
+	margin-bottom: 0;
+	display: block;
+	width: calc(100% - 55px)
+}
+.temnote .booking_ite h3{
+	font-size:24px;
+	display: block;
+}
+.temnote .booking_ite span{
+	display: block;
+	line-height: 1.7
+}
+/**/
+.recoment{
+	padding-top: 10px;
+	padding-bottom: 20px
+}
+.recoment h2{
+	font-size: 30px;
+    margin: 35px 0 30px;
+    font-weight: 300;
+}
+.recoment .item_coment{
+	background-color: #e9e9e9;
+    overflow: hidden;
+    padding: 10px 10px 10px 10px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    min-height: 141px;
+    cursor: pointer;
+    display: flex;
+}
+.recoment .item_coment .img{
+	width: 120px;
+height: 120px;
+}
+.content_recom{
+	width: calc(100% - 120px)
+}
+.recoment .item_coment img{
+	width: 100%;
+	height: 100%;
+	object-fit:cover;
+}
+.content_recom h3 a{
+	font-size: 18px;
+	font-weight: 500;
+    color: #0077cc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 1.5em;
+    max-height: 54px;
+    display: block;
+    padding-left: 10px
+}
+.recoment .item_coment:hover{
+	box-shadow: 1px 1px 2px 0 #eb8f00;
+}
+.content_recom .offer{
+	background-color: #fdffce;
+    padding: 5px 5px 5px 10px;
+    margin: 0px;
+    color: #545454;
+    font-size:14px;
+}
+.content_recom .offer_price{
+	padding-left: 10px
+}
+.content_recom .offer_price a{
+	font-size: 16px;
+    color: #b30000;
+    transition: .4s
+}
+.content_recom .offer_price a:hover{}
+.content_recom .offer_price span{
+	color: #555;
+	font-size:14px
+}
+.content_recom .offer_price .us{
+	font-size:15px;
+	text-transform: uppercase;
+}
+.content_recom .offer_price .price_form{
+	color: #b20000;
+	font-size:18px
+}
+.wraper_recom .button_show {
+    background-color: #fff;
+    border: 1px solid;
+    border-color: #555;
+    color: #555;
+    outline: 0;
+    padding: 8.5px 20px;
+    margin: 30px 0 40px;
+    display: inline-block;
+}
+.wraper_recom .button_show:hover{
+    border-color: #fe8802;
+    color: #fe8802;
+    outline: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

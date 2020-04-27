@@ -1,0 +1,330 @@
+.banner_main{
+	background: url(../img/banner_main.png);
+	background-position: center;
+	background-size: cover;
+	position: relative;
+	padding:50px 0;
+}
+.banner_main .margin_auto{
+	margin:auto;
+}
+.banner_main h1{
+	font-size: 40px;
+    font-weight: bold;
+}
+.banner_main .color_white{
+    color: white;
+    text-shadow: 0 0 1px rgba(0,0,0,0.3);
+    margin-bottom: 15px;
+}
+.banner_main h2{
+	font-weight: normal;
+    font-size: 20px;
+}
+.banner_main .home_page{
+	background: rgba(0,0,0,0.3);
+	padding:15px;
+	border-radius: 4px
+}
+
+.home_page .form_search{
+	position: relative;
+	margin-bottom: 15px;
+	/*border-radius: 4px*/
+}
+.home_page .form_search .input_sear{
+}
+.home_page .form_search input{
+	padding:10px 10px 10px 50px;
+	line-height: 40px;
+	border:none;
+	border-radius: 4px;
+	width: 100%;
+	position: relative;
+}
+.home_page .form_search .icon_loca{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+.home_page .form_search .icon_loca i{
+	font-size: 16px;
+	color: #ccc
+}
+.home_page .list_form_search{
+	position: absolute;
+	top: 100%;
+	left: 0;
+	display: none;
+	z-index: 2;
+	background:#fff;
+	margin-top: 1px;
+	border-radius: 4px;
+	border:1px solid rgba(108,112,126,0.15);
+}
+.home_page .list_form_search.active_show{
+	display: block;
+}
+.home_page .list_form_search .title_search{
+	font-size: 16px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(108,112,126,0.15);
+    margin-bottom: 0;
+    padding-bottom: 15px;
+    margin-left: 15px;
+    padding-top: 20px
+}
+.list_form_search .media{
+	padding:15px;
+	display: flex;
+}
+.list_form_search .media .img_medi img{
+	width: 60px;
+	height: 60px;
+	border-radius: 4px;
+	margin-right: 15px
+}
+.list_form_search .media .content_medi{
+	padding:5px 0;
+}
+.list_form_search .content_medi h3{
+	font-size: 16px;
+    color: #3d3f47;
+}
+.list_form_search .content_medi p{
+	color: #6c707e;
+	margin-bottom: 0
+}
+.home_page .list_form_search a{
+	display: block;
+	text-decoration: none;
+	position: relative;
+}
+.home_page .list_form_search a:hover{
+	background: rgba(61,63,71,0.1);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+/*wrapdiv*/
+.wrapdiv{
+	margin-bottom:30px;
+}
+.wrapdiv .title_section h2{
+	color: #000;
+    margin-bottom: 5px;
+    font-size: 36px;
+    font-weight: bold;
+}
+.wrapdiv .title_section{
+	padding-top: 30px
+}
+.wrapdiv .title_section p{
+	font-size: 18px;
+    color: #333;
+}
+.wrapdiv .wrapItem{
+	display: block;
+	border-radius: 4px;
+	position: relative;
+	overflow: hidden;
+}
+.wrapdiv .wrapItem::before{
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.01) 50%, rgba(0,0,0,0) 100%);
+}
+.wrapdiv .wrapItem .info{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding:0 15px;
+}
+.wrapdiv .wrapItem img{
+	width: 100%;
+	object-fit: cover;
+}
+.wrapdiv .wrapItem .info h3{
+	line-height: 1;
+    color: white;
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    text-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+.wrapdiv .wrapItem .info p{
+	color: white;
+    font-size: 16px;
+    text-shadow: 0 0 2px rgba(0,0,0,0.3);
+    margin-bottom: 10px;
+    line-height: 1.2
+}
+.wrapdiv .owl-theme .owl-nav,
+.section1 .owl-theme .owl-dots{
+	display: none
+}
+.section2 .owl-theme .owl-dots{
+	position: absolute;
+    width: 100%;
+    bottom: 10px;
+    left: 0
+}
+.wrapdiv .grid{
+	display: grid;
+	grid-template-columns: [col1] auto [col2] auto [col3] auto [end];
+    grid-template-rows: [row1] auto [row2] auto [row3] auto [row4] auto [end];
+    grid-gap: 15px;
+    grid-auto-columns: auto;
+    grid-auto-rows: auto;
+    grid-auto-flow: row;
+}
+    .wrapdiv .grid .grid_item,
+    .wrapdiv .grid .grid_3 ,
+    .wrapdiv .grid .grid_4 ,
+    .wrapdiv .grid .grid_5 {
+        padding: 0px;
+        margin-bottom: 0px;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    }
+
+.wrapdiv .grid .grid_1{
+	grid-column: 1/3;
+    grid-row: 1/2;
+}
+.wrapdiv .grid .grid_2{
+	grid-column: 3/end;
+    grid-row: 1/3;
+}
+.wrapdiv .grid .grid_6{
+	grid-column: 1/2;
+    grid-row: 3/5;
+}
+.wrapdiv .grid .grid_7{
+	grid-column: 2/end;
+    grid-row: 3/4;
+}
+.wrapdiv .grid_section3{
+	grid-template-columns: [col1] auto [col2] auto [col3] auto [end];
+    grid-template-rows: [row1] auto [end];
+}
+.wrapdiv .grid_section3 .grid_2{
+	grid-row: auto;
+}
+
+.booking_hotel{
+	padding:0 15px;
+}
+.t-dates {
+	height: auto!important
+}
+
+.booking_hotel .dates.t-datepicker{
+	background:#fff;
+	padding:15px 0;
+	border-radius: 3px
+}
+/**/
+.wrap_book_numbr{
+	width: 100%;
+	height: 100%;
+	background:#fff;
+	border-radius: 3px
+}
+.wrap_book_numbr button{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	border:none;
+	text-align: left;
+	padding-left: 65px
+}
+.wrap_book_numbr .icon_user{
+	position: absolute;
+	left: 15px;
+	z-index: 1;
+	top: 50%;
+	transform: translateY(-50%);
+	padding-left: 15px
+}
+.wrap_book_numbr .icon_user i{
+	font-size: 17px
+}
+/**/
+.wrap_daterangepicker{
+	width: 100%;
+	height: 100%;
+	padding:5px 10px;
+}
+.wrap_daterangepicker input{
+	width: 100%;
+	height: 100%;
+	font-size: 17px;
+	color: #495057
+}
+.submit_form{
+	padding:0;
+}
+.submit_form button{
+	height: 100%;
+	border:none;
+	border-radius: 3px;
+	background:#438DC4;
+	color: #fff;
+	font-weight: 300
+}
+.submit_form button:hover{
+	color: #fff
+}
+#travellers-seaside{
+	left: 15px;
+	padding:10px 15px;
+	/*min-width: 210px;*/
+	width: 210px
+}
+.bootstrap-touchspin span.input-group-btn{
+	min-width: 30px
+}
+.bootstrap-touchspin span.input-group-btn button{
+	padding:0;
+	text-align: center;
+	margin-left: 30px;
+	border:1px solid #ccc;
+	color: #6c707e;
+}
+.bootstrap-touchspin>span.input-group-btn{
+	order: 3
+}
+.bootstrap-touchspin input.num-spinner{
+	width: 70px;
+	max-width: 70px
+}
+.form-group-age-children{
+	width: 30%;
+	display: inline-block;
+	position: relative;
+}
+.form-group-age-children select{
+	padding:6px 2px;
+}
+#agegroup-1-seaside label{
+	position: absolute;
+    top: 0;
+    max-width: 200px;
+    min-width: 140px;
+}
+.wrap_100px{
+		height: 100px
+	}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,722 @@
+﻿@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using TeamplateHotel.Models
+@using ProjectLibrary.Database
+@using ProjectLibrary.Config
+@using ProjectLibrary.Security
+@{
+    ViewBag.HomePage = true;
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    string lang = Request.Cookies["LanguageID"].Value;
+    List<Menu> _menuActivities = CommentController.GetMenusActivities(lang);
+    List<ShowObject> listTourDeal = CommentController.TourDeal(lang);
+    List<Menu> menuDes = CommentController.GetMenusDes(lang);
+    List<ShowObject> tours = CommentController.Tourhots(lang);
+    //int i = 1;
+}
+@section css{
+    <link rel="stylesheet" type="text/css" href="~/Content/css/index.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/responsive/index_res.css">
+}
+<div class="col-xs-12 header-search-form__outer" style="display:none;">
+    <div class="container">
+        <div class="searchbox-wrap clearfix">
+            <form id="header-search-form" action="" method="GET">
+                <div class="col-xs-12 header-search-form">
+                    <div class="col-xs-12 col-sm-5 col-md-5 no-padding search-quantity">
+                        <div class="col-xs-5 date-div check-in ">
+                            <div class="form-group has-feedback date-menu-checkin">
+                                <label class="control-label">Nhận phòng</label>
+                                <input readonly type="text" class="form-control input-white datepicker-chkin" maxlength="12" id="datepicker-menu-chkin" name="di" value="08-04-2020">
+                                <span class="fa fa-calendar-o form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="col-xs-5 date-div check-out ">
+                            <div class="form-group has-feedback">
+                                <label class="control-label">Trả phòng </label>
+                                <input readonly type="text" class="form-control input-white datepicker-chkout" maxlength="12" id="datepicker-menu-chkout" name="do" value="09-04-2020">
+                                <span class="fa fa-calendar-o form-control-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<main>
+    <div class="banner_main" ng-app="Contracting" ng-controller="homepage.ctrl">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="wrap_form">
+                        <h1 class="color_white">Trải nghiệm kỳ nghỉ tuyệt vời</h1>
+                        <h2 class="color_white">Combo khách sạn - vé máy bay - đưa đón sân bay giá tốt nhất</h2>
+                        <div class="home_page">
+                            <div class="form_search">
+                                <div id="button_form_search" class="input_sear"><input type="text" name="" placeholder="Bạn muốn đi đâu?"></div>
+                                <span class="icon_loca"><i class="fal fa-map-marker-alt"></i></span>
+                                <div class="list_form_search">
+                                    <p class="title_search"> Địa điểm đang HOT nhất</p>
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4">
+                                            <a href="" title="">
+                                                <div class="media">
+                                                    <div class="img_medi"><img src="~/Content/img/index/search/s1.jpg" alt=""></div>
+                                                    <div class="content_medi">
+                                                        <h3>Đà Lạt</h3>
+                                                        <p>151 KS</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <a href="" title="">
+                                                <div class="media">
+                                                    <div class="img_medi"><img src="~/Content/img/index/search/s2.jpg" alt=""></div>
+                                                    <div class="content_medi">
+                                                        <h3>Sapa</h3>
+                                                        <p>151 KS</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <a href="" title="">
+                                                <div class="media">
+                                                    <div class="img_medi"><img src="~/Content/img/index/search/s3.jpg" alt=""></div>
+                                                    <div class="content_medi">
+                                                        <h3>Hà Nội</h3>
+                                                        <p>151 KS</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <a href="" title="">
+                                                <div class="media">
+                                                    <div class="img_medi"><img src="~/Content/img/index/search/s3.jpg" alt=""></div>
+                                                    <div class="content_medi">
+                                                        <h3>Vinh</h3>
+                                                        <p>151 KS</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <a href="" title="">
+                                                <div class="media">
+                                                    <div class="img_medi"><img src="~/Content/img/index/search/s2.jpg" alt=""></div>
+                                                    <div class="content_medi">
+                                                        <h3>Ninh Bình</h3>
+                                                        <p>151 KS</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <a href="" title="">
+                                                <div class="media">
+                                                    <div class="img_medi"><img src="~/Content/img/index/search/s1.jpg" alt=""></div>
+                                                    <div class="content_medi">
+                                                        <h3>Nam Định</h3>
+                                                        <p>151 KS</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="booking_hotel">
+                                <div class="row" style=" ">
+                                    <div class="col-xs-12 col-sm-4 dates t-datepicker">
+                                        <div class="wrap_daterangepicker">
+                                            <input name="dates" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 book_number_view">
+                                        <div class="col2dos5 coldos5-max768 wrap_book_numbr">
+                                            <span class="icon_user"><i class="fal fa-user-friends"></i></span>
+                                            <button class="form-control form-control-btn" id="travelers-btn-seaside" type="button" data-toggle="" aria-haspopup="false" aria-expanded="false" data-form-id="seaside">
+                                                <span id="travelers-adults-val-seaside">2</span> Người lớn,
+                                                <span id="travelers-children-val-seaside">0</span> Trẻ em, <br>
+                                                <span id="travelers-books-val-seaside">1</span> Phòng
+                                                <span class="caret"></span>
+                                            </button>
+
+                                            <div id="travellers-seaside" class="form-dropdown dropdown-menu travelers-dropdown" aria-labelledby="travelers_btn">
+                                                <div class="from-group">
+                                                    <label>Người Lớn</label>
+                                                    <div class="input-group bootstrap-touchspin">
+                                                        <span class="input-group-btn">
+                                                            <input onchange="updateTravellersData(this)" data-form-id="seaside" min="1" max="9" pattern="[0-9]*" class="num-spinner num-spinner-adults" id="travelers-adults-seaside" type="number" name="tx_knfastbooking_search[formData][adults]" value="2"
+                                                                   style="display: block;">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="from-group">
+                                                    <label>Phòng</label>
+                                                    <div class="input-group bootstrap-touchspin">
+                                                        <span class="input-group-btn">
+                                                            <input onchange="updateTravellersData(this)" data-form-id="seaside" min="1" max="30" pattern="[0-9]*" class="num-spinner num-book-adults" id="travelers-books-seaside" type="number" name="tx_knfastbooking_search[formData][books]" value="1"
+                                                                   style="display: block;">
+                                                        </span>
+
+                                                    </div>
+                                                </div>
+                                                <div class="from-group">
+                                                    <label>Trẻ em</label>
+                                                    <div class="input-group bootstrap-touchspin">
+                                                        <input onchange="updateTravellersData(this)" data-form-id="seaside" min="0" max="12" pattern="[0-9]*" class="num-spinner num-spinner-children" id="travelers-children-seaside" type="number" name="tx_knfastbooking_search[formData][children]"
+                                                               value="0" style="display: block;"><span class="input-group-addon bootstrap-touchspin-postfix"
+                                                                                                       style="display: none;"></span>
+
+                                                    </div>
+                                                </div>
+                                                <div class="from-group form-group-age-children" id="agegroup-1-seaside" style="display: none;">
+                                                    <label class="group-title">Độ tuổi trẻ em</label>
+                                                    <br>
+                                                    <select class="form-control booking-age-children" name="tx_knfastbooking_search[formData][ageChildren1]">
+                                                        <option value="1">&lt;1</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7" selected="selected">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="16">17</option>
+                                                    </select>
+                                                </div>
+                                                <div class="from-group form-group-age-children" id="agegroup-2-seaside" style="display: none;">
+                                                    <br>
+                                                    <select class="form-control booking-age-children" name="tx_knfastbooking_search[formData][ageChildren2]">
+                                                        <option value="1">&lt;1</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7" selected="selected">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="16">17</option>
+                                                    </select>
+                                                </div>
+                                                <div class="from-group form-group-age-children" id="agegroup-3-seaside" style="display: none;">
+                                                    <br>
+                                                    <select class="form-control booking-age-children" name="tx_knfastbooking_search[formData][ageChildren3]">
+                                                        <option value="1">&lt;1</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7" selected="selected">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="16">17</option>
+                                                    </select>
+                                                </div>
+                                                <div class="from-group form-group-age-children" id="agegroup-4-seaside" style="display: none;">
+                                                    <br>
+                                                    <select class="form-control booking-age-children" name="tx_knfastbooking_search[formData][ageChildren4]">
+                                                        <option value="1">&lt;1</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7" selected="selected">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="16">17</option>
+                                                    </select>
+                                                </div>
+                                                <div class="from-group form-group-age-children" id="agegroup-5-seaside" style="display: none;">
+                                                    <br>
+                                                    <select class="form-control booking-age-children" name="tx_knfastbooking_search[formData][ageChildren5]">
+                                                        <option value="1">&lt;1</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7" selected="selected">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="16">17</option>
+                                                    </select>
+                                                </div>
+                                                <div class="from-group form-group-age-children" id="agegroup-6-seaside" style="display: none;">
+                                                    <br>
+                                                    <select class="form-control booking-age-children" name="tx_knfastbooking_search[formData][ageChildren6]">
+                                                        <option value="1">&lt;1</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7" selected="selected">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="16">17</option>
+                                                    </select>
+                                                </div>
+                                                <div class="from-group form-group-age-children" id="agegroup-7-seaside" style="display: none;">
+                                                    <br>
+                                                    <select class="form-control booking-age-children" name="tx_knfastbooking_search[formData][ageChildren7]">
+                                                        <option value="1">&lt;1</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7" selected="selected">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="16">17</option>
+                                                    </select>
+                                                </div>
+                                                <div class="from-group form-group-age-children" id="agegroup-8-seaside" style="display: none;">
+                                                    <br>
+                                                    <select class="form-control booking-age-children" name="tx_knfastbooking_search[formData][ageChildren8]">
+                                                        <option value="1">&lt;1</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7" selected="selected">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="16">17</option>
+                                                    </select>
+                                                </div>
+                                                <div class="from-group form-group-age-children" id="agegroup-9-seaside" style="display: none;">
+                                                    <br>
+                                                    <select class="form-control booking-age-children" name="tx_knfastbooking_search[formData][ageChildren9]">
+                                                        <option value="1">&lt;1</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7" selected="selected">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="16">17</option>
+                                                    </select>
+                                                </div>
+                                                <div class="from-group form-group-age-children" id="agegroup-10-seaside" style="display: none;">
+                                                    <br>
+                                                    <select class="form-control booking-age-children" name="tx_knfastbooking_search[formData][ageChildren10]">
+                                                        <option value="1">&lt;1</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7" selected="selected">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="16">17</option>
+                                                    </select>
+                                                </div>
+                                                <div class="from-group form-group-age-children" id="agegroup-11-seaside" style="display: none;">
+                                                    <br>
+                                                    <select class="form-control booking-age-children" name="tx_knfastbooking_search[formData][ageChildren11]">
+                                                        <option value="1">&lt;1</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7" selected="selected">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="16">17</option>
+                                                    </select>
+                                                </div>
+                                                <div class="from-group form-group-age-children" id="agegroup-12-seaside" style="display: none;">
+                                                    <br>
+                                                    <select class="form-control booking-age-children" name="tx_knfastbooking_search[formData][ageChildren12]">
+                                                        <option value="1">&lt;1</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7" selected="selected">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="16">17</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="btn-wrap" style="margin-top: 15px">
+                                                    <span>Đặt đoàn/nhóm <a href="" title="">Liên hệ</a></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-2 submit_form">
+                                        <button class="btn btn-action btn-block  search-form-button btn-big">
+                                            <b> Tìm <span class="visible-xs-inline-block">kiếm</span></b>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 hidden-xs wrap_100px"></div>
+            </div>
+        </div>
+    </div>
+    <section class="wrapdiv section1">
+        <div class="container">
+            <div class="title_section">
+                <h2>Du lịch ngay! Vì bạn xứng đáng</h2>
+                <p>Đi chơi không cần cớ, cần Elite Tour cơ</p>
+            </div>
+            <div id="slide1" class="slide owl-carousel owl-theme">
+                @foreach (var item in tours.Take(4))
+                {
+                    <div class="item">
+                        <a href="/@item.MenuAlias/@item.ID/@item.Alias" title="" class="wrapItem">
+                            <img src="@item.Image" alt="">
+                            <div class="info">
+                                <h3>@item.Title</h3>
+                                <p>@item.Alias</p>
+                            </div>
+                        </a>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </section>
+    <section class="wrapdiv section2">
+        <div class="container">
+            <div class="title_section">
+                <h2>Ưu đãi tốt nhất hôm nay</h2>
+                <p>Nhanh tay đặt ngay. Để mai sẽ lỡ</p>
+            </div>
+            <div id="slide2" class="slide owl-carousel owl-theme">
+                <div class="item">
+                    <a href="" title="" class="wrapItem">
+                        <img src="~/Content/img/index/b5.png" alt="">
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="" title="" class="wrapItem">
+                        <img src="~/Content/img/index/b5.png" alt="">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="wrapdiv section2">
+        <div class="container">
+            <div class="title_section">
+                <h2>Điểm đến yêu thích trong nước</h2>
+                <p>Lên rừng xuống biển. Trọn vẹn Việt Nam</p>
+            </div>
+            <div class="slide grid">
+                @foreach (var item in menuDes.Where(x => x.Level == 1).Take(1))
+                {
+                    <div class="grid_item grid_1">
+                        <a href="/@item.Alias" title="" class="wrapItem">
+                            <img src="@item.Image" alt="" style="width:755px; height:190px">
+                            <div class="info">
+                                <h3>@item.Title</h3>
+                                @*<p> 212 khách sạn</p>*@
+                            </div>
+                        </a>
+                    </div>
+                }
+                @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(1).Take(1))
+                {
+                    <div class="grid_item grid_2">
+                        <a href="/@item.Alias" title="" class="wrapItem">
+                            <img src="@item.Image" alt="" style="width:370px; height:395px">
+                            <div class="info">
+                                <h3>@item.Title</h3>
+                                @*<p> 212 khách sạn</p>*@
+                            </div>
+                        </a>
+                    </div>
+                }
+                @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(2).Take(1))
+                {
+                    <div class="grid_item grid_3">
+                        <a href="/@item.Alias" title="" class="wrapItem">
+                            <img src="@item.Image" alt="" style="width:370px; height:190px">
+                            <div class="info">
+                                <h3>@item.Title</h3>
+                                @*<p> 212 khách sạn</p>*@
+                            </div>
+                        </a>
+                    </div>
+                }
+                @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(3).Take(1))
+                {
+                    <div class="grid_item grid_4">
+                        <a href="/@item.Alias" title="" class="wrapItem">
+                            <img src="@item.Image" alt="" style="width:370px; height:190px">
+                            <div class="info">
+                                <h3>@item.Title</h3>
+                                @*<p> 212 khách sạn</p>*@
+                            </div>
+                        </a>
+                    </div>
+                }
+                @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(4).Take(1))
+                {
+                    <div class="grid_item grid_5">
+                        <a href="/@item.Alias" title="" class="wrapItem">
+                            <img src="@item.Image" alt="" style="width:370px; height:190px">
+                            <div class="info">
+                                <h3>@item.Title</h3>
+                                @*<p> 212 khách sạn</p>*@
+                            </div>
+                        </a>
+                    </div>
+                }
+                @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(5).Take(1))
+                {
+                    <div class="grid_item grid_6">
+                        <a href="/@item.Alias" title="" class="wrapItem">
+                            <img src="@item.Image" alt="" style="width:370px; height:395px">
+                            <div class="info">
+                                <h3>@item.Title</h3>
+                                @*<p> 212 khách sạn</p>*@
+                            </div>
+                        </a>
+                    </div>
+                }
+                @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(6).Take(1))
+                {
+                    <div class="grid_item grid_7">
+                        <a href="/@item.Alias" title="" class="wrapItem">
+                            <img src="@item.Image" alt="" style="width:755px; height:190px">
+                            <div class="info">
+                                <h3>@item.Title</h3>
+                                @*<p> 212 khách sạn</p>*@
+                            </div>
+                        </a>
+                    </div>
+                }
+                @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(7).Take(1))
+                {
+                    <div class="grid_item grid_8">
+                        <a href="/@item.Alias" title="" class="wrapItem">
+                            <img src="@item.Image" alt="" style="width:370px; height:190px">
+                            <div class="info">
+                                <h3>@item.Title</h3>
+                                @*<p> 212 khách sạn</p>*@
+                            </div>
+                        </a>
+                    </div>
+                }
+
+
+
+            </div>
+        </div>
+    </section>
+    <section class="wrapdiv section3">
+        <div class="container">
+            <div class="title_section">
+                <h2>Điểm đến yêu thích nước ngoài</h2>
+                <p>Bao la thế giới. Bốn bể là nhà</p>
+            </div>
+            <div class="slide grid grid_section3">
+                @foreach (var item in menuDes.Where(x => x.Level == 1).Take(1))
+                {
+                    <div class="grid_item grid_1">
+                        <a href="/@item.Alias" title="" class="wrapItem">
+                            <img src="@item.Image " alt="">
+                            <div class="info">
+                                <h3>@item.Title</h3>
+                                @*<p> 212 khách sạn</p>*@
+                            </div>
+                        </a>
+                    </div>
+                }
+                @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(1).Take(1))
+                {
+                    <div class="grid_item grid_2">
+                        <a href="/@item.Alias" title="" class="wrapItem">
+                            <img src="@item.Image " alt="" style="width:370px; height:190px">
+                            <div class="info">
+                                <h3>@item.Title</h3>
+                                @*<p> 212 khách sạn</p>*@
+                            </div>
+                        </a>
+                    </div>
+                }
+                @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(2).Take(1))
+                {
+                    <div class="grid_item grid_3">
+                        <a href="/@item.Alias" title="" class="wrapItem">
+                            <img src="@item.Image " alt="">
+                            <div class="info">
+                                <h3>@item.Title</h3>
+                                @*<p> 212 khách sạn</p>*@
+                            </div>
+                        </a>
+                    </div>
+                }
+                @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(3).Take(1))
+                {
+                    <div class="grid_item grid_4">
+                        <a href="/@item.Alias" title="" class="wrapItem">
+                            <img src="@item.Image " alt="">
+                            <div class="info">
+                                <h3>@item.Title</h3>
+                                @*<p> 212 khách sạn</p>*@
+                            </div>
+                        </a>
+                    </div>
+                }
+                @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(4).Take(1))
+                {
+                    <div class="grid_item grid_5">
+                        <a href="/@item.Alias" title="" class="wrapItem">
+                            <img src="@item.Image " alt="">
+                            <div class="info">
+                                <h3>@item.Title</h3>
+                                @*<p> 212 khách sạn</p>*@
+                            </div>
+                        </a>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </section>
+</main>
+
+@section scripts {
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script type="text/javascript">
+        $('input[name="dates"]').daterangepicker();
+    </script>
+    <script type="text/javascript" src="~/Content/js/standard.min.js"></script>
+    <script type="text/javascript">
+        require(['jquery', 'plugins/booking'], function ($, booking) {
+            $(document).ready(function () {
+                booking.dateRangePicker('booking-form-seaside', 'range');
+            });
+        });
+    </script>
+    <script type="text/javascript" src="~/Content/js/main.js"></script>
+}
