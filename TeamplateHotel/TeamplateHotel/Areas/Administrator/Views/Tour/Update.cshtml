@@ -214,9 +214,9 @@
                 <div class="control-group">
                     <div class="controls">
                         <div class="clr"></div>
-                        <h3 class="mg-h">Tab Tour</h3>
+                        <h3 class="mg-h">Tab Rooms</h3>
                         <select id="ListName2" style="width: 122px;">
-                            @*@if (Model.TabHotels != null)
+                            @if (Model.TabHotels != null)
                             {
                                 count = 0;
                                 foreach (var tab in Model.TabHotels)
@@ -224,7 +224,7 @@
                                     <option value="@count">@tab.TitleTabHotel</option>
                                     count++;
                                 }
-                            }*@
+                            }
                         </select>
                         <button id="changeName2" type="button" style="display: none" class="btn btn-primary">Update</button>
                         <input type="text" id="tabName2" style="min-width: 1px; width: 122px" />
@@ -233,7 +233,7 @@
                         <button type="button" id="addTab2" class="btn btn-primary">Add </button>
                         <div class="clr"></div>
                         <div style="width: 100%; height: auto; clear: both" class="" id="Display-Tabs2">
-                            @*@{
+                            @{
                                 count = 0;
                                 if (Model.TabHotels != null)
                                 {
@@ -251,7 +251,7 @@
                                         count++;
                                     }
                                 }
-                            }*@
+                            }
                         </div>
                     </div>
                 </div>

@@ -16,32 +16,7 @@
     <link rel="stylesheet" type="text/css" href="~/Content/css/daterangepicker.css">
     <link rel="stylesheet" type="text/css" href="~/Content/css/list_tour.css">
 }
-<div class="col-xs-12 header-search-form__outer" style="display:none;">
-    <div class="container">
-        <div class="searchbox-wrap clearfix">
-            <form id="header-search-form" action="" method="GET">
-                <div class="col-xs-12 header-search-form">
-                    <div class="col-xs-12 col-sm-5 col-md-5 no-padding search-quantity">
-                        <div class="col-xs-5 date-div check-in ">
-                            <div class="form-group has-feedback date-menu-checkin">
-                                <label class="control-label">Nhận phòng</label>
-                                <input readonly type="text" class="form-control input-white datepicker-chkin" maxlength="12" id="datepicker-menu-chkin" name="di" value="08-04-2020">
-                                <span class="fa fa-calendar-o form-control-feedback"></span>
-                            </div>
-                        </div>
-                        <div class="col-xs-5 date-div check-out ">
-                            <div class="form-group has-feedback">
-                                <label class="control-label">Trả phòng </label>
-                                <input readonly type="text" class="form-control input-white datepicker-chkout" maxlength="12" id="datepicker-menu-chkout" name="do" value="09-04-2020">
-                                <span class="fa fa-calendar-o form-control-feedback"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+ 
 
 <main>
     <div class="banner_main">
@@ -53,17 +28,17 @@
             <div class="wrap_formmm">
                 <form action="list-tour_submit" method="get" accept-charset="utf-8">
                     <div class="title_form">
-                        <h1>Find best Combo</h1>
+                        <h1>Tìm chuyến đi phù hợp nhất với bạn</h1>
                     </div>
                     <div class="form">
                         <div class="form_conttt">
                             <span class="icon_form"><i class="fad fa-map-marker-alt"></i></span>
-                            <span class="input_main"><input name="" placeholder="Hotel, Destination..."></span>
+                            <span class="input_main"><input name="" placeholder="Khách sạn, Địa điểm..."></span>
                             <span class="icon_form form_right"><i class="fas fa-times-octagon"></i></span>
                         </div>
                         <div class="form_conttt">
                             <span></span>
-                            <span class="input_main input_star"><input placeholder="Star"></span>
+                            <span class="input_main input_star"><input placeholder="Hạng Sao"></span> 
                             <div class="drop_dow">
                                 <label>
                                     <input type="checkbox" name="star5">
@@ -88,7 +63,7 @@
                             <span class="icon_form"><i class="fal fa-clock"></i></span>
                             <span class="input_main">
                                 <select name="">
-                                    <option value="">Nights</option>
+                                    <option value="">Ngày/Đêm</option>
                                     <option value="">1</option>
                                     <option value="">2</option>
                                     <option value="">3</option>
@@ -99,7 +74,7 @@
                             <span class="icon_form form_right"><i class="fal fa-angle-down"></i></span>
                         </div>
                         <div class="form_conttt">
-                            <button type="submit">Search Now</button>
+                            <button type="submit">Tìm ngay</button>
                         </div>
                     </div>
                 </form>
@@ -108,15 +83,18 @@
         </div>
     </div>
     <div class="page_header">
+        <br/>   
         <div class="container">
             <ul>
-                <li><a href="index.html" title="">Home</a></li>
+                <li><a href="/" title="">Trang chủ</a></li>
                 <li><span><i class="fal fa-angle-right"></i></span></li>
-                <li><span>Hotels</span></li>
+                <li><span>@menu.MetaTitle</span></li>
             </ul>
             <section class="top_list_desti">
                 <div id="today-hot-deal">
-                    <h2 class="text-center">Top hotels in Tours</h2>
+                    <h2 class="text-center">Tất cả các tour chúng tôi dành cho bạn</h2>
+                    <br/>
+
                     <div class="row top-deals">
                         @foreach (var item in Model)
                         {
@@ -131,18 +109,20 @@
                                                 <div class="item-name margin-top-0">
                                                     <a href="/@menu.Alias/@item.ID/@item.Alias" style="">@item.Title </a>
                                                 </div>
-                                                @*<div class="star_icon">
+                                                <div class="star_icon">
                                                         <span class="margin-right-5 icon icon-star-4" title="4-star hotel"><img src="~/Content/img/tour/star4.png" alt=""></span>
-                                                    </div>*@
-                                                <div class="hotel-room">32 Lo Su St, Old Quarter, Hoan...</div>
-                                                @*<div class="hotel-room">Hotel rooms: <b>0</b> rooms</div>*@
+                                                    </div>
+                                                <div class="hotel-room">@item.Location</div>
+                                                
+                                                
+                                                @*<div class="hotel-room">Phòng khách sạn: <b>0</b> phòng</div>*@
                                             </div>
                                             <div class="col-xs-4 col-md-4 text-right padding-left-0">
-                                                <div class="margin-bottom-5">from</div>
-                                                <div style="white-space:nowrap;">
-                                                    <span class="text-price"><span class="font-size-13">US</span></span>
+                                                <div class="margin-bottom-5">Giá từ</div>
+                                                <div style="white-space: nowrap;">
+                                                    <span class="text-price"><span class="font-size-13">Vnđ</span></span>
                                                     <span class="price-from">$@item.Price</span>
-                                                    <span class="text-unhighlight">pp</span>
+                                                    @*<span class="text-unhighlight">pp</span>*@
                                                 </div>
                                             </div>
                                         </div>
@@ -157,7 +137,7 @@
             </section>
             <div class="paginations text-center">
                 <ul>
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new {page}))
                 </ul>
             </div>
             <section class="travel-styles">
@@ -166,7 +146,7 @@
                     @foreach (var item in menuDes.Where(x => x.Level == 1).Take(1))
                     {
                         <div class="col-md-3ths col-md-3ths-right">
-                            <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width: 458px;height:458px">
+                            <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width: 458px; height: 458px">
                             <a class="style-name" href="/@item.Alias">
                                 @item.Title
                             </a>
@@ -177,7 +157,7 @@
                         @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(1).Take(2))
                         {
                             <div class="col-md-5ths-m margin-bottom-10 col-md-5ths-1">
-                                <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width: 224px;height:224px">
+                                <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width: 224px; height: 224px">
                                 <a class="style-name" href="/@item.Alias">
                                     @item.Title
                                 </a>
@@ -190,7 +170,7 @@
                             <div class="col-md-3ths-2 margin-bottom-10">
                                 <a href="/ho-chi-minh-citys">
                                     <!-- square crop -->
-                                    <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width:458px; height:223px">
+                                    <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width: 458px; height: 223px">
                                     <div class="col-overlay"></div>
                                 </a>
                                 <a class="style-name" href="/@item.Alias">
@@ -203,7 +183,7 @@
                             {
                                 <div class="col-md-5ths_ col-md-3ths-right">
                                     <a href="">
-                                        <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width: 224px;height:224px">
+                                        <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width: 224px; height: 224px">
                                         <div class="col-overlay"></div>
                                     </a>
                                     <a class="style-name" href="/@item.Alias">

@@ -174,7 +174,7 @@ namespace ProjectLibrary.Database
     #endregion
 		
 		public MyDbDataContext() : 
-				base(global::ProjectLibrary.Properties.Settings.Default.DBEliteConnectionString, mappingSource)
+				base(global::ProjectLibrary.Properties.Settings.Default.DBEliteConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -13103,6 +13103,8 @@ namespace ProjectLibrary.Database
 		
 		private string _ContentHotel;
 		
+		private System.Nullable<decimal> _Price;
+		
 		private EntityRef<Tour> _Tour;
 		
     #region Extensibility Method Definitions
@@ -13117,6 +13119,8 @@ namespace ProjectLibrary.Database
     partial void OnTitleTabHotelChanged();
     partial void OnContentHotelChanging(string value);
     partial void OnContentHotelChanged();
+    partial void OnPriceChanging(System.Nullable<decimal> value);
+    partial void OnPriceChanged();
     #endregion
 		
 		public TabHotel()
@@ -13205,6 +13209,26 @@ namespace ProjectLibrary.Database
 					this._ContentHotel = value;
 					this.SendPropertyChanged("ContentHotel");
 					this.OnContentHotelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
 				}
 			}
 		}

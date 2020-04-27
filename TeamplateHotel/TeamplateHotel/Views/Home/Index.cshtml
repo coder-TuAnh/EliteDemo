@@ -60,72 +60,26 @@
                                 <div class="list_form_search">
                                     <p class="title_search"> Địa điểm đang HOT nhất</p>
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-4">
-                                            <a href="" title="">
-                                                <div class="media">
-                                                    <div class="img_medi"><img src="~/Content/img/index/search/s1.jpg" alt=""></div>
-                                                    <div class="content_medi">
-                                                        <h3>Đà Lạt</h3>
-                                                        <p>151 KS</p>
+
+
+                                        @foreach (var VARIABLE in menuDes.Take(6))
+                                        {
+                                            <div class="col-md-4 col-sm-4">
+                                                <a href="#" title="">
+                                                    <div class="media">
+                                                        <div class="img_medi"><img src="@VARIABLE.Image" alt=""></div>
+                                                        <div class="content_medi">
+                                                            <h3>@VARIABLE.Title</h3>
+                                                            @{
+                                                                var count = CommentController.GetCoutTours(VARIABLE.ID);
+                                                            }
+                                                            <p>@count.Count Tour</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <a href="" title="">
-                                                <div class="media">
-                                                    <div class="img_medi"><img src="~/Content/img/index/search/s2.jpg" alt=""></div>
-                                                    <div class="content_medi">
-                                                        <h3>Sapa</h3>
-                                                        <p>151 KS</p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <a href="" title="">
-                                                <div class="media">
-                                                    <div class="img_medi"><img src="~/Content/img/index/search/s3.jpg" alt=""></div>
-                                                    <div class="content_medi">
-                                                        <h3>Hà Nội</h3>
-                                                        <p>151 KS</p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <a href="" title="">
-                                                <div class="media">
-                                                    <div class="img_medi"><img src="~/Content/img/index/search/s3.jpg" alt=""></div>
-                                                    <div class="content_medi">
-                                                        <h3>Vinh</h3>
-                                                        <p>151 KS</p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <a href="" title="">
-                                                <div class="media">
-                                                    <div class="img_medi"><img src="~/Content/img/index/search/s2.jpg" alt=""></div>
-                                                    <div class="content_medi">
-                                                        <h3>Ninh Bình</h3>
-                                                        <p>151 KS</p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="col-md-4 col-sm-4">
-                                            <a href="" title="">
-                                                <div class="media">
-                                                    <div class="img_medi"><img src="~/Content/img/index/search/s1.jpg" alt=""></div>
-                                                    <div class="content_medi">
-                                                        <h3>Nam Định</h3>
-                                                        <p>151 KS</p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
+                                                </a>
+                                            </div>
+                                        }
+
 
                                     </div>
                                 </div>
@@ -490,7 +444,7 @@
                             <img src="@item.Image" alt="">
                             <div class="info">
                                 <h3>@item.Title</h3>
-                                <p>@item.Alias</p>
+                                <p>@item.Price.ToString("C0") VNĐ</p>
                             </div>
                         </a>
                     </div>
@@ -535,7 +489,10 @@
                             <img src="@item.Image" alt="" style="width:755px; height:190px">
                             <div class="info">
                                 <h3>@item.Title</h3>
-                                @*<p> 212 khách sạn</p>*@
+                                @{
+                                    var count = CommentController.GetCoutTours(item.ID);
+                                }
+                                <p>@count.Count Tour</p>
                             </div>
                         </a>
                     </div>
@@ -547,7 +504,10 @@
                             <img src="@item.Image" alt="" style="width:370px; height:395px">
                             <div class="info">
                                 <h3>@item.Title</h3>
-                                @*<p> 212 khách sạn</p>*@
+                                @{
+                                    var count = CommentController.GetCoutTours(item.ID);
+                                }
+                                <p>@count.Count Tour</p>
                             </div>
                         </a>
                     </div>
@@ -559,7 +519,10 @@
                             <img src="@item.Image" alt="" style="width:370px; height:190px">
                             <div class="info">
                                 <h3>@item.Title</h3>
-                                @*<p> 212 khách sạn</p>*@
+                                @{
+                                    var count = CommentController.GetCoutTours(item.ID);
+                                }
+                                <p>@count.Count Tour</p>
                             </div>
                         </a>
                     </div>
@@ -571,7 +534,10 @@
                             <img src="@item.Image" alt="" style="width:370px; height:190px">
                             <div class="info">
                                 <h3>@item.Title</h3>
-                                @*<p> 212 khách sạn</p>*@
+                                @{
+                                    var count = CommentController.GetCoutTours(item.ID);
+                                }
+                                <p>@count.Count Tour</p>
                             </div>
                         </a>
                     </div>
@@ -583,7 +549,10 @@
                             <img src="@item.Image" alt="" style="width:370px; height:190px">
                             <div class="info">
                                 <h3>@item.Title</h3>
-                                @*<p> 212 khách sạn</p>*@
+                                @{
+                                    var count = CommentController.GetCoutTours(item.ID);
+                                }
+                                <p>@count.Count Tour</p>
                             </div>
                         </a>
                     </div>
@@ -595,7 +564,10 @@
                             <img src="@item.Image" alt="" style="width:370px; height:395px">
                             <div class="info">
                                 <h3>@item.Title</h3>
-                                @*<p> 212 khách sạn</p>*@
+                                @{
+                                    var count = CommentController.GetCoutTours(item.ID);
+                                }
+                                <p>@count.Count Tour</p>
                             </div>
                         </a>
                     </div>
@@ -607,7 +579,10 @@
                             <img src="@item.Image" alt="" style="width:755px; height:190px">
                             <div class="info">
                                 <h3>@item.Title</h3>
-                                @*<p> 212 khách sạn</p>*@
+                                @{
+                                    var count = CommentController.GetCoutTours(item.ID);
+                                }
+                                <p>@count.Count Tour</p>
                             </div>
                         </a>
                     </div>
@@ -619,7 +594,10 @@
                             <img src="@item.Image" alt="" style="width:370px; height:190px">
                             <div class="info">
                                 <h3>@item.Title</h3>
-                                @*<p> 212 khách sạn</p>*@
+                                @{
+                                    var count = CommentController.GetCoutTours(item.ID);
+                                }
+                                <p>@count.Count Tour</p>
                             </div>
                         </a>
                     </div>
@@ -644,7 +622,10 @@
                             <img src="@item.Image " alt="">
                             <div class="info">
                                 <h3>@item.Title</h3>
-                                @*<p> 212 khách sạn</p>*@
+                                @{
+                                    var count = CommentController.GetCoutTours(item.ID);
+                                }
+                                <p>@count.Count Tour</p>
                             </div>
                         </a>
                     </div>
@@ -656,7 +637,10 @@
                             <img src="@item.Image " alt="" style="width:370px; height:190px">
                             <div class="info">
                                 <h3>@item.Title</h3>
-                                @*<p> 212 khách sạn</p>*@
+                                @{
+                                    var count = CommentController.GetCoutTours(item.ID);
+                                }
+                                <p>@count.Count Tour</p>
                             </div>
                         </a>
                     </div>
@@ -668,7 +652,10 @@
                             <img src="@item.Image " alt="">
                             <div class="info">
                                 <h3>@item.Title</h3>
-                                @*<p> 212 khách sạn</p>*@
+                                @{
+                                    var count = CommentController.GetCoutTours(item.ID);
+                                }
+                                <p>@count.Count Tour</p>
                             </div>
                         </a>
                     </div>
@@ -680,7 +667,10 @@
                             <img src="@item.Image " alt="">
                             <div class="info">
                                 <h3>@item.Title</h3>
-                                @*<p> 212 khách sạn</p>*@
+                                @{
+                                    var count = CommentController.GetCoutTours(item.ID);
+                                }
+                                <p>@count.Count Tour</p>
                             </div>
                         </a>
                     </div>
@@ -692,7 +682,10 @@
                             <img src="@item.Image " alt="">
                             <div class="info">
                                 <h3>@item.Title</h3>
-                                @*<p> 212 khách sạn</p>*@
+                                @{
+                                    var count = CommentController.GetCoutTours(item.ID);
+                                }
+                                <p>@count.Count Tour</p>
                             </div>
                         </a>
                     </div>

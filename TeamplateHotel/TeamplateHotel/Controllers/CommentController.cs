@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Mvc;
 using PagedList;
 using ProjectLibrary.Config;
 using ProjectLibrary.Database;
@@ -277,6 +278,22 @@ namespace TeamplateHotel.Controllers
         //    }
         //}
 
+        public static List<Room> GetRoomsByHotelID(int hotelId, string language)
+        {
+            using (var db = new MyDbDataContext())
+            {
+                var hotel = db.ListHotels.FirstOrDefault(a => a.ID == hotelId);
+                List<Room> rooms = db.Rooms.Where(a => a.Status && a.LanguageID == language ).OrderBy(a => a.Index).ToList();
+                foreach (var room in rooms)
+                {
+                    room.HotelAlias = hotel.Alias;
+                }
+                return rooms;
+            }
+        }
+
+
+
         //Danh sách tours
         public static List<ShowObject> GetTours(int menuId)
         {
@@ -302,6 +319,15 @@ namespace TeamplateHotel.Controllers
 
                 return value;
             }
+        }
+
+        //funcation đếm tour theo menu ID
+        public static List<Tour> GetCoutTours(int menuId)
+        {
+            var db = new MyDbDataContext();
+            List<Tour> tours = db.Tours.Where(a => a.MenuID == menuId).ToList();
+
+             return tours;
         }
 
         //Danh sách Activities

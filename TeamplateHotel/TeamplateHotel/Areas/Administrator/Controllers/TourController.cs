@@ -97,8 +97,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
         {
             using (var db = new MyDbDataContext())
             {
-                if (ModelState.IsValid)
-                {
+                
                     if (string.IsNullOrEmpty(model.Alias))
                     {
                         model.Alias = StringHelper.ConvertToAlias(model.Title);
@@ -143,6 +142,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                                     TourID = tour.ID,
                                     TitleTabHotel = item.TitleTabHotel,
                                     ContentHotel = item.ContentHotel,
+                                    Price = item.Price,
                                 };
 
                                 db.TabHotels.InsertOnSubmit(tabTour);
@@ -208,10 +208,8 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                         ViewBag.Messages = "Error: " + exception.Message;
                         return View(model);
                     }
-                }
-                LoadData();
-                LoadDataActivities();
-                return View(model);
+           
+ 
             }
         }
 
@@ -387,6 +385,8 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                                     TourID = tour.ID,
                                     TitleTabHotel = item.TitleTabHotel,
                                     ContentHotel = item.ContentHotel,
+                                    Price = item.Price,
+
                                 };
 
                                 db.TabHotels.InsertOnSubmit(tabTour);

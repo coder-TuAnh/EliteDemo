@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DBElite" Class="MyDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-FINTB1S;Initial Catalog=DBElite;Integrated Security=True" SettingsObjectName="ProjectLibrary.Properties.Settings" SettingsPropertyName="DBEliteConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=DBElite;Integrated Security=True" SettingsObjectName="ProjectLibrary.Properties.Settings" SettingsPropertyName="DBEliteConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AboutUs" Member="AboutUs">
     <Type Name="AboutUs">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -609,6 +609,7 @@
       <Column Name="TourID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TitleTabHotel" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="ContentHotel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Association Name="Tour_TabHotel" Member="Tour" ThisKey="TourID" OtherKey="ID" Type="Tour" IsForeignKey="true" />
     </Type>
   </Table>
