@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using Microsoft.Data.Edm.Csdl;
 using PagedList;
 using ProjectLibrary.Config;
 using ProjectLibrary.Database;
@@ -22,17 +23,21 @@ namespace TeamplateHotel.Controllers
 
         [HttpGet]
         public JsonResult ViewFilter(string input, int? page)
+        
         {
             var db = new MyDbDataContext();
 
-            InitializeAutomapper();
+            var mapperConfig = new AutoMapper.MapperConfiguration(config =>
+            {
+                config.CreateMap<List<Tour>, List<TourModel>>();
+            });
+            var mapper = mapperConfig.CreateMapper();
 
             var queryTours = db.Tours;
+
             var queryMenus = db.Menus;
 
             List<Tour> tours = new List<Tour>();
-
-            List<TourModel> tourModels = new List<TourModel>();
 
             var listDes = queryMenus.Where(a => a.Type == SystemMenuType.Tour && a.Status && a.LanguageID == "en");
             var listCate = queryMenus.Where(a => a.Type == SystemMenuType.Activities && a.Status && a.LanguageID == "en");
@@ -44,12 +49,13 @@ namespace TeamplateHotel.Controllers
             else
             {
                 tours = queryTours.Where(a => a.LanguageCode == "en").ToList();
-                
+
             }
+            //Tour tours = new Tour {ID = 1, Title = "Hello"};
 
-            var map = Mapper.Map<TourModel>(tours);
+            var results = mapper.Map<List<Tour>, List<TourModel>>(tours);
 
-            return Json(new { data = map, status = true }, JsonRequestBehavior.AllowGet);
+            return Json(new { data = results, status = true }, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -70,14 +76,13 @@ namespace TeamplateHotel.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-
-        static void InitializeAutomapper()
-        {
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<Tour, TourModel>();
-
-            });
-        }
+        //static void MapperTour()
+        //{
+        //    var mapperConfig = new AutoMapper.MapperConfiguration(config =>
+        //    {
+        //        config.CreateMap<Tour, TourModel>();
+        //    });
+        //    var mapper = mapperConfig.CreateMapper();
+        //}
     }
 }
