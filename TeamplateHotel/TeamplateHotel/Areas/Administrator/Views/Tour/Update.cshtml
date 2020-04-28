@@ -241,7 +241,7 @@
                                     {
                                         <div id="divprice2_@(count)" class="price-tabtour2" style="display: none;">
                                             <strong>Price: </strong>
-                                            <input type="text" id="TabHotels_@(count)__Price" name="TabHotels[@(count)].Price" value="0" class="span1 price-tab" />
+                                            <input type="text" id="TabHotels_@(count)__Price" name="TabHotels[@(count)].Price" value="@tab.Price" class="span1 price-tab" />
                                         </div>
                                         <h4 id="Content2_@(count)" style="@(count > 0 ? "display: none" : "")">Content Tab Tour : @tab.TitleTabHotel</h4>
                                         <div style="clear: both">
@@ -399,14 +399,16 @@
         });
 
         $('#ListName').change(function () {
-
+            debugger
             desployCkeditor();
             var item = $('#ListName').val();
             $('#Display-Tabs').find('h4').each(function () {
+                debugger
                 //$('#cke_' + this.attr('id')).hide();
                 $(this).hide();
             });
             $('#Display-Tabs').find('div.price-tabtour').each(function () {
+                debugger
                 //$('#cke_' + this.attr('id')).hide();
                 $(this).hide();
             });
@@ -438,7 +440,6 @@
     }
 
     function changeNameTag2() {
-
         $('#ListName2').unbind();
         $('#changeName2').unbind();
         $('#saveName2').unbind();
@@ -456,7 +457,6 @@
 
         });
         $('#saveName2').click(function () {
-
             $('#ListName2').find(":selected").text($('#tabName2').val());
             $('#saveName2').hide();
             $('#delName2').hide();
@@ -523,18 +523,20 @@
         });
 
         $('#ListName2').change(function () {
-
+            debugger
             desployCkeditor2();
             var item = $('#ListName2').val();
             $('#Display-Tabs2').find('h4').each(function () {
+                debugger
                 //$('#cke_' + this.attr('id')).hide();
                 $(this).hide();
             });
-            $('#Display-Tabs2').find('div.price-tabtour2').each(function () {
+            $('#Display-Tabs2').find('div.price-tabtour').each(function () {
+                debugger
                 //$('#cke_' + this.attr('id')).hide();
                 $(this).hide();
             });
-            //$('div#divprice2_' + item + '').show();
+            $('div#divprice2_' + item + '').show();
             $('#Content2_' + item + ' ').show();
             $('#' + 'TabHotels_' + item + '__Content').show();
             CKEDITOR.replace('TabHotels_' + item + '__Content', {
@@ -849,7 +851,7 @@
                 //$('#cke_' + this.attr('id')).hide();
                 $(this).hide();
             });
-            $('#Display-Tabs2').append(label + textarea);
+            $('#Display-Tabs2').append(inputPrice + label + textarea);
 
 
             $('#tabName2').val("");

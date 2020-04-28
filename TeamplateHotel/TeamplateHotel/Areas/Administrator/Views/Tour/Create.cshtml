@@ -151,7 +151,7 @@
                                 {
                                     <option value="@count">@tab.TitleTab</option>
                                     count++;
-                                    <div id="divprice_@(count)" class="price-tabtour" style="display: block;">
+                                    <div id="divprice_@(count)" class="price-tabtour" style="display: none;">
                                         <strong>Price: </strong>
                                         <input type="text" id="TabTours_@(count)__Price" name="TabTours[@(count)].Price" value="@tab.Price" class="span1 price-tab" />
                                     </div>
@@ -177,7 +177,7 @@
                                 {
                                     foreach (var tab in Model.TabTours)
                                     {
-                                        <div id="divprice_@(count)" class="price-tabtour" style="display: block;">
+                                        <div id="divprice_@(count)" class="price-tabtour" style="display: none;">
                                             <strong>Price: </strong>
                                             <input type="text" id="TabTours_@(count)__Price" name="TabTours[@(count)].Price" value="@tab.Price" class="span1 price-tab" />
                                         </div>
@@ -197,7 +197,7 @@
                 <div class="control-group">
                     <div class="controls">
                         <div class="clr"></div>
-                        <h3 class="mg-h">Tab Tour</h3>
+                        <h3 class="mg-h">Tab Rooms</h3>
                         <select id="ListName2" style="width: 122px;">
                             @if (Model.TabHotels != null)
                             {
@@ -205,7 +205,7 @@
                                 {
                                     <option value="@count">@tab.TitleTabHotel</option>
                                     count++;
-                                    <div id="divprice2_@(count)" class="price-tabtour2" style="display: block;">
+                                    <div id="divprice2_@(count)" class="price-tabtour2" style="display: none;">
                                         <strong>Price: </strong>
                                         <input type="text" id="TabHotels_@(count)__Price" name="TabHotels[@(count)].Price" value="0" class="span1 price-tab" />
                                     </div>
@@ -231,7 +231,7 @@
                                 {
                                     foreach (var tab in Model.TabHotels)
                                     {
-                                        <div id="divprice2_@(count)" class="price-tabtour2" style="display: block;">
+                                        <div id="divprice2_@(count)" class="price-tabtour" style="display: none;">
                                             <strong>Price: </strong>
                                             <input type="text" id="TabHotels_@(count)__Price" name="TabHotels[@(count)].Price" value="0" class="span1 price-tab" />
                                         </div>
@@ -394,13 +394,16 @@
         });
 
         $('#ListName').change(function () {
+            debugger
             desployCkeditor();
             var item = $('#ListName').val();
             $('#Display-Tabs').find('h4').each(function () {
+                debugger
                 //$('#cke_' + this.attr('id')).hide();
                 $(this).hide();
             });
             $('#Display-Tabs').find('div.price-tabtour').each(function () {
+                debugger
                 //$('#cke_' + this.attr('id')).hide();
                 $(this).hide();
             });
@@ -515,13 +518,16 @@
         });
 
         $('#ListName2').change(function () {
+            debugger
             desployCkeditor2();
             var item = $('#ListName2').val();
             $('#Display-Tabs2').find('h4').each(function () {
+                debugger
                 //$('#cke_' + this.attr('id')).hide();
                 $(this).hide();
             });
-            $('#Display-Tabs2').find('div.price-tabtour2').each(function () {
+            $('#Display-Tabs2').find('div.price-tabtour').each(function () {
+                debugger
                 //$('#cke_' + this.attr('id')).hide();
                 $(this).hide();
             });
@@ -840,7 +846,7 @@
                 //$('#cke_' + this.attr('id')).hide();
                 $(this).hide();
             });
-            $('#Display-Tabs2').append(label + textarea);
+            $('#Display-Tabs2').append(inputPrice + label + textarea);
 
 
             $('#tabName2').val("");

@@ -456,6 +456,7 @@ namespace TeamplateHotel.Controllers
                 Tour tour = db.Tours.FirstOrDefault(a => a.ID == id && a.Status) ?? new Tour();
                 List<TourGallery> tourGalleries = db.TourGalleries.Where(a => a.TourID == tour.ID).ToList();
                 List<TabTour> tabTours = db.TabTours.Where(a => a.TourID == tour.ID).ToList();
+                List<TabHotel> tabHotels = db.TabHotels.Where(a => a.TourID == tour.ID).ToList();
                 List<Tour> tours = db.Tours.Where(a => a.Status && a.ID != tour.ID && a.MenuID == tour.MenuID).OrderBy(a => a.Index).ToList();
                 foreach (var item in tours)
                 {
@@ -467,6 +468,7 @@ namespace TeamplateHotel.Controllers
                     TourGalleries = tourGalleries,
                     Tours = tours,
                     TabTours = tabTours,
+                    TabHotels = tabHotels,
                     Title = tour.Menu.Title,
                     AliasMenu = tour.Menu.Alias,
                 };

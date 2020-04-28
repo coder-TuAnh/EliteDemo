@@ -20,32 +20,7 @@
 @section css{
     <link rel="stylesheet" type="text/css" href="~/Content/css/tour.css">
 }
-<div class="col-xs-12 header-search-form__outer" style="display:none;">
-    <div class="container">
-        <div class="searchbox-wrap clearfix">
-            <form id="header-search-form" action="" method="GET">
-                <div class="col-xs-12 header-search-form">
-                    <div class="col-xs-12 col-sm-5 col-md-5 no-padding search-quantity">
-                        <div class="col-xs-5 date-div check-in ">
-                            <div class="form-group has-feedback date-menu-checkin">
-                                <label class="control-label">Nhận phòng</label>
-                                <input readonly type="text" class="form-control input-white" maxlength="12" id="datepicker-menu-chkin" name="di" class="datepicker-chkin" value="08-04-2020">
-                                <span class="fa fa-calendar-o form-control-feedback"></span>
-                            </div>
-                        </div>
-                        <div class="col-xs-5 date-div check-out ">
-                            <div class="form-group has-feedback">
-                                <label class="control-label">Trả phòng </label>
-                                <input readonly type="text" class="form-control input-white" maxlength="12" id="datepicker-menu-chkout" name="do" class="datepicker-chkout" value="09-04-2020">
-                                <span class="fa fa-calendar-o form-control-feedback"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+ 
 <main>
     <div class="container">
         @*<div class="link_title_page">
@@ -60,7 +35,7 @@
         <div class="title_page">
             <h1>@Model.Tour.Title </h1>
             <div class="price_tour">
-                from <span>$0</span> <span>US</span> <span>$@Model.Tour.Price</span> pp
+                giá từ <span>$0</span> <span></span> <span>$@Model.Tour.Price</span> vnđ
             </div>
         </div>
         <p class="anchor"><i class="fal fa-anchor"></i>@Model.Tour.Alias</p>
@@ -93,7 +68,6 @@
                                     </div>
                                     i++;
                                 }
-
 
                             </div>
                             <a class="carousel-control-prev" href="#slideImg" role="button" data-slide="prev">
@@ -144,108 +118,35 @@
                             <table class="table table-bordered table-price-inclusion">
                                 <thead>
                                     <tr>
-                                        <th width="40%" style="background-color: #e8e8e8">Type Room</th>
-                                        <th class="text-center" style="background-color: #e8e8e8">Small Group</th>
-                                        <th class="text-center" style="background-color: #e8e8e8">Private Tour</th>
-                                    </tr>
+                                        <th width="40%" style="background-color: #e8e8e8">Hạng Phòng</th>
+                                        <th class="text-center" style="background-color: #e8e8e8">Giá</th>
+                                     </tr>
                                 </thead>
                                 <tbody>
+                                
+                                @foreach (var item in Model.TabHotels)
+                                {
                                     <tr>
                                         <th style="font-weight: normal;">
                                             <a class="show-acc" data-target="#price_info_0" data-toogle="toogle">
-                                                Economy (2*) <i class="fas fa-sort-down"></i>
+                                                @item.TitleTabHotel <i class="fas fa-sort-down"></i>
                                             </a>
                                             <div class="acc-detail" id="price_info_0">
                                                 <ul>
-                                                    <li>Hanoi:&nbsp;La Suite Hotel &amp; Spa</li>
-                                                    <li>Halong Bay:&nbsp;Oriental Sails</li>
-                                                    <li>Hoi An: Hoi An Venus Hotel</li>
-                                                    <li>Hue: Than Thien Hotel</li>
-                                                    <li>Ho Chi Minh City: Thien Hai Hotel</li>
+                                                    <li>@Html.Raw(item.ContentHotel)</li>
+                                   
                                                 </ul>
                                             </div>
                                         </th>
                                         <th class="text-center" style="font-weight: normal;">
                                             <span class="price-origin">$0</span>
-                                            <span class="text-price margin-left-5">US $789</span>
+                                            <span class="text-price margin-left-5">$@item.Price vnđ</span>
                                         </th>
-                                        <th class="text-center" style="font-weight: normal;">
-                                            <span class="price-origin">$1096</span>
-                                            <span class="text-price margin-left-5">US $932</span>
-                                        </th>
+
                                     </tr>
-                                    <tr>
-                                        <th style="font-weight: normal;">
-                                            <a class="show-acc" data-target="#price_info_1" data-toogle="toogle">
-                                                Superior (3*) <i class="fas fa-sort-down"></i>
-                                            </a>
-                                            <div class="acc-detail" id="price_info_1">
-                                                <ul>
-                                                    <li>Ha Noi:&nbsp;Angle Palace hotel</li>
-                                                    <li>Halong Bay:&nbsp;Swan Cruise</li>
-                                                    <li>Hoi An: Kim An Hotel</li>
-                                                    <li>Hue:&nbsp;Palace Serene Hotel Hue</li>
-                                                    <li>Ho Chi Minh City:&nbsp;Park View Hotel Ho Chi Minh</li>
-                                                </ul>
-                                            </div>
-                                        </th>
-                                        <th class="text-center" style="font-weight: normal;">
-                                            <span class="price-origin">$1012</span>
-                                            <span class="text-price margin-left-5">US $860</span>
-                                        </th>
-                                        <th class="text-center" style="font-weight: normal;">
-                                            <span class="price-origin">$1190</span>
-                                            <span class="text-price margin-left-5">US $1011</span>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th style="font-weight: normal;">
-                                            <a class="show-acc" data-target="#price_info_2" data-toogle="toogle">
-                                                First Class (4*) <i class="fas fa-sort-down"></i>
-                                            </a>
-                                            <div class="acc-detail" id="price_info_2">
-                                                <ul>
-                                                    <li>Ha Noi:&nbsp;Hanoi Pearl Hotel</li>
-                                                    <li>Halong Bay:&nbsp;Peony Cruise</li>
-                                                    <li>Hoi An: Hoi An Silk Luxury Hotel &amp; Spa</li>
-                                                    <li>Hue:&nbsp;Eldora Hotel</li>
-                                                    <li>Ho Chi Minh City:&nbsp;Eden Star Hotel</li>
-                                                </ul>
-                                            </div>
-                                        </th>
-                                        <th class="text-center" style="font-weight: normal;">
-                                            <span class="price-origin">$1264</span>
-                                            <span class="text-price margin-left-5">US $1076</span>
-                                        </th>
-                                        <th class="text-center" style="font-weight: normal;">
-                                            <span class="price-origin">$1432</span>
-                                            <span class="text-price margin-left-5">US $1217</span>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th style="font-weight: normal;">
-                                            <a class="show-acc" data-target="#price_info_3" data-toogle="toogle">
-                                                Luxury (5*) <i class="fas fa-sort-down"></i>
-                                            </a>
-                                            <div class="acc-detail" id="price_info_3">
-                                                <ul>
-                                                    <li>Hotel in Hanoi:&nbsp;Pan Pacific Hotel Hanoi</li>
-                                                    <li>Cruise in Halong: Mon Cheri cruise</li>
-                                                    <li>Hotel in Hoi An:&nbsp;Palm Garden Beach Resort &amp; Spa</li>
-                                                    <li>Hotel in Hue: Indochine Place</li>
-                                                    <li>Hotel in Ho Chi Minh:&nbsp;Majestic Hotel Saigon</li>
-                                                </ul>
-                                            </div>
-                                        </th>
-                                        <th class="text-center" style="font-weight: normal;">
-                                            <span class="price-origin">$1708</span>
-                                            <span class="text-price margin-left-5">US $1452</span>
-                                        </th>
-                                        <th class="text-center" style="font-weight: normal;">
-                                            <span class="price-origin">$1895</span>
-                                            <span class="text-price margin-left-5">US $1611</span>
-                                        </th>
-                                    </tr>
+                                }
+                               
+
                                 </tbody>
                             </table>
                         </div>
@@ -409,7 +310,7 @@
     <section class="recoment">
         <div class="container">
             <div class="wraper_recom">
-                <h2 class="text-center">Tour Related</h2>
+                <h2 class="text-center">Tour Liên Quan</h2>
                 <div class="row">
                     @foreach (var item in tourhot.Take(3))
                     {
