@@ -1093,3 +1093,5 @@ F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\TeamplateHotel\obj\Debu
 F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\TeamplateHotel\obj\Debug\TeamplateHotel_tour.csproj.CopyComplete
 F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\TeamplateHotel\obj\Debug\TeamplateHotel.dll
 F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\TeamplateHotel\obj\Debug\TeamplateHotel.pdb
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\TeamplateHotel\bin\AutoMapper.dll
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\TeamplateHotel\bin\AutoMapper.xml

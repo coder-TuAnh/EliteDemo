@@ -52,6 +52,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=4.0.4.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="CKFinder, Version=2.6.0.2792, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>ckfinder\bin\CKFinder.dll</HintPath>
@@ -318,6 +321,7 @@
     <Compile Include="Controllers\CTripController.cs" />
     <Compile Include="Controllers\EmailMarketingController.cs" />
     <Compile Include="Controllers\FeedBackController.cs" />
+    <Compile Include="Controllers\FilterTourController.cs" />
     <Compile Include="Controllers\SendContactController.cs" />
     <Compile Include="Controllers\TourController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -335,10 +339,13 @@
     <Compile Include="Models\DetailArticle.cs" />
     <Compile Include="Models\DetailRestaurant.cs" />
     <Compile Include="Models\DetailRoom.cs" />
+    <Compile Include="Models\FilterTourModel.cs" />
     <Compile Include="Models\MBookTour.cs" />
+    <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\ShowDetailHotel.cs" />
     <Compile Include="Models\ShowObject.cs" />
     <Compile Include="Models\ShowRooms.cs" />
+    <Compile Include="Models\TourModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1380,6 +1387,7 @@
     <Content Include="Content\img\tour\star4.png" />
     <Content Include="Content\img\tour\star5.png" />
     <Content Include="Content\js\effect.js" />
+    <Content Include="Content\js\filtertour.js" />
     <Content Include="Content\js\getDate.js" />
     <Content Include="Content\js\hotel.js" />
     <Content Include="Content\js\main.js" />
@@ -11164,14 +11172,10 @@
     <Content Include="Scripts\jtable\themes\metro\pink\jtable.less" />
     <Content Include="Scripts\jtable\themes\metro\purple\jtable.less" />
     <Content Include="Scripts\jtable\themes\metro\red\jtable.less" />
-    <Content Include="Views\Visa\Index.cshtml" />
     <Content Include="Views\CTrip\Index.cshtml" />
     <Content Include="Views\CTrip\Messages.cshtml" />
     <Content Include="Views\CTrip\Submit.cshtml" />
-    <Content Include="Views\Visa\Order.cshtml" />
     <Content Include="Views\BookingTour\AddReview.cshtml" />
-    <Content Include="Views\Home\Cruise\DetailCruise.cshtml" />
-    <Content Include="Views\Home\Cruise\ListCruise.cshtml" />
     <Content Include="Views\BookingCruise\DetaiBookingCruise.cshtml" />
     <Content Include="Views\BookingCruise\DetailCruise.cshtml" />
     <Content Include="Views\BookingCruise\DetailSearch.cshtml" />
@@ -11193,10 +11197,12 @@
     <Content Include="Views\BookingTour\MessageOnePay.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Shared\Banner_us.cshtml" />
-    <Content Include="Views\Home\Demo.cshtml" />
     <Content Include="Views\Home\Hotel\ListHotels.cshtml" />
     <Content Include="Views\Home\Hotel\DetailHotel.cshtml" />
     <Content Include="Views\Home\Hotel\ListCombo.cshtml" />
+    <Content Include="Views\FilterTour\Filter.cshtml" />
+    <Content Include="Views\FilterTour\ViewFilter.cshtml" />
+    <Content Include="Views\FilterTour\IndexFilter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

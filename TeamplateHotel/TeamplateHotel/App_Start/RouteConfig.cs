@@ -192,6 +192,28 @@ namespace TeamplateHotel
                       action = "ListTours",
                   });
 
+            //Hiện View
+            routes.MapRoute(
+                name: "ViewFilters",
+                url: "viewfilter",
+                defaults:
+                new
+                {
+                    controller = "FilterTour",
+                    action = "ViewFilter",
+                });
+            //Lọc
+            routes.MapRoute(
+                name: "Filters",
+                url: "filter",
+                defaults:
+                new
+                {
+                    controller = "FilterTour",
+                    action = "IndexFilter",
+                });
+
+
             routes.MapRoute("Default", "{aliasMenuSub}/{idSub}/{aliasSub}", new
             {
                 controller = "Home",
