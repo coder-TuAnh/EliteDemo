@@ -3,7 +3,7 @@
 @using TeamplateHotel.Controllers
 @using TeamplateHotel.Handler
 @using TeamplateHotel.Models
- @using PagedList.Mvc;
+@using PagedList.Mvc;
 @model TeamplateHotel.Models.FilterTourModel
 @{
     ViewBag.Title = "Filter";
@@ -37,7 +37,7 @@
                                 @foreach (var item in Model.ListMenuDes)
                                 {
                                     <label for="@item.ID">
-                                        <input type="checkbox" id="@item.ID" name="">
+                                        <input type="checkbox" data-id="@item.ID" name="menu-@item.ID" class="menu-filter">
                                         <span>@item.Title</span>
                                     </label>
 
@@ -52,7 +52,7 @@
                                 {
 
                                     <label for="@item.ID">
-                                        <input type="checkbox" id="@item.ID" name="">
+                                        <input type="checkbox" data-id="@item.ID" name="activity-@item.ID" class="activity-filter">
                                         <span>@item.Title</span>
                                     </label>
 
@@ -86,43 +86,43 @@
 
                     </div>
                 </div>
+
                 <div class="col-md-9">
                     <div class="wrap_right">
                         <h3 class="title_wrap_right"><b>135</b> tours visit <b>VietNam Tours</b>, depart on <b>Monday, April 13, 2020</b></h3>
+
                         <div class="tag_control">
                             <ul>
                                 <li style="background-color: #ccc;"><span>Sort by:</span></li>
-                                <li><span>Recommended</span></li>
-                                <li><span>Price [Low to High]</span></li>
-                                <li><span>Price [High to Low]</span></li>
-                                <li><span>Review Score</span></li>
+                                <li><span data-value="0" id="recommend">Recommended</span></li>
+                                <li><span data-value="0" id="pricehigh">Price [Low to High]</span></li>
+                                <li><span data-value="0" id="pricelow">Price [High to Low]</span> </li>
                             </ul>
                         </div>
+
                         <div class="wrap_lisst">
-                            @foreach (var item in Model.result)
-                            {
-                                <div class="item_list">
-                                    <div class="img_lefft">
-                                        <a href="" title="">
-                                            <img src="@item.Image" alt="" height="158">
-                                        </a>
-                                    </div>
-                                    <div class="content_right">
-                                        <div class="wrap_content_main">
-                                            <h3><a href="" title="">@item.Title</a></h3>
-                                            <p>@Html.Raw(item.Title)</p>
-                                            <span><i class="far fa-map-marker-alt"></i>&nbsp;@item.MetaTitle</span>
+                            @*@foreach (var item in Model.result)
+                                {
+                                    <div class="item_list">
+                                        <div class="img_lefft">
+                                            <a href="" title="">
+                                                <img src="@item.Image" alt="" height="158">
+                                            </a>
                                         </div>
-                                        <div class="wrap_price">
-                                            <span class="price_old">$@item.Price vnđ</span>
-                                            <span class="price_new"> <span class="price">$@item.PriceSale</span> vnđ </span>
-                                            <a class="select" href="" title="">Chi tiết</a>
+                                        <div class="content_right">
+                                            <div class="wrap_content_main">
+                                                <h3><a href="" title="">@item.Title</a></h3>
+                                                <p>@Html.Raw(item.Title)</p>
+                                                <span><i class="far fa-map-marker-alt"></i>&nbsp;@item.MetaTitle</span>
+                                            </div>
+                                            <div class="wrap_price">
+                                                <span class="price_old">$@item.Price vnđ</span>
+                                                <span class="price_new"> <span class="price">$@item.PriceSale</span> vnđ </span>
+                                                <a class="select" href="" title="">Chi tiết</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            }
-
-
+                                }*@
 
                         </div>
                     </div>
@@ -130,25 +130,29 @@
             </div>
         </div>
         <br />
- 
-        @*<div class="pagetion">
-                <div class="back_top"><a href="#scroll-topl" title=""><i class="fas fa-arrow-alt-square-up"></i> Back to top</a></div>
-                <ul>
-                    <li class="disabled"><a href="#" title="">First</a></li>
-                    <li class="disabled"><a href="#" title="">Before</a></li>
-                    <li class="active"><a href="#" title="">1</a></li>
-                    <li><a href="#" title="">2</a></li>
-                    <li><a href="#" title="">3</a></li>
-                    <li><a href="#" title="">4</a></li>
-                    <li><a href="#" title="">5</a></li>
-                    <li><a href="#" title="">Next</a></li>
-                    <li><a href="#" title="">End</a></li>
-                </ul>
-            </div>*@
+
+        <input type="radio" hidden value="0" name="price" />
+        <input hidden value="0" name="recommend" />
+
+        <div class="pagetion">
+            <div class="back_top"><a href="#scroll-topl" title=""><i class="fas fa-arrow-alt-square-up"></i> Back to top</a></div>
+            <ul>
+                <li class="disabled"><a href="#" title="">First</a></li>
+                <li class="disabled"><a href="#" title="">Before</a></li>
+                <li class="active"><a href="#" title="">1</a></li>
+                <li><a href="#" title="">2</a></li>
+                <li><a href="#" title="">3</a></li>
+                <li><a href="#" title="">4</a></li>
+                <li><a href="#" title="">5</a></li>
+                <li><a href="#" title="">Next</a></li>
+                <li><a href="#" title="">End</a></li>
+            </ul>
+        </div>
     </section>
 </main>
 
 @section scripts
 {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js" integrity="sha256-swvs/72H2JZrIbyDdMskQv2t0bpTO5tgJOWVMBgZq6U=" crossorigin="anonymous"></script>
     <script src="~/Content/js/filtertour.js"></script>
 }

@@ -210,7 +210,7 @@ namespace TeamplateHotel
                 new
                 {
                     controller = "FilterTour",
-                    action = "IndexFilter",
+                    action = "FilterData",
                 });
 
 

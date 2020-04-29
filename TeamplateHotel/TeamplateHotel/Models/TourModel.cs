@@ -14,6 +14,7 @@ namespace TeamplateHotel.Models
         public int? ActivitiesID { get; set; }
         public string Title { get; set; }
         public string Alias { get; set; }
+        public string MenuAlias { get; set; }
         public string Image { get; set; }
         public string Description { get; set; }
         public int? Index { get; set; }
@@ -21,8 +22,8 @@ namespace TeamplateHotel.Models
         public string MetaDescription { get; set; }
         public bool Status { get; set; }
         public bool? Hot { get; set; }
-        public decimal PriceSale { get; set; }
-        public decimal Price { get; set; }
+        public decimal? PriceSale { get; set; }
+        public decimal? Price { get; set; }
         public bool? TourOther { get; set; }
         public bool? Time { get; set; }
         public bool Deal { get; set; }

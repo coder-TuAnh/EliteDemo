@@ -341,6 +341,7 @@
     <Compile Include="Models\FilterTourModel.cs" />
     <Compile Include="Models\MBookTour.cs" />
     <Compile Include="Models\MenuModel.cs" />
+    <Compile Include="Models\SearchInputModel.cs" />
     <Compile Include="Models\ShowDetailHotel.cs" />
     <Compile Include="Models\ShowObject.cs" />
     <Compile Include="Models\ShowRooms.cs" />
