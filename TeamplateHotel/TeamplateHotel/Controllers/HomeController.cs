@@ -26,36 +26,7 @@ namespace TeamplateHotel.Controllers
                 return View("Index");
             }
 
-            //if (aliasMenuSub.ToString() == "Search")
-            //{
-            //    string key = Request.Params["key"];
-            //    if (string.IsNullOrEmpty(key))
-            //    {
-            //        return View("Tour/Search", new List<Tour>());
-            //    }
-            //    List<ShowObject> listSearch = new List<ShowObject>();
-            //    listSearch.AddRange(db.Tours.Where(a => a.Status && a.Title.Contains(key)).OrderBy(a => a.Index).Select(a => new ShowObject() {
-            //        ID = a.ID,
-            //        Alias = a.Alias,
-            //        Description = a.Description,
-            //        Image = a.Image,
-            //        Index = a.Index,
-            //        MenuAlias = a.Menu.Alias,
-            //        Title = a.Title,
-            //    }).ToList());
-            //    listSearch.AddRange(db.Articles.Where(a => a.Status && a.Title.Contains(key)).OrderBy(a => a.Index).Select(a => new ShowObject()
-            //    {
-            //        ID = a.ID,
-            //        Alias = a.Alias,
-            //        Description = a.Description,
-            //        Image = a.Image,
-            //        Index = a.Index,
-            //        MenuAlias = a.Menu.Alias,
-            //        Title = a.Title,
-            //    }).ToList());
-
-            //    return View("Tour/Search", listSearch);
-            //}
+            
             if (aliasMenuSub.ToString() == "SelectLanguge")
             {
                 Language language = db.Languages.FirstOrDefault(a => a.ID == idSub.ToString());
@@ -125,7 +96,7 @@ namespace TeamplateHotel.Controllers
                 return View("Article/DetailArticle", detailArticle);
             }
             int pagenumber = page ?? 1;
-            int pagesize = pageSize ?? 9;
+            int pagesize = pageSize ?? 12;
             IPagedList<Article> list = articles.ToPagedList(pagenumber, pagesize);
             return View("Article/ListArticle", list);
 
@@ -265,5 +236,13 @@ namespace TeamplateHotel.Controllers
             }
         }
 
+
+        [HttpPost]
+        public ActionResult SearchTour(SearchTourModelInput input)
+        {
+             TempData["searchInput"] = input;
+
+            return RedirectToAction("ViewFilter", "FilterTour" , input);
+        }
     }
 }

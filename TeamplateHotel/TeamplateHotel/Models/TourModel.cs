@@ -13,6 +13,7 @@ namespace TeamplateHotel.Models
         public int MenuID { get; set; }
         public int? ActivitiesID { get; set; }
         public string Title { get; set; }
+        public string TitleMenu { get; set; }
         public string Alias { get; set; }
         public string MenuAlias { get; set; }
         public string Image { get; set; }

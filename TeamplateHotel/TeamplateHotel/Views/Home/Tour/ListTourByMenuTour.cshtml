@@ -15,6 +15,8 @@
 @section css{
     <link rel="stylesheet" type="text/css" href="~/Content/css/daterangepicker.css">
     <link rel="stylesheet" type="text/css" href="~/Content/css/list_tour.css">
+    <link href="~/Content/css/PagedList.css" rel="stylesheet" />
+
 }
  
 
@@ -26,14 +28,14 @@
         <div class="content_banner">
             <!-- <div class="container"> -->
             <div class="wrap_formmm">
-                <form action="list-tour_submit" method="get" accept-charset="utf-8">
+                <form  action="/search-tour" method="post" accept-charset="utf-8">
                     <div class="title_form">
                         <h1>Tìm chuyến đi phù hợp nhất với bạn</h1>
                     </div>
                     <div class="form">
                         <div class="form_conttt">
                             <span class="icon_form"><i class="fad fa-map-marker-alt"></i></span>
-                            <span class="input_main"><input name="" placeholder="Khách sạn, Địa điểm..."></span>
+                            <span class="input_main"><input name="SearchTour" placeholder="Khách sạn, Địa điểm..."></span>
                             <span class="icon_form form_right"><i class="fas fa-times-octagon"></i></span>
                         </div>
                         <div class="form_conttt">

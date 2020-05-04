@@ -6,11 +6,11 @@
     padding: 10px;
     margin-bottom: 10px
 }
-.wrapper_main .wrap_left h3{
+.wrapper_main .wrap_left #filter{
 	border-bottom: 1px solid #ddd;
     margin-bottom: 15px;
     padding-bottom: 10px;
-        color: #868686;
+    color: #868686;
 }
 .wrapper_main .wrap_left .block_search{}
 .wrap_left .block_search .tags{

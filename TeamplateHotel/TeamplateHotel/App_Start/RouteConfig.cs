@@ -212,7 +212,15 @@ namespace TeamplateHotel
                     controller = "FilterTour",
                     action = "FilterData",
                 });
-
+            routes.MapRoute(
+                name: "SearchTour",
+                url: "search-tour",
+                defaults:
+                new
+                {
+                    controller = "Home",
+                    action = "SearchTour",
+                });
 
             routes.MapRoute("Default", "{aliasMenuSub}/{idSub}/{aliasSub}", new
             {

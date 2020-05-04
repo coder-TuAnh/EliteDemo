@@ -15,6 +15,8 @@ namespace ProjectLibrary.Database
     {
         [NotMapped]
         public string MenuAlias { get; set; }
+
+        public string TitleMenu { get; set; }
     }
     public partial class ListHotel
     {

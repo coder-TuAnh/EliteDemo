@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using ProjectLibrary.Config;
 using ProjectLibrary.Database;
@@ -10,14 +11,16 @@ using TeamplateHotel.Areas.Administrator.EntityModel;
 
 namespace TeamplateHotel.Areas.Administrator.Controllers
 {
-    public class TourController : BaseController
+    public class ComboController : BaseController
     {
-        // GET: /Administrator/Tour/
-        public ActionResult Index()
+        //
+        // GET: /Administrator/Combo/
+
+         public ActionResult Index()
         {
             LoadData();
             ViewBag.Messages = CommentController.Messages(TempData["Messages"]);
-            ViewBag.Title = "Page Tours";
+            ViewBag.Title = "Page Combo";
             return View();
         }
 
@@ -26,7 +29,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
         {
             using (var db = new MyDbDataContext())
             {
-                List<Tour> records = db.Tours.Where(a => a.Combo == false).ToList();
+                List<Tour> records = db.Tours.Where(a=>a.Combo ).ToList();
                 foreach (Tour record in records)
                 {
                     string itemTour = Request.Params[string.Format("Sort[{0}].Index", record.ID)];
@@ -54,11 +57,11 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                 var listTour = new List<Tour>();
                 if (menuId == 0)
                 {
-                    listTour = db.Tours.Where(a=> a.Combo == false).ToList();
+                    listTour = db.Tours.Where(a => a.Combo).ToList();
                 }
                 else
                 {
-                    listTour = db.Tours.Where(a => a.MenuID == menuId && a.Combo == false).ToList();
+                    listTour = db.Tours.Where(a => a.MenuID == menuId && a.Combo).ToList();
                 }
 
                 var records = listTour.Join(db.Menus.Where(a => a.LanguageID == Request.Cookies["lang_client"].Value), a => a.MenuID, b => b.ID,
@@ -97,119 +100,120 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
         {
             using (var db = new MyDbDataContext())
             {
-                
-                    if (string.IsNullOrEmpty(model.Alias))
-                    {
-                        model.Alias = StringHelper.ConvertToAlias(model.Title);
-                    }
-                    try
-                    {
-                        var tour = new Tour
-                        {
-                            MenuID = model.MenuID,
-                            ActivitiesID = model.ActivitisID,
-                            Title = model.Title,
-                            Alias = model.Alias,
-                            Image = model.Image,
-                            Index = 0,
-                            Description = model.Description,
-                            MetaTitle = string.IsNullOrEmpty(model.MetaTitle) ? model.Title : model.MetaTitle,
-                            MetaDescription =
-                                string.IsNullOrEmpty(model.MetaDescription) ? model.Title : model.MetaDescription,
-                            Status = model.Status,
-                            Price = model.Price,
-                            Location = model.Location,
-                            PriceSale = model.PriceSale,
-                            Hot = model.Hot,
-                            Deal = model.Deal,
-                            Like = model.Like,
-                            //StatusPrice = model.StatusPrice,
-                            TourOther = model.TourOther,
-                            TourIncluded = model.TourIncluded,
-                            TourExcluded = model.TourExcluded,
-                        };
 
-                        db.Tours.InsertOnSubmit(tour);
+                if (string.IsNullOrEmpty(model.Alias))
+                {
+                    model.Alias = StringHelper.ConvertToAlias(model.Title);
+                }
+                try
+                {
+                    var tour = new Tour
+                    {
+                        MenuID = model.MenuID,
+                        ActivitiesID = model.ActivitisID,
+                        Title = model.Title,
+                        Alias = model.Alias,
+                        Image = model.Image,
+                        Index = 0,
+                        Description = model.Description,
+                        MetaTitle = string.IsNullOrEmpty(model.MetaTitle) ? model.Title : model.MetaTitle,
+                        MetaDescription =
+                            string.IsNullOrEmpty(model.MetaDescription) ? model.Title : model.MetaDescription,
+                        Status = model.Status,
+                        Combo = true,
+                        Price = model.Price,
+                        Location = model.Location,
+                        PriceSale = model.PriceSale,
+                        Hot = model.Hot,
+                        Deal = model.Deal,
+                        Like = model.Like,
+                        //StatusPrice = model.StatusPrice,
+                        TourOther = model.TourOther,
+                        TourIncluded = model.TourIncluded,
+                        TourExcluded = model.TourExcluded,
+                    };
+
+                    db.Tours.InsertOnSubmit(tour);
+                    db.SubmitChanges();
+
+                    //Thêm tabHotel
+                    if (model.TabHotels != null)
+                    {
+                        foreach (TabHotel item in model.TabHotels)
+                        {
+                            var tabTour = new TabHotel
+                            {
+                                TourID = tour.ID,
+                                TitleTabHotel = item.TitleTabHotel,
+                                ContentHotel = item.ContentHotel,
+                                Price = item.Price,
+                            };
+
+                            db.TabHotels.InsertOnSubmit(tabTour);
+                        }
                         db.SubmitChanges();
-
-                        //Thêm tabHotel
-                        if (model.TabHotels != null)
-                        {
-                            foreach (TabHotel item in model.TabHotels)
-                            {
-                                var tabTour = new TabHotel
-                                {
-                                    TourID = tour.ID,
-                                    TitleTabHotel = item.TitleTabHotel,
-                                    ContentHotel = item.ContentHotel,
-                                    Price = item.Price,
-                                };
-
-                                db.TabHotels.InsertOnSubmit(tabTour);
-                            }
-                            db.SubmitChanges();
-                        }
-
-                        if (model.Theme != null)
-                        {
-                            for (int i = 0; i < model.Theme.Length; i++)
-                            {
-                                var tabTheme = new ThemesMenu
-                                {
-                                    TourID = tour.ID,
-                                    MenuID = int.Parse(model.Theme[i]),
-                                    Index = 0
-                                };
-                                db.ThemesMenus.InsertOnSubmit(tabTheme);
-                                db.SubmitChanges();
-                            }
-                        }
-
-                        //Thêm hình ảnh cho tour
-                        if (model.EGalleryITems != null)
-                        {
-                            foreach (EGalleryITem itemGallery in model.EGalleryITems)
-                            {
-                                var gallery = new TourGallery
-                                {
-                                    LargeImage = itemGallery.Image,
-                                    SmallImage = ReturnSmallImage.GetImageSmall(itemGallery.Image),
-                                    TourID = tour.ID,
-                                };
-                                db.TourGalleries.InsertOnSubmit(gallery);
-                            }
-                            db.SubmitChanges();
-                        }
-                        //Thêm tabtour
-                        if (model.TabTours != null)
-                        {
-                            foreach (TabTour itemTabTour in model.TabTours)
-                            {
-                                var tabTour = new TabTour
-                                {
-                                    TourID = tour.ID,
-                                    TitleTab = itemTabTour.TitleTab,
-                                    Content = itemTabTour.Content,
-                                    Price = itemTabTour.Price,
-                                };
-
-                                db.TabTours.InsertOnSubmit(tabTour);
-                            }
-                            db.SubmitChanges();
-                        }
-
-                        TempData["Messages"] = "Successful";
-                        return RedirectToAction("Index");
                     }
-                    catch (Exception exception)
+
+                    if (model.Theme != null)
                     {
-                        LoadData();
-                        LoadDataActivities();
-                        ViewBag.Messages = "Error: " + exception.Message;
-                        return View(model);
+                        for (int i = 0; i < model.Theme.Length; i++)
+                        {
+                            var tabTheme = new ThemesMenu
+                            {
+                                TourID = tour.ID,
+                                MenuID = int.Parse(model.Theme[i]),
+                                Index = 0
+                            };
+                            db.ThemesMenus.InsertOnSubmit(tabTheme);
+                            db.SubmitChanges();
+                        }
                     }
-           
- 
+
+                    //Thêm hình ảnh cho tour
+                    if (model.EGalleryITems != null)
+                    {
+                        foreach (EGalleryITem itemGallery in model.EGalleryITems)
+                        {
+                            var gallery = new TourGallery
+                            {
+                                LargeImage = itemGallery.Image,
+                                SmallImage = ReturnSmallImage.GetImageSmall(itemGallery.Image),
+                                TourID = tour.ID,
+                            };
+                            db.TourGalleries.InsertOnSubmit(gallery);
+                        }
+                        db.SubmitChanges();
+                    }
+                    //Thêm tabtour
+                    if (model.TabTours != null)
+                    {
+                        foreach (TabTour itemTabTour in model.TabTours)
+                        {
+                            var tabTour = new TabTour
+                            {
+                                TourID = tour.ID,
+                                TitleTab = itemTabTour.TitleTab,
+                                Content = itemTabTour.Content,
+                                Price = itemTabTour.Price,
+                            };
+
+                            db.TabTours.InsertOnSubmit(tabTour);
+                        }
+                        db.SubmitChanges();
+                    }
+
+                    TempData["Messages"] = "Successful";
+                    return RedirectToAction("Index");
+                }
+                catch (Exception exception)
+                {
+                    LoadData();
+                    LoadDataActivities();
+                    ViewBag.Messages = "Error: " + exception.Message;
+                    return View(model);
+                }
+
+
             }
         }
 
@@ -240,6 +244,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                 Location = detailTour.Location,
                 //StatusPrice = (bool)detailTour.StatusPrice,
                 Like = (bool)detailTour.Like,
+                Combo = true,
                 Hot = (bool)detailTour.Hot,
                 Deal = detailTour.Deal,
                 Title = detailTour.Title,
@@ -315,6 +320,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                             ? model.Title
                             : model.MetaDescription;
                         tour.Status = model.Status;
+                        tour.Combo = true;
                         tour.Hot = model.Hot;
                         tour.Price = model.Price;
                         tour.PriceSale = model.PriceSale;
@@ -503,5 +509,6 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
             }).ToList());
             ViewBag.ListMenu2 = listMenu;
         }
+
     }
 }

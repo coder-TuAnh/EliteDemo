@@ -14,7 +14,7 @@
 
         <div class="widget-content">
             @Html.ValidationSummary(true)
-            @using (Html.BeginForm("Update", "Tour", FormMethod.Post, new { @class = "form-horizontal" }))
+            @using (Html.BeginForm("Update", "Combo", FormMethod.Post, new { @class = "form-horizontal" }))
             {
                 @Html.HiddenFor(a => a.ID)
                 <div class="control-group">
@@ -286,7 +286,7 @@
 
                 <div class="form-actions">
                     <input type="submit" value="Submit" class="btn btn-primary" />
-                    <a href="@Url.Action("Index", "Tour")" class="btn">Huỷ bỏ</a>
+                    <a href="@Url.Action("Index", "Combo")" class="btn">Huỷ bỏ</a>
                 </div>
 
                 <div class="control-seo">

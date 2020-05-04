@@ -8,6 +8,9 @@
 @{
     ViewBag.Title = "Filter";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    var search = TempData["searchInput"] != null ? TempData["searchInput"] as SearchTourModelInput : new SearchTourModelInput();
+
+    var searchMenuId = ViewBag.MenuId != null ? ViewBag.MenuId : string.Empty;
 }
 
 @section css
@@ -15,6 +18,8 @@
 
     <link rel="stylesheet" type="text/css" href="~/Content/css/demo_tour.css">
     <link rel="stylesheet" type="text/css" href="~/Content/css/responsive/demo_tour_res.css">
+    <link href="~/Content/css/axloader.css" rel="stylesheet" />
+    <link href="~/Content/css/colordots.css" rel="stylesheet" />
 }
 
 <main>
@@ -24,31 +29,35 @@
                 <div class="col-12 show_control_mobile">
                     <div class="row">
                         <div class="col-6"><button type="" data-toggle="modal" data-target="#sortBy">Sort by <i class="fas fa-sort-down"></i></button></div>
-                        <div class="col-6"><button type="" data-toggle="modal" data-target="#fillerResu">Filter Results<i class="fas fa-sort-down"></i></button></div>
+                        <div class="col-6"><button type="" data-toggle="modal" data-target="#fillerResu">Kết quả lọc<i class="fas fa-sort-down"></i></button></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="wrap_left">
-                        <h3>Filter Results</h3>
+
+                        <h4 id="filter">Kết quả lọc</h4>
                         <div class="block_search">
-                            <h4>Destinations</h4>
+                            <h4>Địa Điểm</h4>
                             <div class="tags">
 
                                 @foreach (var item in Model.ListMenuDes)
                                 {
+                                    var isCheck = searchMenuId == item.ID ? "checked" : string.Empty;
+
                                     <label for="@item.ID">
-                                        <input type="checkbox" data-id="@item.ID" name="menu-@item.ID" class="menu-filter">
+
+                                        <input type="checkbox" data-id="@item.ID" name="menu-@item.ID" class="menu-filter" @isCheck>
+
                                         <span>@item.Title</span>
                                     </label>
 
                                 }
 
                             </div>
-                            <h4>Travel styles in VietNam Tours</h4>
+                            <h4>Loại Hình Tour</h4>
                             <div class="tags">
 
-
-                                @foreach (var item in Model.ListMenuCate)
+                                @foreach (var item in Model.ListMenuCate.Where(a => a.ParentID != 0))
                                 {
 
                                     <label for="@item.ID">
@@ -89,41 +98,20 @@
 
                 <div class="col-md-9">
                     <div class="wrap_right">
-                        <h3 class="title_wrap_right"><b>135</b> tours visit <b>VietNam Tours</b>, depart on <b>Monday, April 13, 2020</b></h3>
+                        <h3 class="title_wrap_right"><b id="toltaltour">0</b> tours tham quan <b id="destour"></b>, khởi hành từ <b>@DateTime.Now.ToShortDateString()</b></h3>
 
                         <div class="tag_control">
                             <ul>
-                                <li style="background-color: #ccc;"><span>Sort by:</span></li>
-                                <li><span data-value="0" id="recommend">Recommended</span></li>
-                                <li><span data-value="0" id="pricehigh">Price [Low to High]</span></li>
-                                <li><span data-value="0" id="pricelow">Price [High to Low]</span> </li>
+                                <li style="background-color: #ccc;"><span>Lọc theo:</span></li>
+                                <li><span data-value="1" id="recommend">Nổi Bật</span></li>
+                                <li><span data-value="-1" class="price">Giá [Thấp tới cao]</span></li>
+                                <li><span data-value="1" class="price">Giá [Cao tới thấp]</span> </li>
+                                @*<li><span data-value="1" id="star">Hạng Sao</span> </li>*@
                             </ul>
                         </div>
 
-                        <div class="wrap_lisst">
-                            @*@foreach (var item in Model.result)
-                                {
-                                    <div class="item_list">
-                                        <div class="img_lefft">
-                                            <a href="" title="">
-                                                <img src="@item.Image" alt="" height="158">
-                                            </a>
-                                        </div>
-                                        <div class="content_right">
-                                            <div class="wrap_content_main">
-                                                <h3><a href="" title="">@item.Title</a></h3>
-                                                <p>@Html.Raw(item.Title)</p>
-                                                <span><i class="far fa-map-marker-alt"></i>&nbsp;@item.MetaTitle</span>
-                                            </div>
-                                            <div class="wrap_price">
-                                                <span class="price_old">$@item.Price vnđ</span>
-                                                <span class="price_new"> <span class="price">$@item.PriceSale</span> vnđ </span>
-                                                <a class="select" href="" title="">Chi tiết</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }*@
-
+                        <div class="wrap_lisst" id="data">
+                          
                         </div>
                     </div>
                 </div>
@@ -131,21 +119,24 @@
         </div>
         <br />
 
-        <input type="radio" hidden value="0" name="price" />
-        <input hidden value="0" name="recommend" />
+        <input hidden value="@search.SearchTour" id="search-value" name="search" />
+        <input hidden value="0" id="price-value" name="price" />
+        <input hidden value="0" id="recommend-value" name="recommend" />
 
         <div class="pagetion">
-            <div class="back_top"><a href="#scroll-topl" title=""><i class="fas fa-arrow-alt-square-up"></i> Back to top</a></div>
-            <ul>
-                <li class="disabled"><a href="#" title="">First</a></li>
-                <li class="disabled"><a href="#" title="">Before</a></li>
-                <li class="active"><a href="#" title="">1</a></li>
-                <li><a href="#" title="">2</a></li>
-                <li><a href="#" title="">3</a></li>
-                <li><a href="#" title="">4</a></li>
-                <li><a href="#" title="">5</a></li>
-                <li><a href="#" title="">Next</a></li>
-                <li><a href="#" title="">End</a></li>
+            <div class="back_top"><a href="#scroll-topl" title=""><i class="fas fa-arrow-alt-square-up"></i> Về đầu trang</a></div>
+            @*<ul>
+                    <li class="disabled"><a href="#" title="">First</a></li>
+                    <li class="disabled"><a href="#" title="">Before</a></li>
+                    <li class="active"><a href="#" title="">1</a></li>
+                    <li><a href="#" title="">2</a></li>
+                    <li><a href="#" title="">3</a></li>
+                    <li><a href="#" title="">4</a></li>
+                    <li><a href="#" title="">5</a></li>
+                    <li><a href="#" title="">Next</a></li>
+                    <li><a href="#" title="">End</a></li>
+                </ul>*@
+            <ul class="pagination" id="pagination">
             </ul>
         </div>
     </section>
@@ -153,6 +144,13 @@
 
 @section scripts
 {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js" integrity="sha256-swvs/72H2JZrIbyDdMskQv2t0bpTO5tgJOWVMBgZq6U=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.js" integrity="sha256-hAi2czxj7RB2mQDYBBZcLTPpUvRnPjhyqO5SmuG2OQU=" crossorigin="anonymous"></script>
+    <script src="~/Content/js/ajaxloader.js"></script>
+    <script>
+        $("#data").ajaxloader({
+            cssClass: "cssload_colordots",
+            content: '<div class="cssload-dots" style="filter: url\(#goo\);"><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div><div class="cssload-dot"></div></div><svg version="1\.1" xmlns="http://www\.w3\.org/2000/svg"><defs><filter id="goo"><feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="12" ></feGaussianBlur><feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0	0 1 0 0 0	0 0 1 0 0	0 0 0 18 -7" result="goo" ></feColorMatrix><!--<feBlend in2="goo" in="SourceGraphic" result="mix" ></feBlend>--></filter></defs></svg>'
+        });
+    </script>
     <script src="~/Content/js/filtertour.js"></script>
 }

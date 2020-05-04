@@ -49,7 +49,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                             Title = a.Title,
                             TypeMenu = b.Value,
                             Level = a.Level
-                        }).Where(a=> a.Status).ToList();
+                        }).ToList();
                 return Json(new {Result = "OK", Records = listMenuShow, TotalRecordCount = listMenuShow.Count});
             }
             catch (Exception ex)

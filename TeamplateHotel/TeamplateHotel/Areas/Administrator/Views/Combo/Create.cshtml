@@ -4,6 +4,7 @@
     Layout = "~/Areas/Administrator/Views/Templates/_LayoutPage.cshtml";
     int flag = 0;
     int count = 0;
+
 }
 <div class="span12">
     <div class="widget ">
@@ -14,9 +15,8 @@
 
         <div class="widget-content">
             @Html.ValidationSummary(true)
-            @using (Html.BeginForm("Update", "Tour", FormMethod.Post, new { @class = "form-horizontal" }))
+            @using (Html.BeginForm("Create", "Combo", FormMethod.Post, new { @class = "form-horizontal" }))
             {
-                @Html.HiddenFor(a => a.ID)
                 <div class="control-group">
                     <label class="control-label" for="MenuID">Menu<span class="asterisk">*</span></label>
                     <div class="controls">
@@ -56,7 +56,6 @@
                         @Html.ValidationMessageFor(c => c.Image)
                     </div>
                 </div>
-
                 <div class="control-group">
                     <label class="control-label" for="Title">Location<span class="asterisk">*</span></label>
                     <div class="controls">
@@ -71,7 +70,6 @@
                         @Html.ValidationMessageFor(c => c.Time)
                     </div>
                 </div>
-
                 <div class="control-group">
                     <label class="control-label" for="Title">Price<span class="asterisk">*</span></label>
                     <div class="controls">
@@ -117,36 +115,12 @@
                         @Html.CheckBoxFor(c => c.TourOther, new { @checked = true })
                     </div>
                 </div>
-
                 <div class="control-group">
                     <label class="control-label" for="CodeBooking">Menu Themes<span class="asterisk" style="display: inline; float: none">*</span></label>
                     <div class="controls">
-                        <span class="multiselect-native-select">
-                            <select class="span4" id="Theme" multiple="multiple" name="Theme" style="width: 300px;display: inline;">
-                                @foreach (var i in ViewBag.ListMenu3.Items)
-                                {
-                                    if (Model.Theme != null)
-                                    {
-                                        if (Model.Theme.FirstOrDefault(a => a == i.Text) != null)
-                                        {
-                                            <option selected value="@i.Text">@i.Value</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@i.Text">@i.Value</option>
-                                        }
-                                    }
-                                    else
-                                    {
-                                        <option value="@i.Text">@i.Value</option>
-                                    }
-                                }
-                            </select>
-
-                        </span>
+                        @Html.DropDownListFor(m => m.Theme, (IEnumerable<SelectListItem>)ViewBag.ListMenu3, new { @class = "span4", style = "width: 300px;display: inline;", multiple = "multiple" })
                     </div>
                 </div>
-
                 <div class="control-group">
                     @Html.LabelFor(c => c.Description, new { @class = "control-label" })
                     <div class="controls">
@@ -167,7 +141,6 @@
                 </div>
 
                 <div class="control-group">
-
                     <div class="controls">
                         <div class="clr"></div>
                         <h3 class="mg-h">Itinerary</h3>
@@ -177,6 +150,16 @@
                                 foreach (var tab in Model.TabTours)
                                 {
                                     <option value="@count">@tab.TitleTab</option>
+                                    count++;
+                                    <div id="divprice_@(count)" class="price-tabtour" style="display: none;">
+                                        <strong>Price: </strong>
+                                        <input type="text" id="TabTours_@(count)__Price" name="TabTours[@(count)].Price" value="@tab.Price" class="span1 price-tab" />
+                                    </div>
+                                    <h4 id="Content_@(count)" style="@(count > 0 ? "display: none" : "")">Content Tab Tour : @tab.TitleTab</h4>
+                                    <div style="clear: both">
+                                        <textarea id="TabTours_@(count)__Content" style="@(count > 0 ? "display: none" : "")" name="TabTours[@count].Content" rows="20" class="full-ckeditor">@tab.Content</textarea>
+                                        <input type="hidden" class="title-tab" id="TabTours_@(count)__TitleTab" name="TabTours[@count].TitleTab" value="@tab.TitleTab" />
+                                    </div>
                                     count++;
                                 }
                             }
@@ -218,10 +201,19 @@
                         <select id="ListName2" style="width: 122px;">
                             @if (Model.TabHotels != null)
                             {
-                                count = 0;
                                 foreach (var tab in Model.TabHotels)
                                 {
                                     <option value="@count">@tab.TitleTabHotel</option>
+                                    count++;
+                                    <div id="divprice2_@(count)" class="price-tabtour2" style="display: none;">
+                                        <strong>Price: </strong>
+                                        <input type="text" id="TabHotels_@(count)__Price" name="TabHotels[@(count)].Price" value="0" class="span1 price-tab" />
+                                    </div>
+                                    <h4 id="Content_@(count)" style="@(count > 0 ? "display: none" : "")">Content Tab Tour : @tab.TitleTabHotel</h4>
+                                    <div style="clear: both">
+                                        <textarea id="TabHotels_@(count)__Content" style="@(count > 0 ? "display: none" : "")" name="TabHotels[@count].ContentHotel" rows="20" class="full-ckeditor">@tab.ContentHotel</textarea>
+                                        <input type="hidden" class="title-tab" id="TabTours_@(count)__TitleTab" name="TabHotels[@count].TitleTabHotel" value="@tab.TitleTabHotel" />
+                                    </div>
                                     count++;
                                 }
                             }
@@ -241,12 +233,12 @@
                                     {
                                         <div id="divprice2_@(count)" class="price-tabtour" style="display: none;">
                                             <strong>Price: </strong>
-                                            <input type="text" id="TabHotels_@(count)__Price" name="TabHotels[@(count)].Price" value="@tab.Price" class="span1 price-tab" />
-                                            </div>
+                                            <input type="text" id="TabHotels_@(count)__Price" name="TabHotels[@(count)].Price" value="0" class="span1 price-tab" />
+                                        </div>
                                         <h4 id="Content2_@(count)" style="@(count > 0 ? "display: none" : "")">Content Tab Tour : @tab.TitleTabHotel</h4>
                                         <div style="clear: both">
                                             <textarea id="TabHotels_@(count)__Content" style="@(count > 0 ? "display: none" : "")" name="TabHotels[@count].ContentHotel" rows="20" class="full-ckeditor">@tab.ContentHotel</textarea>
-                                            <input type="hidden" class="title-tab" id="TabHotels_@(count)__TitleTab" name="TabHotels[@count].TitleTabHotel" value="@tab.TitleTabHotel" />
+                                            <input type="hidden" class="title-tab" id="TabTours_@(count)__TitleTab" name="TabHotels[@count].TitleTabHotel" value="@tab.TitleTabHotel" />
                                         </div>
                                         count++;
                                     }
@@ -258,7 +250,7 @@
 
                 <div class="control-group">
                     <div class="controls">
-                        <h3 class="mg-h">Image for Tour</h3>
+                        <h3 class="mg-h">Add image for tour</h3>
                         <ul class="adminformlist">
                             <li class="imgthumb">
                                 <label>Image </label>
@@ -275,6 +267,7 @@
                                                 <input id="EGalleryITems_@(flag)__Image" name="EGalleryITems[@(flag)].Image" type="hidden" value="@(gallery.Image)" />
                                                 <img src="@(gallery.Image)" width="100" />
                                             </li>
+
                                             flag++;
                                         }
                                     }
@@ -286,11 +279,11 @@
 
                 <div class="form-actions">
                     <input type="submit" value="Submit" class="btn btn-primary" />
-                    <a href="@Url.Action("Index", "Tour")" class="btn">Huỷ bỏ</a>
+                    <a href="@Url.Action("Index", "Combo")" class="btn">Cancel</a>
                 </div>
 
                 <div class="control-seo">
-                    <h3 class="mg-h">Tối ưu hoá công cụ tìm kiếm(Seo)</h3>
+                    <h3 class="mg-h">Optimize Search Tool(Seo)</h3>
                     <div class="control-group">
                         @Html.LabelFor(c => c.MetaTitle)
                         <div class="jtable-input jtable-text-input">
@@ -312,6 +305,8 @@
 <ul id='context-menu'>
     <li>Delete</li>
 </ul>
+
+
 <script type="text/javascript">
     var counts = 0;
     var count = 0;
@@ -851,8 +846,8 @@
                 //$('#cke_' + this.attr('id')).hide();
                 $(this).hide();
             });
- 
-            $('#Display-Tabs2').append(inputPrice +label + textarea);
+            $('#Display-Tabs2').append(inputPrice + label + textarea);
+
 
             $('#tabName2').val("");
             sapxepListName();

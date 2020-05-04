@@ -15,7 +15,7 @@
     List<Menu> menuActi = CommentController.GetMenusActivities(lan);
     List<Menu> menuDes = CommentController.GetMenusDes(lan);
     int i = 0;
-    int index = 1;
+    int index1 = 1;
 }
 @section css{
     <link rel="stylesheet" type="text/css" href="~/Content/css/tour.css">
@@ -43,8 +43,8 @@
             @foreach (var item in Model.TourGalleries.Take(4))
             {
 
-                <div class="col_img col_img_@index"><img src="@item.LargeImage" alt="" type="button" data-toggle="modal" data-target="#modalImg" id=""></div>
-                index++;
+                <div class="col_img col_img_@index1"><img src="@item.LargeImage" alt="" type="button" data-toggle="modal" data-target="#modalImg" id=""></div>
+                index1++;
             }
 
 
@@ -91,29 +91,31 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 top_title">
-                    <h2>Overview</h2>
+                    <h2>Tổng Quan</h2>
                     @Html.Raw(Model.Tour.Description)
                 </div>
                 <div class="col-lg-9">
-                    <span class="expandAllText" data-status="true">Open All</span>
+                    <span class="expandAllText" data-status="true">Hiển thị tất cả</span>
                     <h2 class="title_TourList">Itinerary</h2>
-                    @foreach (var item in Model.TabTours)
+                    @foreach (var item in Model.TabTours.Select((value, index) => new { Value = value, Index = index }))
                     {
+                        var display = item.Index == 0 ? "display :block;" : string.Empty;
+
                         <div class="TourList">
                             <div class="TourDates" collapse-title="" collapse-status="hide" style="margin:0;">
-                                <span style="color : #003580">@item.TitleTab</span>
+                                <span style="color : #003580">@item.Value.TitleTab</span>
                                 <span class="collapseIcon CloseButton toggleArrow">
                                     <i class="fal fa-angle-down"></i>
                                 </span>
                             </div>
-                            <div class="TourInfo" collapse-content="" style="display: block;">
-                                @Html.Raw(item.Content)
+                            <div class="TourInfo" collapse-content="" style="@display">
+                                @Html.Raw(item.Value.Content)
                             </div>
                         </div>
                     }
 
                     <section class="priceIncotion">
-                        <h2>Price & Inclusion</h2>
+                        <h2>Giá và Hạng Phòng</h2>
                         <div class="table_price">
                             <table class="table table-bordered table-price-inclusion">
                                 <thead>
@@ -333,7 +335,7 @@
                     }
 
                     <div class="col-md-12 text-center">
-                        <a class="button_show" href="/@menu.Alias">Show more <i class="fal fa-angle-down"></i></a>
+                        <a class="button_show" href="/@menu.Alias">Hiển thị thêm <i class="fal fa-angle-down"></i></a>
                     </div>
                 </div>
             </div>

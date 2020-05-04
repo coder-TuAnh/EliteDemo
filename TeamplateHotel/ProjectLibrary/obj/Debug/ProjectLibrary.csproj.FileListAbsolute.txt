@@ -123,4 +123,3 @@ F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\obj\Debu
 F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\obj\Debug\ProjectLibrary.csproj.CopyComplete
 F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\obj\Debug\ProjectLibrary.dll
 F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\obj\Debug\ProjectLibrary.pdb
-F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\obj\Debug\ProjectLibrary.csprojAssemblyReference.cache

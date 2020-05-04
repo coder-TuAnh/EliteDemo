@@ -157,6 +157,8 @@ namespace TeamplateHotel.Controllers
                 foreach (var article in articles)
                 {
                     article.MenuAlias = article.Menu.Alias;
+                    article.TitleMenu = article.Menu.MetaTitle;
+
                 }
                 return articles;
             }
@@ -179,6 +181,7 @@ namespace TeamplateHotel.Controllers
                 foreach (var item in articles)
                 {
                     item.MenuAlias = article.Menu.Alias;
+                    item.TitleMenu = article.Menu.MetaTitle;
                 }
                 DetailArticle detailArticle = new DetailArticle()
                 {
@@ -294,38 +297,62 @@ namespace TeamplateHotel.Controllers
 
 
 
-        //Danh sách tours
+        ////Danh sách tours
+        //public static List<ShowObject> GetTours(int menuId)
+        //{
+        //    using (var db = new MyDbDataContext())
+        //    {
+        //        Menu _menuDes = db.Menus.FirstOrDefault(x => x.ID == menuId);
+        //        var query = db.Tours.Where(x => x.Status)
+        //          .Join(db.ThemesMenus.Where(x => x.MenuID == menuId), a => a.ID, b => b.TourID, (a, b) => new { a, b });
+        //        var value = query.Join(db.Menus, c => c.a.ActivitiesID, d => d.ID, (c, d) => new ShowObject
+        //        {
+        //            ID = c.a.ID,
+        //            Alias = c.a.Alias,
+        //            MenuAlias = _menuDes.Alias,
+        //            Themes = d.Title,
+        //            Title = c.a.Title,
+        //            Index = c.a.Index,
+        //            Image = c.a.Image,
+        //            Location = c.a.Location,
+        //            Description = c.a.Description,
+        //            Price = (float)c.a.Price,
+        //            PriceSale = (decimal)c.a.PriceSale
+        //        }).ToList();
+
+        //        return value;
+        //    }
+        //}
+
+        ////Danh sách tours
         public static List<ShowObject> GetTours(int menuId)
         {
             using (var db = new MyDbDataContext())
             {
                 Menu _menuDes = db.Menus.FirstOrDefault(x => x.ID == menuId);
-                var query = db.Tours.Where(x => x.Status)
-                  .Join(db.ThemesMenus.Where(x => x.MenuID == menuId), a => a.ID, b => b.TourID, (a, b) => new { a, b });
-                var value = query.Join(db.Menus, c => c.a.ActivitiesID, d => d.ID, (c, d) => new ShowObject
-                {
-                    ID = c.a.ID,
-                    Alias = c.a.Alias,
-                    MenuAlias = _menuDes.Alias,
-                    Themes = d.Title,
-                    Title = c.a.Title,
-                    Index = c.a.Index,
-                    Image = c.a.Image,
-                    Location = c.a.Location,
-                    Description = c.a.Description,
-                    Price = (float)c.a.Price,
-                    PriceSale = (decimal)c.a.PriceSale
-                }).Distinct().ToList();
-
-                return value;
+                var tour = db.Tours.Where(x => x.Status && x.Combo == false && x.MenuID == menuId)
+                    .Join(db.Menus, a => a.MenuID, b => b.ID, (a, b) => new ShowObject
+                    {
+                        ID = a.ID,
+                        Alias = a.Alias,
+                        MenuAlias = a.Menu.Alias,
+                        Themes = b.Title,
+                        Title = a.Title,
+                        Index = a.Index,
+                        Image = a.Image,
+                        Location = a.Location,
+                        Description = a.Description,
+                        Price = (float)a.Price,
+                        PriceSale = (decimal)a.PriceSale
+                    }).ToList();
+                return tour;
             }
         }
-
         //funcation đếm tour theo menu ID
         public static List<Tour> GetCoutTours(int menuId)
         {
             var db = new MyDbDataContext();
-            List<Tour> tours = db.Tours.Where(a => a.MenuID == menuId).ToList();
+            List<Tour> tours = db.Tours.Where(a => a.MenuID == menuId && a.Status && a.Combo == false).ToList();
 
              return tours;
         }
@@ -336,7 +363,7 @@ namespace TeamplateHotel.Controllers
             using (var db = new MyDbDataContext())
             {
                 Menu _menuDes = db.Menus.FirstOrDefault(x => x.ID == menuId);
-                var tour = db.Tours.Where(x => x.ActivitiesID == menuId).Include("Menu")
+                var tour = db.Tours.Where(x => x.ActivitiesID == menuId && x.Combo == false).Include("Menu")
                     .Join(db.Menus, a => a.ActivitiesID, b => b.ID, (a, b) => new ShowObject
                     {
                         ID = a.ID,

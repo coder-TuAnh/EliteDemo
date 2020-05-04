@@ -8,10 +8,10 @@
     string lan = Request.Cookies["LanguageID"].Value;
     var hotel = CommentController.DetailHotel(Request.Cookies["LanguageID"].Value);
     Menu menu = ViewBag.Menu ?? new Menu();
-    List<ShowObject> acticelhot = CommentController.HotArticles(lan, menu.ID);
+    List<ShowObject> acticelhot = CommentController.HotArticles(lan );
     List<TabArticle> tabArticles = CommentController.GetTapArticles();
 }
-<style>
+<style>s
     .text_blog div {
         overflow: hidden;
         text-overflow: ellipsis;

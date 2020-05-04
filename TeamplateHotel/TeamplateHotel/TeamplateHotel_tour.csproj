@@ -240,6 +240,7 @@
     <Compile Include="Areas\Administrator\Controllers\AboutUsController.cs" />
     <Compile Include="Areas\Administrator\Controllers\BookingCruiseController.cs" />
     <Compile Include="Areas\Administrator\Controllers\CabinController.cs" />
+    <Compile Include="Areas\Administrator\Controllers\ComboController.cs" />
     <Compile Include="Areas\Administrator\Controllers\ConfigOnePayController.cs" />
     <Compile Include="Areas\Administrator\Controllers\CruiseController.cs" />
     <Compile Include="Areas\Administrator\Controllers\CustomizeTripController.cs" />
@@ -342,6 +343,7 @@
     <Compile Include="Models\MBookTour.cs" />
     <Compile Include="Models\MenuModel.cs" />
     <Compile Include="Models\SearchInputModel.cs" />
+    <Compile Include="Models\SearchTourModelInput.cs" />
     <Compile Include="Models\ShowDetailHotel.cs" />
     <Compile Include="Models\ShowObject.cs" />
     <Compile Include="Models\ShowRooms.cs" />
@@ -1252,8 +1254,10 @@
     <Content Include="ckfinder\skins\v1\skin.js" />
     <Content Include="ckfinder\skins\v1\uipanel.css" />
     <Content Include="ckfinder\translations.txt" />
+    <Content Include="Content\css\axloader.css" />
     <Content Include="Content\css\blog.css" />
     <Content Include="Content\css\booking.css" />
+    <Content Include="Content\css\colordots.css" />
     <Content Include="Content\css\contact.css" />
     <Content Include="Content\css\daterangepicker.css" />
     <Content Include="Content\css\demo_tour.css" />
@@ -1263,6 +1267,7 @@
     <Content Include="Content\css\hotel.min.css" />
     <Content Include="Content\css\index.css" />
     <Content Include="Content\css\list_tour.css" />
+    <Content Include="Content\css\PagedList.css" />
     <Content Include="Content\css\responsive\blog_res.css" />
     <Content Include="Content\css\responsive\demo_tour.css" />
     <Content Include="Content\css\responsive\demo_tour_res.css" />
@@ -1386,6 +1391,7 @@
     <Content Include="Content\img\tour\star3.png" />
     <Content Include="Content\img\tour\star4.png" />
     <Content Include="Content\img\tour\star5.png" />
+    <Content Include="Content\js\ajaxloader.js" />
     <Content Include="Content\js\effect.js" />
     <Content Include="Content\js\filtertour.js" />
     <Content Include="Content\js\getDate.js" />
@@ -10981,6 +10987,9 @@
     <Content Include="Areas\Administrator\Views\ListHotel\Create.cshtml" />
     <Content Include="Areas\Administrator\Views\ListHotel\Update.cshtml" />
     <Content Include="Content\css\font-awesome\webfonts\pro-fa-light-300-5.7.0.woff2" />
+    <Content Include="Areas\Administrator\Views\Combo\Index.cshtml" />
+    <Content Include="Areas\Administrator\Views\Combo\Create.cshtml" />
+    <Content Include="Areas\Administrator\Views\Combo\Update.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\Swallowtravel.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
