@@ -318,11 +318,11 @@ function CreateCkEditor() {
                 width: '948px',
                 height: '160px',
                 toolbar: [
-                        { name: 'document', items: ['Source', '-'] }, // Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
-                        { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar'] },
-                        { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Strike', 'Underline', 'Iframe', '-', 'RemoveFormat', 'Subscript', 'Superscript'] },
-                        { name: 'links', items: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', 'Link', 'Unlink', 'Anchor'] },
-                        { name: 'colors', items: ['TextColor', 'BGColor', 'NumberedList', 'BulletedList'] },
+                    { name: 'document', items: ['Source', '-'] }, // Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
+                    { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar'] },
+                    { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Strike', 'Underline', 'Iframe', '-', 'RemoveFormat', 'Subscript', 'Superscript'] },
+                    { name: 'links', items: ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', 'Link', 'Unlink', 'Anchor'] },
+                    { name: 'colors', items: ['TextColor', 'BGColor', 'NumberedList', 'BulletedList'] },
                 ]
             });
         }

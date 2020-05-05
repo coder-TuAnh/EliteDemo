@@ -1,0 +1,24 @@
+.loader_overlay{
+    position: absolute;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255);
+    z-index: 999999;
+}
+
+img.loader {
+    -webkit-animation: rotation 2s infinite linear;
+  }
+  
+  @-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+    }
+  }

@@ -1,0 +1,211 @@
+body{
+	color: #444!important
+}
+.breadcrumb_blogs{
+	padding:15px;
+}
+.breadcrumb_blogs span{color: rgba(0,0,0,.7);}
+.breadcrumb_blogs a{
+	color: rgba(0,0,0,.7);
+}
+.breadcrumb_blogs a:hover{
+	color: #000;
+}
+.body_ .title_blogs h1{
+	color: #454647;
+}
+.body_ .content_blogs{
+	color:#81807e;
+}
+.body_ .content_blogs a{
+	color: #fb6a09;
+    font-weight: 400;
+    font-size: 13px;
+    text-transform: uppercase;
+    text-decoration: none
+}
+.body_ .content_blogs a:hover{
+	border-bottom: 1px dotted #fb6a09;
+}
+.blog_post_mainn .img_detail1{
+	text-align: center;
+	padding:0 30px;
+}
+.blog_post_mainn .img_detail1 img{
+	width: 100%;
+	object-fit: cover
+}
+.blog_post_mainn .img_detail1 span{
+	display: block;
+	margin-top: 5px;
+	color:#81807e;
+	font-family: sans-serif;
+}
+.blog_post_mainn .text_detail{
+	font-size: 17px;
+	margin:15px 0;
+}
+.title_child2{
+	font-size: 20px
+}
+.list_menu_vn{font-size: 17px}
+.share{
+	text-align:center;
+	margin:40px 0;
+}
+.share ul{
+	list-style: none;
+	display: inline-flex;
+	padding:0;
+}
+.share ul li{margin-right:5px}
+.share ul li a{
+	display: inline-block;
+    border-radius: 3px;
+    padding: 3px 8px;
+    text-decoration: none
+}
+.share ul li.facebook_ a{
+    border: 1px solid #2a5f87;
+    color: #2a5f87;
+}
+.share .share_texxt{
+	margin-right: 10px!important;
+	font-size: 20px
+}
+.share ul li.facebook_ a:hover{
+    color: #fff;
+    background: #2a5f87;
+}
+.share ul li.twitter_ a{
+    border: 1px solid #00c3f3;
+    color: #00c3f3;
+}
+.share ul li.twitter_ a:hover{
+    color: #fff;
+    background: #00c3f3;
+}
+.share ul li.pinterest_ a{
+    border: 1px solid #ca212a;
+    color: #ca212a;
+}
+.share ul li.pinterest_ a:hover{
+    color: #fff;
+    background: #ca212a;
+}
+.call_action{
+	margin:30px 0;
+}
+.call_action .actio p{
+   font-family: 'Barlow', sans-serif;
+   width: 78%;
+    margin: auto;
+    font-size: 19px;
+    padding: 15px 0;
+}
+.call_action .actio{
+  text-align: center;
+    padding: 24px 0;
+    margin: 0 40px;
+    background: #d4d4d444;
+    border-radius: 5px;
+}
+.call_action .actio a{
+   display: inline-block;
+    padding: 8px 15px;
+    background: #b5430d;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+}
+.auther_ac{
+	border: 1px solid #d6d6d6;
+    padding: 10px;
+    padding-top: 25px
+}
+.auther_ac .avatar_au{display: flex;padding-left: 10px}
+.auther_ac .avatar_au img{
+	width: 70px;
+	height: 70px;
+	border-radius: 100%;
+}
+.avatar_au .soci_auther{
+	margin-top: 10px;
+	margin-left: 15px
+}
+.auther_ac .avatar_au .name_auther{
+	font-size: 20px
+}
+.auther_ac .tieusu{
+	width: 90%;
+    margin-top: 30px;
+    font-size: 16px;
+    padding: 10px;
+    margin:15px 0;
+}
+.view_top{
+	margin:50px 0;
+}
+.view_top h5{
+	font-size: 25px;
+	text-transform: uppercase;
+}
+/*auther.html*/
+/*auther.html*/
+/*auther.html*/
+
+main{
+	margin-top: 85px
+}
+.img_auther{
+	margin-top: 30px
+}
+.img_auther img{
+	width: 200px;
+	height: auto;
+}
+.social{
+	padding:0;
+	margin:0;
+	margin-top: 15px;
+	display: flex;
+	list-style: none;
+}
+.social li{
+	width: 48px;
+	height: 48px;
+	margin-right: 10px
+}
+.social li a{
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 100%;
+    border-radius: 100%;
+    margin-right: 10px;
+    color: #fff
+}
+.social li a.face{
+	background-color: #2a5f87
+}
+.social li a.twit{
+	background-color: #00c3f3
+}
+.social li a.gg{
+	background-color: #ca212a
+}
+.social li i{
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.list_rela{
+	font-size: 25px;
+    margin-top: 55px;
+}
+.contact span{
+	font-size: 17px;
+	display: block;
+}

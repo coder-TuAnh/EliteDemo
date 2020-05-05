@@ -37,7 +37,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
         {
             using (var db = new MyDbDataContext())
             {
-                return db.Languages.ToList();
+                return db.Languages.Where(a=>a.Default).ToList();
             }
         }
         //Ngôn ngữ hiện tại

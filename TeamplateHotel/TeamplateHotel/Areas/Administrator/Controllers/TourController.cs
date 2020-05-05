@@ -26,7 +26,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
         {
             using (var db = new MyDbDataContext())
             {
-                List<Tour> records = db.Tours.ToList();
+                List<Tour> records = db.Tours.Where(a => a.Combo == false).ToList();
                 foreach (Tour record in records)
                 {
                     string itemTour = Request.Params[string.Format("Sort[{0}].Index", record.ID)];
@@ -54,11 +54,11 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                 var listTour = new List<Tour>();
                 if (menuId == 0)
                 {
-                    listTour = db.Tours.ToList();
+                    listTour = db.Tours.Where(a=> a.Combo == false).ToList();
                 }
                 else
                 {
-                    listTour = db.Tours.Where(a => a.MenuID == menuId).ToList();
+                    listTour = db.Tours.Where(a => a.MenuID == menuId && a.Combo == false).ToList();
                 }
 
                 var records = listTour.Join(db.Menus.Where(a => a.LanguageID == Request.Cookies["lang_client"].Value), a => a.MenuID, b => b.ID,
@@ -97,8 +97,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
         {
             using (var db = new MyDbDataContext())
             {
-                if (ModelState.IsValid)
-                {
+                
                     if (string.IsNullOrEmpty(model.Alias))
                     {
                         model.Alias = StringHelper.ConvertToAlias(model.Title);
@@ -118,6 +117,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                             MetaDescription =
                                 string.IsNullOrEmpty(model.MetaDescription) ? model.Title : model.MetaDescription,
                             Status = model.Status,
+                            Combo = false,
                             Price = model.Price,
                             Location = model.Location,
                             PriceSale = model.PriceSale,
@@ -143,6 +143,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                                     TourID = tour.ID,
                                     TitleTabHotel = item.TitleTabHotel,
                                     ContentHotel = item.ContentHotel,
+                                    Price = item.Price,
                                 };
 
                                 db.TabHotels.InsertOnSubmit(tabTour);
@@ -208,10 +209,8 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                         ViewBag.Messages = "Error: " + exception.Message;
                         return View(model);
                     }
-                }
-                LoadData();
-                LoadDataActivities();
-                return View(model);
+           
+ 
             }
         }
 
@@ -309,6 +308,8 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                         tour.Like = model.Like;
                         tour.Deal = model.Deal;
                         tour.Title = model.Title;
+                        tour.Combo = false;
+
                         tour.Alias = model.Alias;
                         tour.Image = model.Image;
                         tour.Description = model.Description;
@@ -387,6 +388,8 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                                     TourID = tour.ID,
                                     TitleTabHotel = item.TitleTabHotel,
                                     ContentHotel = item.ContentHotel,
+                                    Price = item.Price,
+
                                 };
 
                                 db.TabHotels.InsertOnSubmit(tabTour);

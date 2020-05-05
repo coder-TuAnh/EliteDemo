@@ -1,0 +1,145 @@
+.margin_auto{
+	margin:auto;
+}
+.wrap_form{
+	background:#f1f1f1;
+}
+.link_faf{
+	font-size: 14px;
+    margin-bottom: 0;
+    padding: 22px 0 40px;
+    display: block;
+}
+.link_faf li{
+	display: inline-block;
+	color: #777;
+	padding-right: 4px
+}
+.link_faf li.link_index a{
+	color: #b3b3b3
+}
+.link_faf li{}
+.form_main{
+	padding:15px;
+	background:#fff;
+	margin-bottom: 20px
+}
+.form_main .form_wrap_{}
+.form_main .form_wrap_ label{
+	display: block;
+	color: #444;
+    margin-top: 26px;
+    font-weight: 600
+}
+.form_main .form_wrap_ input,
+.form_main .form_wrap_ select,
+.form_main .form_wrap_ textarea{
+	width: 100%;
+	box-shadow: inset 0 2px 3px 0 rgba(0,0,0,.2);
+    border: 1px solid #ccc;
+    padding: 11px 0 10px 18px;
+}
+.form_main .form_wrap_ button{
+	margin: auto;
+    display: block;
+    background: #438DC4;
+    color: #fff;
+    padding: 5px 20px;
+    min-width: 130px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.height_100{
+	display: block;
+	width: 100%;
+	height: 100px
+}
+.green{
+	color: #91bb15
+}
+.commit{
+	display: flex;
+}
+.commit .commit_content{
+	width: calc(100% - 100px);
+	padding:10px 0;
+}
+.commit .commit_content p{
+	padding: 12px;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: -.3px;
+    background-color: #fff;
+    box-shadow: 0 4px 7px 0 rgba(0,0,0,.05);
+    border: 1px solid #ddd;
+        border-radius: 5px;
+    position: relative;
+	margin-bottom: 0;
+}
+.commit .commit_content p::before{
+	position: absolute;
+    content: "";
+    top: 50%;
+    right: -1px;
+    border: solid transparent;
+    height: 15px;
+    width: 2px;
+    z-index: 1;
+    pointer-events: none;
+    background: #fff;
+    transform: translateY(-50%);
+}
+.img_titi{
+	width: 100px;
+	/*height: 100px*/
+}
+.img_titi img{
+	width: 100%;
+	object-fit: cover;
+	border-radius: 100%
+}
+.contact_info{
+	font-size: 14px;
+    line-height: 1.64;
+    color: #888;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-top: 11px;
+    padding: 13px 15px 15px 18px;
+    position: relative;
+}
+.contact_info::before{
+	content: '';
+    position: absolute;
+    left: 0;
+    top: 40px;
+    height: 2px;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+@media(max-width: 991px){
+	.commit .commit_content {
+	    max-width: 270px;
+	}
+	.contact_info {
+    	width: auto;
+		display: inline-block;
+	}
+	.height_100{
+		height: 20px
+	}
+	.link_faf {
+    	padding: 12px 0 20px;
+	}
+}
+@media(max-width: 767px){
+	.commit,.contact_info {
+	    display: none
+	}
+
+}
+
+
+
+
+

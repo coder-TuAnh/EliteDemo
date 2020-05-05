@@ -112,3 +112,14 @@ B:\IIT\ProjectElite\TeamplateHotel\ProjectLibrary\bin\Debug\EntityFramework.SqlS
 B:\IIT\ProjectElite\TeamplateHotel\ProjectLibrary\bin\Debug\EntityFramework.xml
 B:\IIT\ProjectElite\TeamplateHotel\ProjectLibrary\bin\Debug\EntityFramework.SqlServer.xml
 B:\IIT\ProjectElite\TeamplateHotel\ProjectLibrary\obj\Debug\ProjectLibrary.csproj.CopyComplete
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\bin\Debug\ProjectLibrary.dll.config
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\bin\Debug\ProjectLibrary.dll
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\bin\Debug\ProjectLibrary.pdb
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\bin\Debug\EntityFramework.dll
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\bin\Debug\EntityFramework.SqlServer.dll
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\bin\Debug\EntityFramework.xml
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\bin\Debug\EntityFramework.SqlServer.xml
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\obj\Debug\ProjectLibrary.csproj.CoreCompileInputs.cache
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\obj\Debug\ProjectLibrary.csproj.CopyComplete
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\obj\Debug\ProjectLibrary.dll
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\obj\Debug\ProjectLibrary.pdb

@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DBElite" Class="MyDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-FINTB1S;Initial Catalog=DBElite;Integrated Security=True" SettingsObjectName="ProjectLibrary.Properties.Settings" SettingsPropertyName="DBEliteConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="webkhachhang_dbelitetour" Class="MyDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=103.226.248.52;Initial Catalog=webkhachhang_dbelitetour;User ID=webkhachhang_dbelitetour" SettingsObjectName="ProjectLibrary.Properties.Settings" SettingsPropertyName="webkhachhang_dbelitetourConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AboutUs" Member="AboutUs">
     <Type Name="AboutUs">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -609,6 +609,7 @@
       <Column Name="TourID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TitleTabHotel" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="ContentHotel" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Association Name="Tour_TabHotel" Member="Tour" ThisKey="TourID" OtherKey="ID" Type="Tour" IsForeignKey="true" />
     </Type>
   </Table>
@@ -659,6 +660,7 @@
       <Column Name="[Index]" Member="Index" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MetaTitle" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="MetaDescription" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Combo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Hot" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="PriceSale" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />

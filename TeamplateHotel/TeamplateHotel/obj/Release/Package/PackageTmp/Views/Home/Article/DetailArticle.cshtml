@@ -1,80 +1,157 @@
 ﻿@using ProjectLibrary.Database
 @using TeamplateHotel.Handler
 @using TeamplateHotel.Controllers
+@using TeamplateHotel.Models
 @model TeamplateHotel.Models.DetailArticle
 @{
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    string lan = Request.Cookies["LanguageID"].Value;
     var hotel = CommentController.DetailHotel(Request.Cookies["LanguageID"].Value);
     Menu menu = ViewBag.Menu ?? new Menu();
+    List<ShowObject> acticelhot = CommentController.HotArticles(lan);
+    List<TabArticle> tabArticles = CommentController.GetTapArticles();
 }
 
-<div class="sub-nav">
-    <div class="navbar navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <h1 class="h1-title-d">
-                    @Model.Article.Title
-                </h1>
-            </div>
-            <!-- Sub Nav Links -->
-            <nav class="navbar-collapse collapse" id="navbar-sub">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://swallowtravel.com/@menu.Alias/@Model.Article.ID/@Model.Article.Alias"><i class="fa fa-facebook"></i><span class="hidden-md hidden-lg">Facebook</span></a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="http://twitter.com/share?url=http://swallowtravel.com/@menu.Alias/@Model.Article.ID/@Model.Article.Alias"><i class="fa fa-twitter"></i><span class="hidden-md hidden-lg">Twitter</span></a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="https://plus.google.com/share?url=http://swallowtravel.com/@menu.Alias/@Model.Article.ID/@Model.Article.Alias"><i class="fa fa-google-plus"></i><span class="hidden-md hidden-lg">Google +</span></a>
-                    </li>
-                    <li><a target="_blank" href="mailto:@hotel.Email"><i class="fa fa-envelope-o"></i> <span class="hidden-md hidden-lg">Email</span></a></li>
-                </ul>
-            </nav>
-
-        </div>
-    </div>
-</div>
-
-<section class="regular" style="padding-top: 4rem">
+@section css
+{
+    <link rel="stylesheet" type="text/css" href="~/Content/css/blog.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/responsive/blog_res.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/detail_blogs.css">
+    
+    <style>
+        .text_blog div {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3; /*số dòng muốn hiện */
+            /*font-size: 12px; /*cỡ chữ, đơn vị px */ line-height: 1.5em; /* khoảng cách giữa các dòng, đơn vị em*/
+            max-height: 63px;
+        }
+    </style>
+}
+<section class="body_">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="/" class="text-success">Home</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="/@menu.Alias" class="text-success">@menu.Title</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        @Model.Article.Title
-                    </li>
-                </ol>
+            <div class="breadcrumb_blogs">
+                <span><a href="/">Trang chủ</a></span>
+                <span>></span>
+                <span><a href="@menu.Title">@menu.Title</a></span>
+                <span>></span>
+                <span>@Model.Article.Title</span>
             </div>
-            <div class="col-lg-9">
-                @Html.Raw(Model.Article.Content)
-                <br />
-                <div class="fb-comments" data-href="http://swallowtravel.com/@menu.Alias/@Model.Article.ID/@Model.Article.Alias" data-width="100%" data-numposts="5" data-mobile="true"></div>
-                <br />
-                <div class="clearfix"></div>
-                @if (Model.Articles.Count > 0)
-        {
-            <h2 class="title-h1">Other</h2>
-            <ul class="other-objects">
-                @foreach (var item in Model.Articles)
-        {
-            <li><a href="/@item.MenuAlias/@item.ID/@item.Alias"><i class="fa fa-caret-right"></i> @item.Title</a></li>
-}
-            </ul>
-}
+            <div class="col-md-9">
+                <div class="title_blogs">
+                    <h1>@Model.Article.Title</h1>
+                </div>
+                @*<div class="content_blogs">
+                    <i class="fal fa-clock"></i>
+                    <span>Updated: November 22, 2019 in</span>
+                    <a href="">BEAUTIFUL VIETNAM</a>,
+                    <a href=""> BEST OF VIETNAM</a>,
+                    <a href="">VIETNAM TRAVEL NEWS</a>,
+                    <a href=""> VIETNAM TRAVEL TIPS</a>
+                </div>*@
+                <br/>
+                <div class="blog_post_mainn ">
+                    @Html.Raw(Model.Article.Content)
+                </div>
+
+
+                <div class="share">
+                    <ul>
+                        <li class="share_texxt">Share:</li>
+                        <li class="facebook_">
+                            <a href="">
+                                <i class="fab fa-facebook-f"></i>&nbsp;facebook
+                            </a>
+                        </li>
+                        <li class="twitter_"><a href=""><i class="fab fa-twitter"></i>&nbsp;Twitter</a></li>
+                        <li class="pinterest_"><a href=""><i class="fab fa-pinterest"></i>&nbsp;Pinterest</a></li>
+                    </ul>
+                </div>
+                <div class="call_action">
+                    <div class="actio">
+                        <p>Plan you trip to Vietnam and discover the pearl of Southeast Asia Contact us and recevie non-building, free quote  - created individually for you</p>
+                        <a href="">Plan my Vietnam trip</a>
+                    </div>
+                </div>
+                @*<div class="auther_ac">
+                    <div class="avatar_au">
+                        <img src="img/blog/man.jpg">
+                        <div class="soci_auther">
+                            <span class="name_auther">Bich Ngoc</span><br />
+                            <span>November, 28, 2019 at 15:40PM | <a href="auther.html">Infomation</a></span>
+                        </div>
+                    </div>
+                    <div class="tieusu">
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
+                    </div>
+                </div>*@
+                <div class="view_top">
+                    <h5 class="text-center">Có thể bạn quan tâm</h5>
+                    <br/>
+                    <div class="row blog_home">
+                       
+                     @foreach (var item in Model.Articles.Take(3))
+                     {
+                         <div class="col-sm-6 col-md-6 col-lg-4">
+                             <div class="blog_item">
+                                 <div class="img_blog">
+                                     <a href="/@item.MenuAlias/@item.ID/@item.Alias"><img src="@item.Image"></a>
+                                 </div>
+                                 <div class="text_blog">
+                                     <a href="/@item.MenuAlias/@item.ID/@item.Alias"><h3>@item.Title</h3></a>
+                                     <div class="media_body">
+                                         @*<img src="img/blog/man.jpg">
+                                         <strong>BICH NGOC</strong>*@
+                                         <span>@DateTime.Now</span>
+                                     </div>
+                                     @Html.Raw(item.Description) 
+                                 </div>
+                             </div>
+                         </div>
+                     }
+                       
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-3">
-                @Html.Partial("SideBar")
-                <div class="clearfix"></div>
+            <div class="col-md-3">
+                <div class="wrapper_border">
+                    <div class="banner">
+                        <a href=""><img src="~/Content/img/blog/ba1.jpg"></a>
+                    </div>
+                    <br />
+                    <h3 class="top_post" style="text-transform: uppercase">Bài viết nổi bật</h3>
+                    <div class="top_viewPost">
+                        @foreach (var item in acticelhot.Take(4))
+                        {
+                            <div class="item_view">
+                                <a href="">
+                                    <img src="@item.Image">
+                                    <div class="text_view">
+                                        <h5>@item.Title</h5>
+                                        <small>@DateTime.Now.ToLongDateString()</small>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+
+                    </div>
+                    <br />
+                    <h3 class="top_post" style="text-transform: uppercase">Top popular Tags</h3>
+                    <div class="tags">
+                        @foreach (var item in tabArticles)
+                        {
+                            <a href="">@item.Title</a>
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
+@section scripts {
 
+}
 

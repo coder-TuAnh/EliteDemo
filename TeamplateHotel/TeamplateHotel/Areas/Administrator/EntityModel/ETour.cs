@@ -42,6 +42,7 @@ namespace TeamplateHotel.Areas.Administrator.EntityModel
         public string MetaDescription { get; set; }
 
         public bool Status { get; set; }
+        public bool? Combo { get; set; }
 
         public bool Hot { get; set; }
 

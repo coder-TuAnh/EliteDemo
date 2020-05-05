@@ -2,137 +2,220 @@
 @using TeamplateHotel.Handler
 @using TeamplateHotel.Controllers
 @using TeamplateHotel.Models
-@model IEnumerable<Tour>
+@using PagedList.Mvc
+@using PagedList
+@model PagedList.IPagedList<TeamplateHotel.Models.ShowObject>
 
 @{
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
     Menu menu = ViewBag.Menu ?? new Menu();
-    var company = CommentController.DetailHotel(Request.Cookies["LanguageID"].Value);
-    //var saves = CommentController.TotalSale();
-    List<ShowObject> listTour = (List<ShowObject>)ViewData["ListTour"];
-
-    //DetailTour detail = new DetailTour();
-    //double save = 100 - Math.Round((((double)detail.Tour.PriceSale / (double)detail.Tour.Price) * 100), 0);
+    string lan = Request.Cookies["LanguageID"].Value;
+    var company = CommentController.DetailHotel(lan);
+    List<ShowObject> _tourHot = CommentController.Tourhots(lan);
+    List<Menu> menuDes = CommentController.GetMenusDes(lan);
 }
-<style>
-    .arrow-down {
-        width: 0;
-        position: relative;
-        height: 0;
-        margin-left: 190px;
-        margin-top: 5px;
-        border-left: 27px solid transparent;
-        border-right: 27px solid transparent;
-        border-bottom: 27px solid #f00;
-        transform: rotate(45deg);
-    }
+@section css{
+    <link rel="stylesheet" type="text/css" href="~/Content/css/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/list_tour.css">
+    <link href="~/Content/css/PagedList.css" rel="stylesheet" />
+}
 
-    .discount {
-        font-size: 12px;
-        font-weight: 600;
-        margin-top: 10px;
-        position: absolute;
-        margin-left: -58px;
-        color: #fff;
-    }
-</style>
-<div class="sub-nav">
-    <div class="navbar navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <h1 class="h1-title-d">
-                    @menu.Title
-                </h1>
-            </div>
-            <!-- Sub Nav Links -->
-            <nav class="navbar-collapse collapse" id="navbar-sub">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a target="_blank" href="http://www.facebook.com/sharer/sharer.php?u=http://swallowtravel.com/@menu.Alias"><i class="fa fa-facebook"></i><span class="hidden-md hidden-lg">Facebook</span></a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="http://twitter.com/share?url=http://swallowtravel.com/@menu.Alias"><i class="fa fa-twitter"></i><span class="hidden-md hidden-lg">Twitter</span></a>
-                    </li>
-                    <li>
-                        <a target="_blank" href="https://plus.google.com/share?url=http://swallowtravel.com/@menu.Alias"><i class="fa fa-google-plus"></i><span class="hidden-md hidden-lg">Google +</span></a>
-                    </li>
-                    <li><a target="_blank" href="mailto:@company.Email"><i class="fa fa-envelope-o"></i> <span class="hidden-md hidden-lg">Email</span></a></li>
-                </ul>
-            </nav>
-
+<main>
+    <div class="banner_main">
+        <div class="img_banner">
+            <img src="~/Content/img/banner_main.png" alt="">
         </div>
-    </div>
-</div>
-
-<section class="regular" style="padding-top: 4rem">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="/" class="text-success">Home</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="/@menu.Alias" class="text-success">@menu.Title</a>
-                    </li>
-                </ol>
-            </div>
-            <div class="col-lg-9">
-                @foreach (var item in listTour)
-                {
-                    <div class="item-content">
-                        <div class="col-md-3">
-                            <a href="/@item.MenuAlias/@item.ID/@item.Alias" title="@item.Title">
-                                <img src="@item.Image" alt="@item.Title" style="width: 100%;" class="img-border" />
-                            </a>
-                            @if (item.Discount == 0)
-                            {
-                                <div class="div-discount" style="position: relative">
-                                    <div class="arrow-down" style="display: none">
-                                        <span class="discount">
-                                            -@item.Discount%
-                                        </span>
-                                    </div>
-                                </div>
-
-                            }
-                            else
-                            {
-                                <div class="div-discount">
-                                    <div class="arrow-down">
-                                        <span class="discount">
-                                            -@item.Discount%
-                                        </span>
-                                    </div>
-                                </div>
-                               
-                            }
-
-
+        <div class="content_banner">
+            <!-- <div class="container"> -->
+            <div class="wrap_formmm">
+                <form action="/search-tour" method="post" accept-charset="utf-8">
+                    <div class="title_form">
+                        <h1>Tìm chuyến đi phù hợp nhất với bạn.</h1>
+                    </div>
+                    <div class="form">
+                        <div class="form_conttt">
+                            <span class="icon_form"><i class="fad fa-map-marker-alt"></i></span>
+                            <span class="input_main"><input name="SearchTour" placeholder="Hotel, Destination..."></span>
+                            <span class="icon_form form_right"><i class="fas fa-times-octagon"></i></span>
                         </div>
-                        <div class="col-md-7">
-                            <h3 class="title-content"><a href="/@item.MenuAlias/@item.ID/@item.Alias" title="@item.Title">@item.Title</a></h3>
-                            <div style="text-align: justify">
-                                @Html.Raw(item.Description)
+                        <div class="form_conttt">
+                            <span></span>
+                            <span class="input_main input_star"><input placeholder="Star"></span>
+                            <div class="drop_dow">
+                                <label>
+                                    <input type="checkbox" name="star5">
+                                    <span class="img_star"><img src="~/Content/img/tour/star5.png" alt=""></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="star4">
+                                    <span class="img_star"><img src="~/Content/img/tour/star4.png" alt=""></span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="star3">
+                                    <span class="img_star"><img src="~/Content/img/tour/star3.png" alt=""></span>
+                                </label>
+
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <p class="from"><i>from</i></p>
-                            <p class="div_price"><strong>$@(item.PriceSale)</strong></p>
-                            <div class="div-book btn btn-primary"><a href="/@item.MenuAlias/@item.ID/@item.Alias" title="Book">See more</a></div>
+                        <div class="form_conttt">
+                            <span class="icon_form"><i class="fal fa-calendar-day"></i></span>
+                            <span class="input_main"><input type="text" id="datepicker" value="04/20/2020" name="" placeholder=""></span>
                         </div>
-                        <div class="clearfix"></div>
+                        <div class="form_conttt">
+                            <span class="icon_form"><i class="fal fa-clock"></i></span>
+                            <span class="input_main">
+                                <select name="">
+                                    <option value="">Nights</option>
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
+                                    <option value="">5</option>
+                                </select>
+                            </span>
+                            <span class="icon_form form_right"><i class="fal fa-angle-down"></i></span>
+                        </div>
+                        <div class="form_conttt">
+                            <button type="submit">Search Now</button>
+                        </div>
                     </div>
-                }
+                </form>
             </div>
-            <div class="col-lg-3">
-                @Html.Partial("SideBar")
-                <div class="clearfix"></div>
-            </div>
+            <!-- </div> -->
         </div>
-
     </div>
-</section>
+    <div class="page_header">
+        <div class="container">
+            <ul>
+                <li><a href="/" title="">Trang chủ</a></li>
+                <li><span><i class="fal fa-angle-right"></i></span></li>
+                <li><span>@menu.MetaTitle</span></li>
+            </ul>
+            <section class="top_list_desti">
+                <div id="today-hot-deal">
+                    <h2 class="text-center">Top hotels in Tours</h2>
+                    <div class="row top-deals">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-xs-12 margin-bottom-10 col-md-4">
+                                <div class="today-hot-deal cruise-hot-deal">
+                                    <div class="item-img">
+                                        <img src="@item.Image" alt="La Siesta Diamond Hotel" style="height: 210px;" class="">
+                                    </div>
+                                    <div class="item-content">
+                                        <div class="row">
+                                            <div class="col-xs-8 col-md-8 padding-right-0">
+                                                <div class="item-name margin-top-0">
+                                                    <a href="/@menu.Alias/@item.ID/@item.Alias" style="">@item.Title </a>
+                                                </div>
+                                                @*<div class="star_icon">
+                                                        <span class="margin-right-5 icon icon-star-4" title="4-star hotel"><img src="~/Content/img/tour/star4.png" alt=""></span>
+                                                    </div>*@
+                                                <div class="hotel-room">@item.Location.</div>
+                                                @*<div class="hotel-room">Hotel rooms: <b>0</b> rooms</div>*@
+                                            </div>
+                                            <div class="col-xs-4 col-md-4 text-right padding-left-0">
+                                                <div class="margin-bottom-5">from</div>
+                                                <div style="white-space:nowrap;">
+                                                    <span class="text-price"><span class="font-size-13">US</span></span>
+                                                    <span class="price-from">$@item.Price</span>
+                                                    <span class="text-unhighlight">pp</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
 
+
+                    </div>
+                </div>
+            </section>
+            <div class="paginations text-center">
+                <ul>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </ul>
+            </div>
+            <section class="travel-styles">
+                <h2 class="title_destina text-center">Top destinations in Vietnam</h2>
+                <div class="row margin-top-20 oldCategory">
+                    @foreach (var item in menuDes.Where(x => x.Level == 1).Take(1))
+                    {
+                        <div class="col-md-3ths col-md-3ths-right">
+                            <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width: 458px;height:458px">
+                            <a class="style-name" href="/@item.Alias">
+                                @item.Title
+                            </a>
+                        </div>
+                    }
+
+                    <div class="col-md-5ths-d">
+                        @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(1).Take(2))
+                        {
+                            <div class="col-md-5ths-m margin-bottom-10 col-md-5ths-1">
+                                <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width: 224px;height:224px">
+                                <a class="style-name" href="/@item.Alias">
+                                    @item.Title
+                                </a>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-3ths">
+                        @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(3).Take(1))
+                        {
+                            <div class="col-md-3ths-2 margin-bottom-10">
+                                <a href="/ho-chi-minh-citys">
+                                    <!-- square crop -->
+                                    <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width:458px; height:223px">
+                                    <div class="col-overlay"></div>
+                                </a>
+                                <a class="style-name" href="/@item.Alias">
+                                    @item.Title
+                                </a>
+                            </div>
+                        }
+                        <div class="wwww">
+                            @foreach (var item in menuDes.Where(x => x.Level == 1).Skip(4).Take(1))
+                            {
+                                <div class="col-md-5ths_ col-md-3ths-right">
+                                    <a href="">
+                                        <img class="img-responsive" alt="@item.Alias" src="@item.Image" style="width: 224px;height:224px">
+                                        <div class="col-overlay"></div>
+                                    </a>
+                                    <a class="style-name" href="/@item.Alias">
+                                        @item.Title
+                                    </a>
+                                </div>
+                            }
+                            <div class="col-md-5ths_ more">
+                                <div class="dropdown" id="mnuTravelStyles" data-toggle="dropdown" style="cursor: pointer;">
+                                    <img class="img-responsive" alt="Adventure Tours" src="~/Content/img/list/a6.png">
+                                    <div class="text"><span class="more-text">+1</span> <br> Travel Styles</div>
+                                </div>
+                                @*<ul class="dropdown-menu menu_more" aria-labelledby="mnuTravelStyles" style="width: 100%">
+                                        <li><a href="tour.html">Phu Quoc</a></li>
+                                    </ul>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+@section scripts{
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/getDate.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").datepicker({
+                numberOfMonths: 2,
+                showButtonPanel: true
+            });
+        });
+    </script>
+}
 
 

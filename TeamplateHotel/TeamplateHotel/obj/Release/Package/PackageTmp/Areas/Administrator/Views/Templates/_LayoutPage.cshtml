@@ -142,7 +142,7 @@
                             </li>
                         </ul>
                     </li>
-                    @if (user.UserContent != true )
+                    @if (user.UserContent != true)
                     {
                         <li class="dropdown">
                             <a href="/admin/BookTour/Index"><i class="icon-envelope"></i><span>BookTour</span></a>
@@ -152,28 +152,48 @@
                             <a href="/admin/Contact/Index"><i class="icon-phone"></i><span>Contact</span></a>
                         </li>
                         <li class="dropdown">
-                            <a href="/admin/PromotionCode/Index"><i class="icon-ticket"></i><span>Promotion Code</span></a>
+                            <a href="/admin/AboutUs/Index"><i class="icon-ticket"></i><span>AboutUs</span></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="/admin/Employee/Index"><i class="icon-ticket"></i><span>Employee</span></a>
                         </li>
                     }
+                    <li>
+                        <a href="/admin/TabArticle/Index"><i class="icon-ticket"></i> <span>TapArticle</span></a>
+                    </li>
+                    <li class="dropdown">
+                        <a><i class="icon-plus"></i><span>Quản Lí Chung</span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/admin/ListHotel/Index"><i class="icon-umbrella"></i> <span>Khách sạn</span></a>
+                            </li>
+                            <li>
+                                <a href="/admin/Combo/Index"><i class="icon-umbrella"></i> <span>Combo</span></a>
+                            </li>
+                            @*<li>
+                                <a href="/admin/Room/Index"><i class="icon-umbrella"></i> <span>Phòng</span></a>
+                            </li>*@
 
+                        </ul>
+                    </li>
                     @*<li>
-                            <a href="/admin/Cruise/Index"><i class="icon-2x icon-desktop"></i><span>Tàu</span></a>
-                        </li>*@
+            <a href="/admin/Cruise/Index"><i class="icon-2x icon-desktop"></i><span>Tàu</span></a>
+        </li>*@
                     @*<li class="dropdown">
-                            <a><i class="icon-envelope"></i><span>Booking</span></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="/admin/BookRoom/Index">
-                                        <span>Đặt phòng</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/admin/BookTour/Index">
-                                        <span>Đặt tour</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>*@
+            <a><i class="icon-envelope"></i><span>Booking</span></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="/admin/BookRoom/Index">
+                        <span>Đặt phòng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/BookTour/Index">
+                        <span>Đặt tour</span>
+                    </a>
+                </li>
+            </ul>
+        </li>*@
                 </ul>
             </div>
             <!-- /container -->
@@ -213,11 +233,13 @@
         ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="~/Areas/Administrator/Content/js/bootstrap.js"></script>
-    @*<script src="~/Areas/Administrator/Content/Selecterbootrap/bootstrap-multiselect.min.js"></script>*@
+    <link href="~/Areas/Administrator/Content/Selecterbootrap/bootstrap-multiselect.css" rel="stylesheet" />
+    <script src="~/Areas/Administrator/Content/Selecterbootrap/bootstrap-multiselect.min.js"></script>
 </body>
 </html>
 
 <script>
+
     var height = $(window).height();
     $(".main").css("min-height", height - 230);
 

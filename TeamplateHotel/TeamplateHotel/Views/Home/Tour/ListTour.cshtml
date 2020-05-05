@@ -17,33 +17,8 @@
 @section css{
     <link rel="stylesheet" type="text/css" href="~/Content/css/daterangepicker.css">
     <link rel="stylesheet" type="text/css" href="~/Content/css/list_tour.css">
+    <link href="~/Content/css/PagedList.css" rel="stylesheet" />
 }
-<div class="col-xs-12 header-search-form__outer" style="display:none;">
-    <div class="container">
-        <div class="searchbox-wrap clearfix">
-            <form id="header-search-form" action="" method="GET">
-                <div class="col-xs-12 header-search-form">
-                    <div class="col-xs-12 col-sm-5 col-md-5 no-padding search-quantity">
-                        <div class="col-xs-5 date-div check-in ">
-                            <div class="form-group has-feedback date-menu-checkin">
-                                <label class="control-label">Nhận phòng</label>
-                                <input readonly type="text" class="form-control input-white datepicker-chkin" maxlength="12" id="datepicker-menu-chkin" name="di" value="08-04-2020">
-                                <span class="fa fa-calendar-o form-control-feedback"></span>
-                            </div>
-                        </div>
-                        <div class="col-xs-5 date-div check-out ">
-                            <div class="form-group has-feedback">
-                                <label class="control-label">Trả phòng </label>
-                                <input readonly type="text" class="form-control input-white datepicker-chkout" maxlength="12" id="datepicker-menu-chkout" name="do" value="09-04-2020">
-                                <span class="fa fa-calendar-o form-control-feedback"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <main>
     <div class="banner_main">
@@ -53,14 +28,14 @@
         <div class="content_banner">
             <!-- <div class="container"> -->
             <div class="wrap_formmm">
-                <form action="list-tour_submit" method="get" accept-charset="utf-8">
+                <form action="/search-tour" method="post" accept-charset="utf-8">
                     <div class="title_form">
-                        <h1>Find best Combo</h1>
+                        <h1>Tìm chuyến đi phù hợp nhất với bạn.</h1>
                     </div>
                     <div class="form">
                         <div class="form_conttt">
                             <span class="icon_form"><i class="fad fa-map-marker-alt"></i></span>
-                            <span class="input_main"><input name="" placeholder="Hotel, Destination..."></span>
+                            <span class="input_main"><input name="SearchTour" placeholder="Hotel, Destination..."></span>
                             <span class="icon_form form_right"><i class="fas fa-times-octagon"></i></span>
                         </div>
                         <div class="form_conttt">
@@ -112,9 +87,9 @@
     <div class="page_header">
         <div class="container">
             <ul>
-                <li><a href="index.html" title="">Home</a></li>
+                <li><a href="/" title="">Trang chủ</a></li>
                 <li><span><i class="fal fa-angle-right"></i></span></li>
-                <li><span>Hotels</span></li>
+                <li><span>@menu.MetaTitle</span></li>
             </ul>
             <section class="top_list_desti">
                 <div id="today-hot-deal">
@@ -136,7 +111,7 @@
                                                 @*<div class="star_icon">
                                                         <span class="margin-right-5 icon icon-star-4" title="4-star hotel"><img src="~/Content/img/tour/star4.png" alt=""></span>
                                                     </div>*@
-                                                <div class="hotel-room">32 Lo Su St, Old Quarter, Hoan...</div>
+                                                <div class="hotel-room">@item.Location.</div>
                                                 @*<div class="hotel-room">Hotel rooms: <b>0</b> rooms</div>*@
                                             </div>
                                             <div class="col-xs-4 col-md-4 text-right padding-left-0">

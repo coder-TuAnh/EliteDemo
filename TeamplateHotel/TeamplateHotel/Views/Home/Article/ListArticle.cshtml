@@ -17,25 +17,28 @@
 @section css{
     <link rel="stylesheet" type="text/css" href="~/Content/css/blog.css">
     <link rel="stylesheet" type="text/css" href="~/Content/css/responsive/blog_res.css">
+    
+    <link href="~/Content/css/PagedList.css" rel="stylesheet" />
+    <style>
+        .text_blog div {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3; /*số dòng muốn hiện */
+            /*font-size: 12px; /*cỡ chữ, đơn vị px */ line-height: 1.5em; /* khoảng cách giữa các dòng, đơn vị em*/
+            max-height: 63px;
+        }
+    </style>
 }
-<style>
-    .text_blog div {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3; /*số dòng muốn hiện */
-        /*font-size: 12px; /*cỡ chữ, đơn vị px */ */ line-height: 1.5em; /* khoảng cách giữa các dòng, đơn vị em*/
-        max-height: 63px;
-    }
-</style>
+
 <main>
     <section class="body_">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="title_blogs">
-                        <h1>TRAVEL BLOG</h1>
+                        <h1>BLOG DU LỊCH</h1>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -45,13 +48,15 @@
                             <div class="col-sm-6 col-md-6 col-lg-4">
                                 <div class="blog_item">
                                     <div class="img_blog">
-                                        <a href="/@item.MenuAlias/@item.ID/@item.Alias"><img src="@item.Image"></a>
+                                        <a href="/@item.MenuAlias/@item.ID/@item.Alias">
+                                            <img src="@item.Image">
+                                        </a>
                                     </div>
-                                    @*<div class="card_blog">
-                                            <div class="card_blog__">
-                                                <span>@item.Title</span>
-                                            </div>
-                                        </div>*@
+                                    <div class="card_blog">
+                                        <div class="card_blog__">
+                                            <span>@item.TitleMenu</span>
+                                        </div>
+                                    </div>
                                     <div class="text_blog">
                                         <a href="/@item.MenuAlias/@item.ID/@item.Alias"><h3>@item.Title</h3></a>
                                         <div class="media_body">
@@ -78,7 +83,8 @@
                         <div class="banner">
                             <a href=""><img src="~/Content/img/blog/ba1.jpg"></a>
                         </div>
-                        <h3 class="top_post">Top popular articles</h3>
+                        <br />
+                        <h3 class="top_post" style="text-transform: uppercase">Bài viết nổi bật</h3>
                         <div class="top_viewPost">
                             @foreach (var item in acticelhot.Take(4))
                             {
@@ -94,7 +100,8 @@
                             }
 
                         </div>
-                        <h3 class="top_post">Top popular Tags</h3>
+                        <br />
+                        <h3 class="top_post" style="text-transform: uppercase">Top popular Tags</h3>
                         <div class="tags">
                             @foreach (var item in tabArticles)
                             {

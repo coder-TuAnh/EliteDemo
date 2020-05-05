@@ -78,7 +78,7 @@
                         values: { 'false': 'No', 'true': 'Yes' },
                         defaultValue: 'true'
                     },
-                    Sale: {
+                    Hot: {
                         title: 'hightlight tour',
                         width: '8%',
                         type: 'checkbox',
@@ -92,7 +92,7 @@
                         values: { 'false': 'Không', 'true': 'Có' },
                         defaultValue: 'true'
                     },
-                   
+
                     '':
                         {
                             title: '',
@@ -114,7 +114,7 @@
     function editRecord(Id) {
         window.location = '@Url.Action("Update","Tour")' + '/' + Id;
     }
-    
+
     $("#ListMenu").change(function () {
         $('#jtable-main-container').jtable('load', { menuId: $("#ListMenu").val() });
     });
