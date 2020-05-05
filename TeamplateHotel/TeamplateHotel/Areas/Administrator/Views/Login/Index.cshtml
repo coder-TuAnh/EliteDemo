@@ -49,7 +49,9 @@
                         <div id="password_inputright"></div>
                     </div>
                     <div id="password_input">
-                        @Html.DropDownListFor(a => a.LanguageID, new SelectList(ViewBag.ListLanguage, "Value", "Text"), new { @class = "span3" })
+                        <select class="span3" data-val="true" data-val-required="Vui lòng chọn ngôn ngữ" id="LanguageID" name="LanguageID">
+                             <option value="vi">VietNam</option>
+                        </select>
                     </div>
                     if (ViewBag.ShowCaptcha == true)
                     {
