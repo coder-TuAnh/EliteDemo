@@ -26,7 +26,7 @@ namespace TeamplateHotel.Controllers
                 return View("Index");
             }
 
-            
+
             if (aliasMenuSub.ToString() == "SelectLanguge")
             {
                 Language language = db.Languages.FirstOrDefault(a => a.ID == idSub.ToString());
@@ -57,7 +57,7 @@ namespace TeamplateHotel.Controllers
                     goto Trangbaiviet;
                 case SystemMenuType.Tour:
                     goto TrangTour;
-             
+
                 //case SystemMenuType.Activities:
                 //    return LisTour(menu.Alias, idSub, page);
                 case SystemMenuType.Activities:
@@ -158,7 +158,7 @@ namespace TeamplateHotel.Controllers
                 int idHotel;
                 int.TryParse(idSub.ToString(), out idHotel);
                 ShowDetailHotel showDetailHotel = CommentController.Detail_Hotel(idHotel);
-               
+
                 return View("Hotel/DetailHotel", showDetailHotel);
             }
             pagenumber = page ?? 1;
@@ -174,17 +174,19 @@ namespace TeamplateHotel.Controllers
         TrangCombo:
             if (idSub.ToString() != "System.Object")
             {
-                int idHotel;
-                int.TryParse(idSub.ToString(), out idHotel);
-                ShowDetailHotel showDetailHotel = CommentController.Detail_Hotel(idHotel);
+                int idTour;
+                int.TryParse(idSub.ToString(), out idTour);
+                DetailTour detailTour = CommentController.Detail_Tour(idTour);
+                ViewBag.MetaTitle = detailTour.Tour.MetaTitle ?? detailTour.Tour.Title;
+                ViewBag.MetaDesctiption = detailTour.Tour.MetaDescription ?? detailTour.Tour.Title;
 
-                return View("Hotel/DetailHotel", showDetailHotel);
+                return View("Combo/DetailCombo", detailTour);
             }
             pagenumber = page ?? 1;
             pagesize = pageSize ?? 9;
-            List<ListHotel> listCombo = CommentController.GetHotels();
-            IPagedList<ListHotel> Combo = listCombo.ToPagedList(pagenumber, pagesize);
-            return View("Hotel/ListCombo", Combo);
+            List<ShowObject> listcombo = CommentController.GetCombo(menu.ID);
+            IPagedList<ShowObject> listcmall = listcombo.ToPagedList(pagenumber, pagesize);
+            return View("Combo/ListCombo", listcmall);
             #endregion "Kiếu Combo"
         }
 
@@ -215,8 +217,8 @@ namespace TeamplateHotel.Controllers
                 int pagenumber = page ?? 1;
                 int pagesize = pageSize ?? 9;
                 List<ShowObject> _listActivities = CommentController.GetToursActivities(menu.ID);
-               
-                switch(item)
+
+                switch (item)
                 {
                     case "0":
                         _listActivities = _listActivities.OrderBy(x => x.ID).ToList();
@@ -240,9 +242,9 @@ namespace TeamplateHotel.Controllers
         [HttpPost]
         public ActionResult SearchTour(SearchTourModelInput input)
         {
-             TempData["searchInput"] = input;
+            TempData["searchInput"] = input;
 
-            return RedirectToAction("ViewFilter", "FilterTour" , input);
+            return RedirectToAction("ViewFilter", "FilterTour", input);
         }
     }
 }

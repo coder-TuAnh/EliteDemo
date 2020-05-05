@@ -1,0 +1,30 @@
+@media (max-width: 1199px){
+	.top_viewPost .text_view h5 {
+	    font-size: 14px;
+	}
+}
+@media (max-width: 991px){
+	.blog_post_mainn .img_detail1 {
+		padding:0!important;
+	}
+}
+@media (max-width: 768px){
+	.blog_home .img_blog {
+    	height: 200px!important;
+    }
+    .body_ .wrapper_list_blogs {
+    	display: block;
+    }
+    .wrapper_list_blogs .items_blog {
+	    margin-right: 0px;
+	    margin-bottom: 20px
+	}
+}
+@media(max-width: 580px){
+	.call_action .actio {
+	    margin:0!important;
+	}
+	.blog_home .img_blog {
+    	height: 190px!important;
+    }
+}

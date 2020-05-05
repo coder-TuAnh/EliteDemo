@@ -323,7 +323,29 @@ namespace TeamplateHotel.Controllers
         //        return value;
         //    }
         //}
-
+        public static List<ShowObject> GetCombo(int menuId)
+        {
+            using (var db = new MyDbDataContext())
+            {
+                Menu _menuDes = db.Menus.FirstOrDefault(x => x.ID == menuId);
+                var tour = db.Tours.Where(x => x.Status && x.Combo && x.MenuID == menuId)
+                    .Join(db.Menus, a => a.MenuID, b => b.ID, (a, b) => new ShowObject
+                    {
+                        ID = a.ID,
+                        Alias = a.Alias,
+                        MenuAlias = a.Menu.Alias,
+                        Themes = b.Title,
+                        Title = a.Title,
+                        Index = a.Index,
+                        Image = a.Image,
+                        Location = a.Location,
+                        Description = a.Description,
+                        Price = (float)a.Price,
+                        PriceSale = (decimal)a.PriceSale
+                    }).ToList();
+                return tour;
+            }
+        }
         ////Danh sách tours
         public static List<ShowObject> GetTours(int menuId)
         {
@@ -613,7 +635,29 @@ namespace TeamplateHotel.Controllers
         {
             using (var db = new MyDbDataContext())
             {
-                var tour = db.Tours.Where(x => x.Like == true && x.Status).Include("Menu")
+                var tour = db.Tours.Where(x => x.Like == true && x.Status && !x.Combo).Include("Menu")
+                    .Join(db.Menus, a => a.ActivitiesID, b => b.ID, (a, b) => new ShowObject
+                    {
+                        ID = a.ID,
+                        Alias = a.Alias,
+                        MenuAlias = a.Menu.Alias,
+                        Themes = b.Title,
+                        Title = a.Title,
+                        Index = a.Index,
+                        Image = a.Image,
+                        Location = a.Location,
+                        Description = a.Description,
+                        Price = (float)a.Price,
+                        PriceSale = (decimal)a.PriceSale
+                    }).Distinct().ToList();
+                return tour;
+            }
+        }
+        public static List<ShowObject> ComboHot(string languageKey)
+        {
+            using (var db = new MyDbDataContext())
+            {
+                var tour = db.Tours.Where(x => x.Like == true && x.Status && x.Combo).Include("Menu")
                     .Join(db.Menus, a => a.ActivitiesID, b => b.ID, (a, b) => new ShowObject
                     {
                         ID = a.ID,

@@ -1,0 +1,71 @@
+@media(max-width: 1200px){
+	.price-from {
+	    font-size: 20px;
+	}
+	.wrap_formmm .title_form h1 {
+		font-size:30px;
+	}
+}
+@media(max-width: 991px){
+	.wrap_formmm {
+		padding:0 15px;
+		position: relative;
+	}
+	.content_banner .form {
+		display: block;
+	}
+	.content_banner .form .form_conttt {
+		margin-bottom: 10px
+	}
+	.banner_main .content_banner {
+    	position: relative;
+    	top: 10px;
+	}
+	.form .form_conttt .drop_dow {
+		min-width: 100%
+	}
+	.content_banner .form .form_conttt {
+		margin-right: 0
+	}
+	.form .form_conttt button[type="submit"] {
+	    height: 100%;
+	    padding: 10px 20px;
+	    background: #0c31b5;
+	    color: #fff;
+	    width: 100%;
+	}
+	.col-md-3ths .style-name, 
+	.col-md-5ths .style-name, 
+	.col-md-5ths-d .style-name,
+	.col-md-5ths_ .style-name {
+		font-size:18px;
+	}
+	.col-md-3ths {
+	    width: 100%;
+	    padding: 15px;
+	}
+	.col-md-5ths-d {
+	    width: 100%;
+	    float: none;
+	    padding: 0 15px;
+	}
+	.col-md-5ths-m {
+		padding-left: 0!important
+	}
+	.col-md-3ths .style-name, 
+	.col-md-5ths .style-name, 
+	.col-md-5ths-d .style-name,
+	.col-md-5ths_ .style-name {
+    	bottom: 40px;
+    	font-size:20px
+	}
+}
+@media(max-width: 767px){
+	.col-md-3ths .style-name, 
+	.col-md-5ths .style-name, 
+	.col-md-5ths-d .style-name,
+	.col-md-5ths_ .style-name {
+    	bottom: 20px;
+    	font-size:22px
+	}
+}

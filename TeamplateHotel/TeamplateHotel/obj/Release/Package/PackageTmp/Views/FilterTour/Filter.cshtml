@@ -1,0 +1,177 @@
+﻿@using TeamplateHotel.Controllers
+@using TeamplateHotel.Handler
+@using TeamplateHotel.Models
+@using ProjectLibrary.Database
+@using ProjectLibrary.Config
+@using ProjectLibrary.Security
+ @{
+    ViewBag.Title = "Filter";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@section css
+{
+
+    <link rel="stylesheet" type="text/css" href="~/Content/css/demo_tour.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/responsive/demo_tour_res.css">
+}
+
+<main>
+    <section class="wrapper_main">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 show_control_mobile">
+                    <div class="row">
+                        <div class="col-6"><button type="" data-toggle="modal" data-target="#sortBy">Sort by <i class="fas fa-sort-down"></i></button></div>
+                        <div class="col-6"><button type="" data-toggle="modal" data-target="#fillerResu">Filter Results<i class="fas fa-sort-down"></i></button></div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="wrap_left">
+                        <h3>Filter Results</h3>
+                        <div class="block_search">
+                            <h4>Destinations</h4>
+                            <div class="tags">
+ 
+                                    <label for="tag1">
+                                        <input type="checkbox" id="tag6" name="">
+                                        <span>Ho Chi Minh City</span>
+                                    </label>
+ 
+
+                            </div>
+                            <h4>Travel styles in VietNam Tours</h4>
+                            <div class="tags">
+                                <label for="tag1">
+                                    <input type="checkbox" id="tag7" name="">
+                                    <span>Best of Vietnam 2019</span>
+                                </label>
+                                <label for="tag1">
+                                    <input type="checkbox" id="tag8" name="">
+                                    <span>Vietnam & Cambodia</span>
+                                </label>
+                                <label for="tag1">
+                                    <input type="checkbox" id="tag9" name="">
+                                    <span>Family Holidays</span>
+                                </label>
+                                <label for="tag1">
+                                    <input type="checkbox" id="tag10" name="">
+                                    <span>Northern Vietnam</span>
+                                </label>
+                                <label for="tag1">
+                                    <input type="checkbox" id="tag11" name="">
+                                    <span>Luxury Tours</span>
+                                </label>
+                                <label for="tag1">
+                                    <input type="checkbox" id="tag12" name="">
+                                    <span>Budget Tours</span>
+                                </label>
+                                <label for="tag1">
+                                    <input type="checkbox" id="tag13" name="">
+                                    <span>Classic Tours</span>
+                                </label>
+                                <label for="tag1">
+                                    <input type="checkbox" id="tag14" name="">
+                                    <span>Central Vietnam</span>
+                                </label>
+                                <label for="tag1">
+                                    <input type="checkbox" id="tag15" name="">
+                                    <span>Southern Vietnam</span>
+                                </label>
+                                <label for="tag1">
+                                    <input type="checkbox" id="tag16" name="">
+                                    <span>Beach Vacations</span>
+                                </label>
+                                <label for="tag1">
+                                    <input type="checkbox" id="tag17" name="">
+                                    <span>Adventure Tours</span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="wrap_lwet wrap_trip">
+                        <div class="wrap_one">
+                            <a href="" title="">
+                                <img src="img/demo_tour/trip.png" alt="">
+                            </a><br>
+                            <b>Know better. Book better. Go better.</b>
+                        </div>
+                        <div class="wrap_lwet wrap_two">
+                            <b>TripAdvisor Traveler Rating</b><br>
+                            <span>Based on <b>1,381</b> traveler reviews</span>
+                        </div>
+                        <div class="wrap_lwet wrap_three">
+                            <span><b>TripAdvisor Ranking</b> #3 of 390 Boat Tours & Water Sports in Hanoi</span>
+                        </div>
+                        <div class="wrap_lwet wrap_two">
+                            <span><b>Recent Traveler Review:</b><br>Mar 26, 2019: “Brilliant food tour”</span>
+                        </div>
+                        <div class="wrap_lwet ">
+                            <a href="" title="">Read reviews</a><br>
+                            <span>© 2019 TripAdvisor LLC</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="wrap_right">
+                        <h3 class="title_wrap_right"><b>135</b> tours visit <b>VietNam Tours</b>, depart on <b>Monday, April 13, 2020</b></h3>
+                        <div class="tag_control">
+                            <ul>
+                                <li style="background-color: #ccc;"><span>Sort by:</span></li>
+                                <li><span>Recommended</span></li>
+                                <li><span>Price [Low to High]</span></li>
+                                <li><span>Price [High to Low]</span></li>
+                                <li><span>Review Score</span></li>
+                            </ul>
+                        </div>
+                        <div class="wrap_lisst">
+
+                            <div class="item_list">
+                                <div class="img_lefft">
+                                    <a href="" title="">
+                                        <img src="img/demo_tour/c1.jpg" alt="">
+                                    </a>
+                                </div>
+                                <div class="content_right">
+                                    <div class="wrap_content_main">
+                                        <h3><a href="" title="">Banteay Srey - Kbal Spean Sightseeing 1/2 Day Trip</a></h3>
+                                        <p>Banteay Srey - Kbal Spean Sightseeing 1/2 Day Trip</p>
+                                        <span><i class="far fa-map-marker-alt"></i>&nbsp;Siem Reap - Banteay Srei - Kbal Spean</span>
+                                    </div>
+                                    <div class="wrap_price">
+                                        <span class="price_old"><span>US $666</span></span>
+                                        <span class="price_new"><span>US</span> <span class="price">$555</span> pp </span>
+                                        <a class="select" href="" title="">Select This Tour</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pagetion">
+            <div class="back_top"><a href="#scroll-topl" title=""><i class="fas fa-arrow-alt-square-up"></i> Back to top</a></div>
+            <ul>
+                <li class="disabled"><a href="#" title="">First</a></li>
+                <li class="disabled"><a href="#" title="">Before</a></li>
+                <li class="active"><a href="#" title="">1</a></li>
+                <li><a href="#" title="">2</a></li>
+                <li><a href="#" title="">3</a></li>
+                <li><a href="#" title="">4</a></li>
+                <li><a href="#" title="">5</a></li>
+                <li><a href="#" title="">Next</a></li>
+                <li><a href="#" title="">End</a></li>
+            </ul>
+        </div>
+    </section>
+</main>
+
+@section scripts
+{
+    <script src="~/Content/js/filtertour.js"></script>
+}

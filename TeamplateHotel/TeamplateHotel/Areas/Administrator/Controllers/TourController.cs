@@ -117,6 +117,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                             MetaDescription =
                                 string.IsNullOrEmpty(model.MetaDescription) ? model.Title : model.MetaDescription,
                             Status = model.Status,
+                            Combo = false,
                             Price = model.Price,
                             Location = model.Location,
                             PriceSale = model.PriceSale,
@@ -307,6 +308,8 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                         tour.Like = model.Like;
                         tour.Deal = model.Deal;
                         tour.Title = model.Title;
+                        tour.Combo = false;
+
                         tour.Alias = model.Alias;
                         tour.Image = model.Image;
                         tour.Description = model.Description;

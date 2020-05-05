@@ -16,7 +16,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
         //
         // GET: /Administrator/Combo/
 
-         public ActionResult Index()
+        public ActionResult Index()
         {
             LoadData();
             ViewBag.Messages = CommentController.Messages(TempData["Messages"]);
@@ -29,7 +29,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
         {
             using (var db = new MyDbDataContext())
             {
-                List<Tour> records = db.Tours.Where(a=>a.Combo ).ToList();
+                List<Tour> records = db.Tours.Where(a => a.Combo).ToList();
                 foreach (Tour record in records)
                 {
                     string itemTour = Request.Params[string.Format("Sort[{0}].Index", record.ID)];
@@ -42,6 +42,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                     }
 
                 }
+
                 TempData["Messages"] = "Successful";
                 return RedirectToAction("Index");
             }
@@ -64,16 +65,17 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                     listTour = db.Tours.Where(a => a.MenuID == menuId && a.Combo).ToList();
                 }
 
-                var records = listTour.Join(db.Menus.Where(a => a.LanguageID == Request.Cookies["lang_client"].Value), a => a.MenuID, b => b.ID,
-                            (a, b) => new
-                            {
-                                a.ID,
-                                a.Title,
-                                a.Index,
-                                a.Status,
-                                a.Deal,
-                                a.Hot
-                            }).Skip(jtStartIndex).Take(jtPageSize).OrderBy(a => a.Index).ToList();
+                var records = listTour.Join(db.Menus.Where(a => a.LanguageID == Request.Cookies["lang_client"].Value),
+                    a => a.MenuID, b => b.ID,
+                    (a, b) => new
+                    {
+                        a.ID,
+                        a.Title,
+                        a.Index,
+                        a.Status,
+                        a.Deal,
+                        a.Hot
+                    }).Skip(jtStartIndex).Take(jtPageSize).OrderBy(a => a.Index).ToList();
                 //Return result to jTable
                 return Json(new { Result = "OK", Records = records, TotalRecordCount = listTour.Count });
             }
@@ -86,7 +88,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.Title = "add tour";
+            ViewBag.Title = "Add combo";
             LoadData();
             LoadDataActivities();
             LoadData2();
@@ -105,6 +107,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                 {
                     model.Alias = StringHelper.ConvertToAlias(model.Title);
                 }
+
                 try
                 {
                     var tour = new Tour
@@ -151,23 +154,24 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
 
                             db.TabHotels.InsertOnSubmit(tabTour);
                         }
+
                         db.SubmitChanges();
                     }
 
-                    if (model.Theme != null)
-                    {
-                        for (int i = 0; i < model.Theme.Length; i++)
-                        {
-                            var tabTheme = new ThemesMenu
-                            {
-                                TourID = tour.ID,
-                                MenuID = int.Parse(model.Theme[i]),
-                                Index = 0
-                            };
-                            db.ThemesMenus.InsertOnSubmit(tabTheme);
-                            db.SubmitChanges();
-                        }
-                    }
+                    //if (model.Theme != null)
+                    //{
+                    //    for (int i = 0; i < model.Theme.Length; i++)
+                    //    {
+                    //        var tabTheme = new ThemesMenu
+                    //        {
+                    //            TourID = tour.ID,
+                    //            MenuID = int.Parse(model.Theme[i]),
+                    //            Index = 0
+                    //        };
+                    //        db.ThemesMenus.InsertOnSubmit(tabTheme);
+                    //        db.SubmitChanges();
+                    //    }
+                    //}
 
                     //Thêm hình ảnh cho tour
                     if (model.EGalleryITems != null)
@@ -182,8 +186,10 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                             };
                             db.TourGalleries.InsertOnSubmit(gallery);
                         }
+
                         db.SubmitChanges();
                     }
+
                     //Thêm tabtour
                     if (model.TabTours != null)
                     {
@@ -199,6 +205,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
 
                             db.TabTours.InsertOnSubmit(tabTour);
                         }
+
                         db.SubmitChanges();
                     }
 
@@ -220,14 +227,15 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
         [HttpGet]
         public ActionResult Update(int id)
         {
-            ViewBag.Title = "udpate tour";
+            ViewBag.Title = "Udpate combo";
             var db = new MyDbDataContext();
             Tour detailTour = db.Tours.FirstOrDefault(a => a.ID == id);
             if (detailTour == null)
             {
-                TempData["Messages"] = "Tour not exist";
+                TempData["Messages"] = "combo not exist";
                 return RedirectToAction("Index");
             }
+
             LoadData();
             LoadDataActivities();
             List<SelectListItem> listmenu = new List<SelectListItem>();
@@ -235,6 +243,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
             {
                 listmenu.Add(new SelectListItem() { Value = b.Title, Text = b.ID.ToString() });
             }
+
             ViewBag.ListMenu3 = new SelectList(listmenu, "Text", "Value");
             var tour = new ETour
             {
@@ -268,19 +277,19 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
             //lấy danh sách tabtour
             List<TabTour> tabTours = db.TabTours.Where(a => a.TourID == detailTour.ID).ToList();
             List<TabHotel> tabhotel = db.TabHotels.Where(a => a.TourID == detailTour.ID).ToList();
-            List<ThemesMenu> tabTheme = db.ThemesMenus.Where(x => x.TourID == detailTour.ID).ToList();
+            //List<ThemesMenu> tabTheme = db.ThemesMenus.Where(x => x.TourID == detailTour.ID).ToList();
             tour.TabTours = tabTours;
             tour.TabHotels = tabhotel;
-            if (!string.IsNullOrEmpty(tabTheme.ToString()))
-            {
-                List<string> termList = new List<string>();
-                foreach (var item in tabTheme)
-                {
-                    termList.Add(item.MenuID.ToString());
-                }
-                string[] select = termList.ToArray();
-                tour.Theme = select;
-            }
+            //if (!string.IsNullOrEmpty(tabTheme.ToString()))
+            //{
+            //    List<string> termList = new List<string>();
+            //    foreach (var item in tabTheme)
+            //    {
+            //        termList.Add(item.MenuID.ToString());
+            //    }
+            //    string[] select = termList.ToArray();
+            //    tour.Theme = select;
+            //}
             return View(tour);
         }
 
@@ -289,17 +298,15 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
         public ActionResult Update(ETour model)
         {
             //Kiểm tra xem alias thuộc tour này đã tồn tại chưa
-            var db = new MyDbDataContext();
-
-            //Kiểm tra xem đã chọn đến chuyên mục con cuối cùng chưa
-            //var check = db.Menus.Where(a => a.ParentID == model.ID).ToList();
-            //if (db.Menus.Any(a => a.ParentID == model.ID))
-            //{
-            //    ModelState.AddModelError("MenuId", "Vui lòng chọn đến chuyên mục tour con cuối cùng");
-            //}
-
-            if (ModelState.IsValid)
+            using (var db = new MyDbDataContext())
             {
+                //Kiểm tra xem đã chọn đến chuyên mục con cuối cùng chưa
+                //var check = db.Menus.Where(a => a.ParentID == model.ID).ToList();
+                //if (db.Menus.Any(a => a.ParentID == model.ID))
+                //{
+                //    ModelState.AddModelError("MenuId", "Vui lòng chọn đến chuyên mục tour con cuối cùng");
+                //}
+
                 try
                 {
                     Tour tour = db.Tours.FirstOrDefault(b => b.ID == model.ID);
@@ -344,25 +351,27 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                                 };
                                 db.TourGalleries.InsertOnSubmit(gallery);
                             }
+
                             db.SubmitChanges();
                         }
+
                         //xóa danh sách tabtour
                         db.TabTours.DeleteAllOnSubmit(db.TabTours.Where(a => a.TourID == tour.ID).ToList());
-                        db.ThemesMenus.DeleteAllOnSubmit(db.ThemesMenus.Where(a => a.TourID == tour.ID).ToList());
-                        if (model.Theme != null)
-                        {
-                            for (int i = 0; i < model.Theme.Length; i++)
-                            {
-                                var tabTheme = new ThemesMenu
-                                {
-                                    TourID = tour.ID,
-                                    MenuID = int.Parse(model.Theme[i]),
-                                    Index = 0
-                                };
-                                db.ThemesMenus.InsertOnSubmit(tabTheme);
-                                db.SubmitChanges();
-                            }
-                        }
+                        //db.ThemesMenus.DeleteAllOnSubmit(db.ThemesMenus.Where(a => a.TourID == tour.ID).ToList());
+                        //if (model.Theme != null)
+                        //{
+                        //    for (int i = 0; i < model.Theme.Length; i++)
+                        //    {
+                        //        var tabTheme = new ThemesMenu
+                        //        {
+                        //            TourID = tour.ID,
+                        //            MenuID = int.Parse(model.Theme[i]),
+                        //            Index = 0
+                        //        };
+                        //        db.ThemesMenus.InsertOnSubmit(tabTheme);
+                        //        db.SubmitChanges();
+                        //    }
+                        //}
 
                         //Thêm tabtour
                         if (model.TabTours != null)
@@ -379,8 +388,10 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
 
                                 db.TabTours.InsertOnSubmit(tabTour);
                             }
+
                             db.SubmitChanges();
                         }
+
                         db.TabHotels.DeleteAllOnSubmit(db.TabHotels.Where(a => a.TourID == tour.ID).ToList());
                         if (model.TabHotels != null)
                         {
@@ -397,12 +408,14 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
 
                                 db.TabHotels.InsertOnSubmit(tabTour);
                             }
+
                             db.SubmitChanges();
                         }
 
                         TempData["Messages"] = "Successful";
                         return RedirectToAction("Index");
                     }
+
                 }
                 catch (Exception exception)
                 {
@@ -411,11 +424,12 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
                     ViewBag.Messages = "Error: " + exception.Message;
                     return View();
                 }
+
             }
-            LoadData();
-            LoadDataActivities();
-            return View(model);
+            return View();
         }
+
+
 
         [HttpPost]
         public JsonResult Delete(int id)
@@ -453,7 +467,7 @@ namespace TeamplateHotel.Areas.Administrator.Controllers
             List<Menu> getListMenu =
                 MenuController.GetListMenu(SystemMenuLocation.ListLocationMenu().ToList()[0].LocationId,
                     Request.Cookies["lang_client"].Value)
-                    .Where(a => a.Type == SystemMenuType.Tour && a.Level == 1)
+                    .Where(a => a.Type == SystemMenuType.Combo && a.Level == 0)
                     .ToList();
 
             foreach (Menu menu in getListMenu)

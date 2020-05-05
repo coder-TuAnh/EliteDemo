@@ -1,0 +1,454 @@
+﻿﻿@using ProjectLibrary.Database
+@using TeamplateHotel.Controllers
+@using ProjectLibrary.Database
+@model TeamplateHotel.Models.ShowDetailHotel
+@{
+    ViewBag.Title = "DetailHotel";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    var company = CommentController.DetailHotel(Request.Cookies["LanguageID"].Value);
+    Menu menu = ViewBag.Menu ?? new Menu();
+    int a = 1;
+    int i = 0;
+}
+
+<main>
+    <div class="container">
+        <div class="link_title_page">
+            <ul>
+                <li><a href="index.html" title="">Home</a></li>
+                <li><span><i class="fal fa-angle-right"></i></span></li>
+                <li><a href="" title="">Khách sạn</a></li>
+                <li><span><i class="fal fa-angle-right"></i></span></li>
+                <li><span>VinOasis Phú Quốc</span></li>
+            </ul>
+        </div>
+        <div class="title_page hotel_price">
+            <h1>@Model.ListHotel.HotelName</h1>
+            <div class="price_tour">
+                @*<div class="price_old">Giá từ  <span>@Model.ListHotel.PriceFrom</span></div>*@
+                <div class="price_new">@Model.ListHotel.PriceFrom</div>
+                <a href="" title="" class="poster"><img src="~/Content/img/tour/sprites.png" alt="">Tặng vé vui chơi công viên nước VinOasis</a>
+            </div>
+        </div>
+        <p class="anchor hotel_price_to"><i class="fad fa-map-marker-alt"></i>@Model.ListHotel.Address</p>
+        <div class="wrap_img">
+            @foreach (var item in Model.HotelGalleries.Take(4))
+            {
+                <div class="col_img col_img_@a"><img src="@item.ImageLage" alt="" type="button" data-toggle="modal" data-target="#modalImg"></div>
+                a++;
+            }
+
+
+        </div>
+        <div class="modal fade imgModal" id="modalImg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div id="slideImg" class="slide_show1 carousel fadeIn" data-ride="carousel">
+                            <div class="carousel-inner">
+                                @foreach (var item in Model.HotelGalleries.Take(4))
+                                {
+                                    var active = i == 0 ? "active" : string.Empty;
+                                    <div class="carousel-item @active">
+                                        <img src="@item.ImageLage" alt="">
+                                    </div>
+                                    i++;
+                                }
+                            </div>
+                            <a class="carousel-control-prev" href="#slideImg" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon"><i class="fas fa-arrow-alt-circle-left"></i></span>
+                            </a>
+                            <a class="carousel-control-next" href="#slideImg" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"><i class="fas fa-arrow-alt-circle-right"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="review_hotel">
+            <span class="number">9.1</span>
+            <span class="color_green">TUYỆT VỜI</span>
+            <span> Dựa trên 29 đánh giá</span>
+        </div>
+        <div class="container hotel-details">
+            <div class="bpv-col-right pull-right hidden-xs">
+                <div class="hotel-info">
+                    <h3>Thông tin khách sạn</h3>
+                    @Html.Raw(Model.ListHotel.Description)
+                </div>
+                @*<div class="bpv-quick-contact clearfix margin-top-20 hidden-xs" data-display-on="1" data-slide-bar="1">
+                    <div class="avatar">
+                        <img id="img_sale_support" width="60" class="img-circle" alt="Image User Support" src="~/Content/img/hotel/hotline.png" />
+                    </div>
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="text">Bạn cần hỗ trợ?</div>
+                                <div class="border"></div>
+                                <div class="">
+                                    <span class="">
+                                        <span class="icon icon-phone-yellow"></span>
+                                        <a class="phone" href="tel:@company.Tel">@company.Tel</a>
+                                    </span>
+                                    <ul class="padding-left-20">
+                                        <li><a href="tel:02473072605">hn: (024) 7307 2605</a></li>
+                                        <li><a href="tel:02873072605">hcm: (028) 7307 2605</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 padding-top-10">
+                                <a href="" class="btn btn-white btn-block">
+                                    Liên hệ đặt khách sạn <span class="font-size-12 glyphicon glyphicon-circle-arrow-right pd-left-5"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            </div>
+            <div class="bpv-col-left">
+                <div id="tab-details">
+                    <div class="nav-details">
+                        <ul class="nav nav-tabs tab-details hidden-xs">
+                            <li role="presentation" class="active ht-tab-cabins">
+                                <a href="#h_hotel_rate" data-toggle="tab">Hạng phòng</a>
+                            </li>
+                            <li role="presentation" class="ht-tab-policies">
+                                <a href="#h_hotel_policies" data-toggle="tab">Thông tin</a>
+                            </li>
+                            <li role="presentation" class="ht-tab-reviews">
+                                <a href="#h_tab_reviews" data-toggle="tab">Đánh giá</a>
+                            </li>
+                            <li role="presentation" class="ht-tab-question">
+                                <a href="#h_tab_comment" data-toggle="tab">Hỏi đáp</a>
+                            </li>
+                            <li class="pull-right padding-top-5 price-block">
+                                <button class="btn btn-orange btn_book_tour margin-left-20">Đặt ngay</button>
+                            </li>
+                            <li class="pull-right padding-top-5 price-block">
+                                @*<span class="price-origin text-unhighlight font-size-16"><span>3.500.000đ</span></span>*@
+                                <span class="price-from"><span>@Model.ListHotel.PriceFrom</span></span>
+                                <span>/ đêm</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="visible-xs">
+                    <div class="hotel-info">
+                        <h3>Thông tin khách sạn</h3>
+                        <ul>
+                            <li><span>Số phòng: 1078</span></li>
+                            <li><span>Ăn sáng miễn phí</span></li>
+                            <li><span>Bãi biển riêng</span></li>
+                            <li><span>Bể bơi ngoài trời</span></li>
+                            <li><span>Wifi miễn phí</span></li>
+                            <li><span>Dịch vụ hội họp</span></li>
+                            <li><span>Dịch vụ Spa/Massage</span></li>
+                            <li><span>Dịch vụ trông trẻ</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="visible-xs overview-block margin-bottom-20">
+                    <a class="btn btn-green btn-overview btn-lg btn-block margin-top-10" data-id="h_hotel_rate" href="">
+                        <span class="icon icon-price-inclusion-white margin-right-5"></span>Hạng phòng
+                    </a>
+                    <a class="btn btn-border-green btn-overview btn-lg btn-block margin-top-10" data-id="h_hotel_policies" href="">
+                        <span class="icon icon-view-itinerary margin-right-5"></span>Thông tin
+                    </a>
+                    <a class="btn btn-border-green btn-overview btn-lg btn-block margin-top-10" data-id="h_tab_reviews" href="">
+                        <span class="icon icon-view-review margin-right-5"></span>Hỏi đáp
+                    </a>
+                </div>
+                <div class="description margin-top-20 margin-bottom-20 font-zise-14 visible-xs">
+                    <p style="text-align: justify;"><strong>VinOasis Phú Quốc</strong> là dòng Khách sạn Luxury 5* đầu tiên của Vingroup tại Phú Quốc. Là đứa con sinh sau để muộn, dòng sản phẩm VinOasis kế thừa đẩy đủ những điểm mạnh về chất lượng cũng như dịch vụ của những người anh lớn. </p>
+                    <p style="text-align: justify;">Được thiết kế theo kiến trúc đương đại kết hợp với kiến trúc Á Đông, VinOasis Phú Quốc hiện lên vô cùng độc đáo và mới lạ trên đảo ngọc. Đây chắc chắn sẽ là điểm nghỉ dưỡng vô cùng lý tưởng cho du khách muốn lựa chọn một không gian đẹp - độc - lạ.</p>
+                </div>
+                <h2 class="bpv-collapse margin-top-25" data-target="#hotel_rate" id="h_hotel_rate">
+                    Hạng phòng<span class="glyphicon glyphicon-chevron-up visible-xs"></span>
+                </h2>
+                <div class="tab-pane  active" id="hotel_rate">
+                    @Model.ListHotel.Description
+                </div>
+                <div class="bpv-check-rate-form margin-bottom-20 margin-top-20">
+                    <h2>Chọn ngày để xem giá</h2>
+                    <div class="content">
+                        <div class="row">
+                            <form id="check_rate_form" role="form" method="get">
+                                <div class="col-xs-8 col-sm-3 col-md-3">
+                                    <label for="checkin_date">Ngày nhận phòng</label>
+                                    <div class="icon-after icon-before">
+                                        <input type="text" id="hotel_date_1395" autocomplete="off" placeholder="" name="startdate" value="09/04/2020" class="form-control bpv-date-input " />
+                                        <span class="icon icon-calendar"></span>
+                                    </div>
+                                    <input type="hidden" id="dpk_is_load_hotel_date_1395" value="1" />
+                                    <input type="hidden" class="bpdatepicker" data-selected-date="09/04/2020" data-month-id="hotel_month_1395" data-day-id="hotel_day_1395" data-date-id="hotel_date_1395" data-loading-asyn="1" data-available-dates="[]">		   <input type="hidden" name="hotel_id" value="1395">
+                                    <input type="hidden" id="is_action" value="">
+                                    <input type="hidden" id="is_default" name="is_default" value="1">
+                                </div>
+                                <div class="col-xs-4 col-sm-2 col-md-2">
+                                    <label for="stay_night">Số đêm</label>
+                                    <select class="form-control input-sm" id="night_nr_1395" name="night">
+                                        <option value="1" selected="selected">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 col-md-4 col-check-out">
+                                    <label for="checkout_date">Ngày trả phòng</label>
+                                    <span class="help-block" style="font-size: 14px;" id="hotel_date_1395_end_show"></span>
+                                    <input type="hidden" name="enddate" id="hotel_date_1395_end" value="">
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3 margin-top-10">
+                                    <button type="submit" value="check_rate" name="action" class="btn btn-blue btn-lg btn-block pull-right">Xem giá</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="rate_content">
+                    <div class="room-types">
+                        <div class="bpv-rate-table">
+                            <table>
+                                <thead class="hidden-xs">
+                                    <tr>
+                                        <td class="col-1" align="left">Chọn phòng của bạn</td>
+                                        <td class="col-2" align="center">Số người</td>
+                                        <td class="col-3" align="center">Giá phòng</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Rooms)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-md-6">
+                                                        <img class="img-responsive" src="@item.Image" alt="Standard">
+                                                    </div>
+                                                    <div class="col-xs-12 col-md-6 col-cabin-info">
+                                                        @Html.Raw(item.Content)
+                                                    </div>
+                                                </div>
+                                                @*<div class="visible-xs" style="border-top: 1px solid #ddd; padding: 10px 0 0; margin: 0 -8px">
+                                                        <div class="text-center text-special" onclick="go_position_id('#h_hotel_rate')">
+                                                            Chọn ngày để xem giá <i class="glyphicon glyphicon-arrow-up"></i>
+                                                        </div>
+                                                    </div>*@
+                                            </td>
+                                            <td class="hidden-xs" align="center" style="vertical-align:middle;">
+                                                <span>
+                                                    <span class="icon icon-person-lg">@item.MaxPeople </span>
+                                                    <span class="icon icon-person-lg"></span>
+                                                </span>
+                                            </td>
+                                            <td class="hidden-xs" align="center" style="vertical-align:middle;">
+                                                <span>
+                                                    <span class="icon icon-person-lg">@item.PriceNet </span>
+                                                    <span class="icon icon-person-lg"></span>
+                                                </span>
+                                            </td>
+
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="bpv-collapse collapsed margin-top-30" data-target="#hotel_policies" id="h_hotel_policies">
+                    Thông tin<span class="glyphicon glyphicon-chevron-up visible-xs"></span>
+                </h2>
+                <div role="tabpanel" class="tab-pane" id="hotel_policies">
+
+                    @Html.Raw(Model.ListHotel.Content)
+
+                </div>
+                <h2 class="bpv-collapse collapsed margin-top-30" data-target="#tab_reviews" id="h_tab_reviews">
+                    Đánh giá<span class="glyphicon glyphicon-chevron-up visible-xs"></span>
+                </h2>
+                <div role="tabpanel" class="tab-pane clearfix" id="tab_reviews">
+                    <div id="review_content">
+                        <div class="reviews-panel">
+                            <div id="rev_total">
+                                <div id="rev_total_score_number">
+                                    <p class="review_text">
+                                        <span class="bpv-color-excellent">Tuyệt vời</span>
+                                    </p>
+                                    <div class="rev-total-score-color-excellent">
+                                        <span id="rsc_total">9</span>
+                                    </div>
+                                    <p id="rev_out_of">Dựa theo  29 đánh giá</p>
+                                </div>
+                            </div>
+                            <div class="breakdown-score-wrapper">
+                                <div class="trip-type trip-rating">
+                                    <div class="text-highlight title">Điểm chi tiết</div>
+                                    <ul>
+                                        <li class="score-type">
+                                            <span class="rdoSet">Địa điểm</span>
+                                            <div class="line">
+                                                <div style="width:90%;" class="fill"></div>
+                                            </div>
+                                            <span class="compositeCount">9</span>
+                                        </li>
+                                        <li class="score-type">
+                                            <span class="rdoSet">Thoải mái</span>
+                                            <div class="line">
+                                                <div style="width:91%;" class="fill"></div>
+                                            </div>
+                                            <span class="compositeCount">9.1</span>
+                                        </li>
+                                        <li class="score-type">
+                                            <span class="rdoSet">Dịch vụ</span>
+                                            <div class="line">
+                                                <div style="width:91%;" class="fill"></div>
+                                            </div>
+                                            <span class="compositeCount">9.1</span>
+                                        </li>
+                                        <li class="score-type">
+                                            <span class="rdoSet">Nhân viên</span>
+                                            <div class="line">
+                                                <div style="width:90%;" class="fill"></div>
+                                            </div>
+                                            <span class="compositeCount">9</span>
+                                        </li>
+                                        <li class="score-type">
+                                            <span class="rdoSet">Sạch sẽ</span>
+                                            <div class="line">
+                                                <div style="width:90%;" class="fill"></div>
+                                            </div>
+                                            <span class="compositeCount">9</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="trip-type">
+                                    <div class="text-highlight title" data-toggle="collapse" href="#reviewScoreBreakdown" style="cursor: pointer;">
+                                        Mức đánh giá
+                                        <span class="glyphicon glyphicon-menu-down pull-right visible-xs"></span>
+                                    </div>
+                                    <ul id="reviewScoreBreakdown" class="collapse in">
+                                        <li>
+                                            <a href="javascript:void(0)" class="review_filter" rel="nofollow" data-url="review/Reviews/?hotel_id=1395&amp;is_new_design=1&amp;review_score=1">Tuyệt vời</a>
+                                            <span class="pull-right">17</span>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" class="review_filter" rel="nofollow" data-url="">Rất tốt</a>
+                                            <span class="pull-right">12</span>
+                                        </li>
+                                        <li class="text-unhighlight">
+                                            Trung bình
+                                            <span class="pull-right">0</span>
+                                        </li>
+                                        <li class="text-unhighlight">
+                                            Kém
+                                            <span class="pull-right">0</span>
+                                        </li>
+                                        <li class="text-unhighlight">
+                                            Kinh khủng
+                                            <span class="pull-right">0</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="trip-type">
+                                    <div class="text-highlight title" data-toggle="collapse" href="" style="cursor: pointer;">
+                                        Khách hàng
+                                        <span class="glyphicon glyphicon-menu-down pull-right visible-xs"></span>
+                                    </div>
+                                    <ul id="reviewTravelerTypeFilter" class="collapse in">
+                                        <li>
+                                            <div class="bline"></div>
+                                            <span class="lbl1">
+                                                <a href="" class="review_filter">Gia đình</a>
+                                            </span>
+                                            <span class="pull-right">14</span>
+                                        </li>
+                                        <li>
+                                            <div class="bline"></div>
+                                            <span class="lbl1">
+                                                <a href="" class="review_filter" data-url="">Cặp đôi</a>
+                                            </span>
+                                            <span class="pull-right">7</span>
+                                        </li>
+                                        <li>
+                                            <div class="bline"></div>
+                                            <span class="lbl1">
+                                                <a href="javascript:void(0)" class="review_filter">Khách lẻ</a>
+                                            </span>
+                                            <span class="pull-right">3</span>
+                                        </li>
+                                        <li>
+                                            <div class="bline"></div>
+                                            <span class="lbl1">
+                                                <a href="" class="review_filter">Doanh nghiệp</a>
+                                            </span>
+                                            <span class="pull-right">5</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="re-view-detail padding-top-10" style="clear: both;">
+                                <a style="font-size: 18px; text-decoration: underline;">
+                                    Xem chi tiết đánh giá
+                                    <span class="glyphicon glyphicon-menu-down margin-left-5" style="font-size: 14px;"></span>
+                                </a>
+                            </div>*@
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container-cruise margin-top-30 padding-bottom-40">
+        <h2 class="text-center">Khách sạn tương tự</h2>
+        <div class="container">
+            <div class="row similar-cruise similar-list" id="similar_list_06874350">
+                @foreach (var item in Model.ListHotels.Take(3))
+                {
+                    <div class="col-xs-12 col-md-4 margin-bottom-20 " data-id="1708">
+                        <div class="bpt-item">
+                            <div class="item-img">
+                                <a href="">
+                                    <img class="img-responsive" alt="@item.Alias" src="@item.ImageHotel" style="width:120px; height:120px">
+                                </a>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-name name">
+                                    <a class="item-name margin-top-0" href="/@menu.Alias/@item.ID/@item.Alias">
+                                        @item.HotelName
+                                    </a>
+                                    <span class="icon icon-grey-star-5"></span>
+                                </div>
+
+                                <div class="review item-review"></div>
+
+                                <div class="promotion"></div>
+                                <div class="item-price text-right margin-top-10">
+                                    <span class="price-from"><span>@item.PriceFrom</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</main>
+<div style="margin-bottom: 30px"></div>

@@ -94,5 +94,16 @@ namespace ProjectLibrary.Properties {
                 return ((string)(this["DBEliteConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=103.226.248.52;Initial Catalog=webkhachhang_dbelitetour;User ID=webkh" +
+            "achhang_dbelitetour;Password=123456789a@@")]
+        public string webkhachhang_dbelitetourConnectionString {
+            get {
+                return ((string)(this["webkhachhang_dbelitetourConnectionString"]));
+            }
+        }
     }
 }

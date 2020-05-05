@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DBElite" Class="MyDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=DBElite;Integrated Security=True" SettingsObjectName="ProjectLibrary.Properties.Settings" SettingsPropertyName="DBEliteConnectionString1" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="webkhachhang_dbelitetour" Class="MyDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=103.226.248.52;Initial Catalog=webkhachhang_dbelitetour;User ID=webkhachhang_dbelitetour" SettingsObjectName="ProjectLibrary.Properties.Settings" SettingsPropertyName="webkhachhang_dbelitetourConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AboutUs" Member="AboutUs">
     <Type Name="AboutUs">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -10,12 +10,16 @@
       <Column Name="[Index]" Member="Index" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TypeVisa" Member="TypeVisas">
-    <Type Name="TypeVisa">
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="Price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
-      <Association Name="TypeVisa_BookVisa" Member="BookVisas" ThisKey="ID" OtherKey="IDTypeOfVisa" Type="BookVisa" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordOld" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="UserContent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Advertising" Member="Advertisings">
@@ -677,16 +681,12 @@
       <Association Name="Menu_Tour" Member="Menu" ThisKey="MenuID" OtherKey="ID" Type="Menu" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.[User]" Member="Users">
-    <Type Name="User">
+  <Table Name="dbo.TypeVisa" Member="TypeVisas">
+    <Type Name="TypeVisa">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
-      <Column Name="FullName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="PasswordOld" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="UserContent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="TypeVisa_BookVisa" Member="BookVisas" ThisKey="ID" OtherKey="IDTypeOfVisa" Type="BookVisa" />
     </Type>
   </Table>
 </Database>

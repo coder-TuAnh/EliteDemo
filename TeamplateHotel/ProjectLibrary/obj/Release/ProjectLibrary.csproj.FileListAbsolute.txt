@@ -10,3 +10,15 @@ C:\Users\admin\Documents\swallowtravel\swallow travel phuc\Source\TeamplateHotel
 C:\Users\admin\Documents\swallowtravel\swallow travel phuc\Source\TeamplateHotel\ProjectLibrary\obj\Release\ProjectLibrary.csproj.CopyComplete
 C:\Users\admin\Documents\swallowtravel\swallow travel phuc\Source\TeamplateHotel\ProjectLibrary\obj\Release\ProjectLibrary.dll
 C:\Users\admin\Documents\swallowtravel\swallow travel phuc\Source\TeamplateHotel\ProjectLibrary\obj\Release\ProjectLibrary.pdb
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\bin\Release\ProjectLibrary.dll.config
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\bin\Release\ProjectLibrary.dll
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\bin\Release\ProjectLibrary.pdb
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\bin\Release\EntityFramework.dll
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\bin\Release\EntityFramework.SqlServer.dll
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\bin\Release\EntityFramework.xml
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\bin\Release\EntityFramework.SqlServer.xml
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\obj\Release\ProjectLibrary.csprojAssemblyReference.cache
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\obj\Release\ProjectLibrary.csproj.CoreCompileInputs.cache
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\obj\Release\ProjectLibrary.csproj.CopyComplete
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\obj\Release\ProjectLibrary.dll
+F:\IIT\My Project\Project_Elite\EliteDemo\TeamplateHotel\ProjectLibrary\obj\Release\ProjectLibrary.pdb

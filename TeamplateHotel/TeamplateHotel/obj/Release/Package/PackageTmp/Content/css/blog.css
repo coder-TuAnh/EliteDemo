@@ -1,0 +1,237 @@
+.body_{
+	margin-bottom: 20px
+}
+.body_ .title_blogs h1{
+	display: block;
+    color: #222;
+    margin: 10px 0 10px 0;
+    text-transform: uppercase;
+    font-size: 24px;
+
+}
+.body_ .wrapper_list_blogs{
+	position: relative;
+	display: flex;
+	margin-bottom: 40px
+}
+.wrapper_list_blogs .items_blog{
+	position: relative;
+	margin-right: 10px
+}
+.wrapper_list_blogs .items_blog a{
+	position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration:none;
+}
+.wrapper_list_blogs .items_blog a:before{
+	content: "";
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background:rgba(65, 65, 66, 0.5);
+	z-index: 1
+}
+.wrapper_list_blogs .items_blog a:hover::before{
+	background: rgba(37,38,46,.5);
+}
+.items_blog .wrap_posi{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center
+}
+.items_blog .wrap_posi img{
+	width: 50px;
+	height: 50px
+}
+.items_blog .wrap_posi span{
+	color:#fff;
+}
+.items_blog .wrap_posi p{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2
+}
+.wrapper_list_blogs .items_blog:last-child{
+	margin-right: 0px
+}
+.wrapper_list_blogs img{
+	height: 130px;
+	width: 100%
+}
+.blog_home{
+	position: relative;
+	margin-top: 10px
+}
+.blog_home .img_blog{
+	height: 150px
+}
+.blog_home .img_blog img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.blog_home .card_blog{
+	left: 0;
+    position: absolute;
+    right: 0;
+    margin-top: -12px;
+    text-align: center;
+}
+.blog_home .card_blog__{
+	background: #438DC4;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.blog_home .text_blog {
+	margin-top: 20px
+}
+.blog_home .text_blog a{
+	text-decoration: none;
+}
+.blog_home .text_blog h3{
+	font-size: 18px;
+    color: #454647;
+}
+.blog_home .text_blog .media_body{
+	text-align: center;
+}
+
+.text_blog .media_body img{
+	width: 32px;
+	border-radius: 100%
+}
+.text_blog .media_body strong{
+	color: #438DC4;
+	text-transform: uppercase;
+	font-weight: 400
+}
+.text_blog .media_body span{
+	color:#7a7c7e;
+	font-size: 12px
+}
+.text_blog p.text_conten{
+	margin-top: 15px
+}
+.blog_item{
+	height: 425px
+}
+.pagination{
+	width: 100%;
+	text-align: center;
+}
+.pagination ul{
+	padding: 0;
+    margin: 0;
+    list-style: none;
+    display: inline-flex;
+}
+.pagination ul li span{
+	display: block;
+    font-weight: 500;
+    font-size: 14px;
+    color: #7a7a7a;
+    padding: 9px 15px;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #dadada!important;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.pagination ul li.prev_first span{
+	margin-left: 0
+}
+.pagination ul li span:hover{
+	background-color: #7a7a7a;
+	color: #fff
+}
+.pagination .active,
+.pagination .active:hover{
+	background-color: #0076bb;
+	color: #fff
+}
+.pagination ul li span.dogg{
+	border:none!important;
+}
+.pagination ul li span.dogg:hover{
+	background:none!important;
+	color:#7a7a7a;
+}
+.wrapper_border{
+	margin-top: 10px;
+	width: 100%;
+	height: auto;
+	border: 1px solid #e3e3e3;
+	padding:10px;
+	border-radius: 5px
+}
+.wrapper_border .banner{
+	border: 1px solid #e3e3e3;
+	padding: 20px 0 25px 0;
+	text-align: center
+}
+.wrapper_border .banner img{
+	width: 100%;
+	object-fit: cover;
+}
+.wrapper_border .top_post{
+	font-size: 20px;
+	color:#000;
+}
+.top_viewPost .item_view{
+	padding:5px 0 13px;
+	border-bottom: 1px solid #e3e3e3;
+	min-height: 75px
+}
+.top_viewPost .item_view a{
+	text-decoration: none
+}
+.top_viewPost .item_view img{
+	width: 64px;
+	height: 64px;
+	float: left;
+	margin-right: 10px
+}
+.top_viewPost .text_view {
+	color: #000;
+}
+.top_viewPost .text_view  small{
+	font-size: 14px;
+	color:#666;
+}
+.top_viewPost .text_view  h5{
+	margin-bottom: 5px;
+	margin-top: 0;
+	font-size: 16px
+}
+.top_viewPost .text_view  h5:hover{
+	color: #f50
+}
+.wrapper_border .tags{
+	margin:15px 0 20px 0;
+}
+.wrapper_border .tags a{
+	background: #cdc9c5;
+    color: #fff;
+    padding: 0 10px;
+    font-size: 14px;
+    border-radius: 3px;
+    margin-bottom: 7px;
+    display: inline-block;
+    text-decoration: none
+}
+.wrapper_border .tags a:hover{
+	background-color: #333
+}
+
+

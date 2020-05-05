@@ -4,14 +4,22 @@
 }
 
 <form action="@Url.Action("UpdateIndex", "Room")" method="POST" id="updateIndex">
-    
+    @{
+        <div class="optionShow">
+            <div class="optionShow-title">Lọc tìm kiếm</div>
+            <div class="item-option">
+                <div class="title-item-option">Chuyên mục room:</div>
+                <div class="content-item-option">@Html.DropDownList("ListHotel")</div>
+            </div>
+        </div>
+    }
     <div id="jtable-main-container"></div>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#jtable-main-container').jtable({
                 title: '@ViewBag.Title',
                 paging: true, //Enable paging
-                pageSize: 20, //Set page size (default: 10)
+                pageSize: 50, //Set page size (default: 10)
                 sorting: true, //Enable sorting
                 defaultSorting: 'Name ASC', //Set default sorting
                 selecting: true, //Enable selecting
@@ -49,17 +57,28 @@
                         list: false
                     },
                     Title: {
-                        title: 'Tên phòng',
+                        title: 'Tên Phòng',
+                        width: '13%',
+                        display: function (data) {
+                            return '<a href="/admin/Room/Update/' + data.record.ID + '">' + data.record.Title + '</a>';
+                        }
+                    },
+                    HotelName: {
+                        title: 'Tên KS',
                         width: '13%',
                         display: function(data) {
-                            return '<a href="/admin/Room/Update/' + data.record.ID + '">' + data.record.Title + '</a>';
+                            return '<a href="/admin/Room/Update/' +
+                                data.record.RoomId +
+                                '">' +
+                                data.record.HotelName +
+                                '</a>';
                         }
                     },
                     Index: {
                         title: 'Thứ tự hiển thị',
                         width: '4%',
                         sorting: false,
-                        display: function(data) {
+                        display: function (data) {
                             return '<input type="text" name="sort[' + data.record.ID + '].Index" style="width:25px" value="' + data.record.Index + '"/>';
                         }
                     },
@@ -82,7 +101,7 @@
                         title: '',
                         width: '2%',
                         sorting: false,
-                        display: function(data) {
+                        display: function (data) {
                             return '<button title="Edit" type="button" class="jtable-command-button jtable-edit-command-button" onclick="editRecord(' + data.record.ID + ')"><span>Edit</span></button>';
                         }
                     }
@@ -96,4 +115,8 @@
     function editRecord(Id) {
         window.location = '@Url.Action("Update", "Room")' + '/' + Id;
     }
+
+    $("#ListHotel").change(function () {
+        $('#jtable-main-container').jtable('load', { hotelId: $("#ListHotel").val() });
+    });
 </script>

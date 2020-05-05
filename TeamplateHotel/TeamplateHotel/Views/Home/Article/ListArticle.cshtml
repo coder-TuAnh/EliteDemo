@@ -19,18 +19,19 @@
     <link rel="stylesheet" type="text/css" href="~/Content/css/responsive/blog_res.css">
     
     <link href="~/Content/css/PagedList.css" rel="stylesheet" />
+    <style>
+        .text_blog div {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3; /*số dòng muốn hiện */
+            /*font-size: 12px; /*cỡ chữ, đơn vị px */ line-height: 1.5em; /* khoảng cách giữa các dòng, đơn vị em*/
+            max-height: 63px;
+        }
+    </style>
 }
-<style>
-    .text_blog div {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3; /*số dòng muốn hiện */
-        /*font-size: 12px; /*cỡ chữ, đơn vị px */ line-height: 1.5em; /* khoảng cách giữa các dòng, đơn vị em*/
-        max-height: 63px;
-    }
-</style>
+
 <main>
     <section class="body_">
         <div class="container">

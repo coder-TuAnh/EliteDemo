@@ -64,7 +64,7 @@
                     else
                     {
                         @tabTours[0].TitleTab
-                        <select name="TabTourID" id="TabId" style="display: none">
+                        <select name="TabTourID" id="TabId" style="display: block">
                             <option value="@tabTours[0].ID" data-price="@tabTours[0].Price">@tabTours[0].ID</option>
                         </select>
                     }
@@ -509,7 +509,7 @@
             $("#text-deposit").val(deposit);
         }
         var paymentNow = (totalPrice * deposit) / 100;
-          var vndTotal = (@CodeHelper.GetExrate()* paymentNow).toLocaleString();
+        var vndTotal = (@CodeHelper.GetExrate() * paymentNow).toLocaleString();
 
           vndTotal = vndTotal;
         var duePayment = 0;
